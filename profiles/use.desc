@@ -1,0 +1,7 @@
+# Copyright 1999-2011 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/profiles/use.desc,v 1.450 2011/01/10 21:01:23 grobian Exp $
+
+# Keep them sorted
+
+scsi - Adds support for scsi

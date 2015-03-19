@@ -1,0 +1,9 @@
+#!/bin/sh
+PROGRAMNAME=`basename $0`
+showhelp() {
+	echo "Usage: $PROGRAMNAME HEX [FileName]"
+	exit 1
+}
+hex=`printf "${1}"|echohex -r` ||{  echo '$1' is not vaild hex.; exit 1; }
+shift
+LANG=C grep $hex $@

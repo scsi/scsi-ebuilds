@@ -1,0 +1,30 @@
+#!/sbin/runscript
+#
+# chkconfig: 345 86 24
+# description: This script takes care of starting and stopping socks5.
+#
+depend() {
+	use logger dns
+	need net
+}
+icheckconfig() {
+        if [ ! -e /etc/socks5.conf ] ; then
+               eerror "You need an /etc/etc/socks5.conf file to run socks5"
+               return 1
+	fi
+}							
+#[ -f /usr/sbin/socks5 ] || exit 0
+
+start()
+{
+        #checkconfig || return 1
+	ebegin "Starting socks5"
+	start-stop-daemon --start --exec /usr/sbin/socks5
+	eend $?
+}
+stop()
+{
+        ebegin "Stopping socks5"
+	start-stop-daemon --stop --quiet --pidfile /var/run/socks5.pid-1080
+	eend $?
+}

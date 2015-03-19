@@ -1,0 +1,13 @@
+#http_proxy="http://proxy.iii.org.tw:3128"
+#ftp_proxy="http://proxy.iii.org.tw:3128"
+ROOTPATH=/usr/X11R6/bin
+PATH=/usr/X11R6/bin
+#LANG=zh_TW
+#LC_ALL=zh_TW.Big5
+#LDPATH=/usr/X11R6/lib:/usr/X11R6/lib/X11/locale/lib/common:/usr/X11R6/lib/modules/extensions:/usr/lib:/lib
+#LDPATH=/usr/lib:/lib
+#LESSCHARSET=latin1
+LESS="-isMRrf"
+FLASH_GTK_LIBRARY=libgtk-x11-2.0.so.0
+#LD_ASSUME_KERNEL=2.3.98
+LDPATH=/usr/X11R6/lib/modules/dri:/usr/X11R6/lib/modules/drivers:/usr/X11R6/lib

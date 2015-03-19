@@ -1,0 +1,39 @@
+http://www.itonguard.com/20090313/weblogic-starts-slow/
+Weblogic starts slow
+Filed under: Uncategorized ¡X Tags: java, random, urandom, weblogic ¡X admin @
+9:44 am
+
+I had a lot of troubles starting Oracle Weblogic 10.3g under linux (CentOS
+5.2). It took anywhere between 5 to 20 minutes from the time I ran startup
+script to the point when Weblogic actually started. Here is typical log:
+
+<Mar 12, 2009 12:35:34 PM EDT> <Info> <Management> <BEA-141107> <Version:
+WebLogic Server 10.3  Fri Jul 25 16:30:05 EDT 2008 1137967 >
+<Mar 12, 2009 12:46:37 PM EDT> <Notice> <WebLogicServer> <BEA-000365> <Server
+state changed to STARTING>
+
+Turns out Weblogic uses random number generator during start up. Because of
+the bug in java it reads ¡¥randomness¡¦ from /dev/random. /dev/random is very
+good random numbers generators but it is extremely slow. It takes sometimes 10
+minutes or more to generate one number. /dev/urandom is not that good, but it
+is instant.
+Java somehow maps /dev/urandom file to /dev/random. That¡¦s why default
+settings in $JAVA_HOME/jre/lib/security/java.security are useless.
+
+Possible solutions:
+1) Add  ¡§-Djava.security.egd=file:/dev/./urandom¡¨ (/dev/urandom does not
+work) to java parameters.
+
+Worse but working solution is:
+2) mv /dev/random /dev/random.ORIG ; ln /dev/urandom /dev/random
+
+3) Best solution is to change $JAVA_HOME/jre/lib/security/java.security
+Replace securerandom.source with
+
+securerandom.source=file:/dev/./urandom
+
+This problem does not happen under windows because it uses different
+implementation of /dev/random.
+
+It takes seconds to start weblogic server now.
+

@@ -1,0 +1,7 @@
+cd
+echo "set meta-flag on" >> .inputrc
+echo "set convert-meta off" >> .inputrc
+echo "set output-meta on" >> .inputrc
+echo "export LESSCHARSET=latin1" >> .bash_profile
+echo "alias less='/bin/less -r'" >> .bash_profile
+echo "alias ls='/bin/ls -F --color=tty --show-control-chars'" >> .bash_profile

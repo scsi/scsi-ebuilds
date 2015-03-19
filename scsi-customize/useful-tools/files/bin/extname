@@ -1,0 +1,13 @@
+[ $# = 1 ] || { echo Usage: `basename $0` file ; exit 1; }
+ext=""
+fname=`basename $1`
+lc=0
+while [ 0 ]
+do
+	lc=`expr $lc + 1`
+	exttmp=`echo $fname|cut -d'.' -f $lc`
+	[ -z $exttmp ] && break
+	[ $exttmp = $fname ] && break
+	ext=$exttmp
+done
+echo $ext

@@ -1,0 +1,34 @@
+#!/sbin/runscript
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/files/ntp-client.rc,v 1.11 2007/03/09 17:24:28 vapier Exp $
+
+depend() {
+	need net
+}
+
+checkconfig() {
+	if ! type "${ARPCMD}" >/dev/null 2>/dev/null ; then
+		eerror "Please edit /etc/conf.d/static-arp"
+		eerror "I need to know where arp command to use!"
+		return 1
+	fi
+	if [ -z "${ARPLIST}" ] ; then
+		eerror "Please edit /etc/conf.d/static-arp"
+		eerror "I need to know what arp to use!"
+		return 1
+	fi
+	return 0
+}
+
+start() {
+	checkconfig || return $?
+
+	ebegin "Setting static arp"
+		#for ((i=0; i<${#ARPLIST[@]}; i++)); do
+		for param in "${ARPLIST[@]}"; do
+			einfo "${ARPCMD}" -s $param
+			"${ARPCMD}" -s $param
+		done
+	eend $? "Failed to set static arp"
+}

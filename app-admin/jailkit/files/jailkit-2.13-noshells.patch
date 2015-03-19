@@ -1,0 +1,23 @@
+jailkit-2.13.orig/debian 和 jailkit-2.13/debian 有共同的副目錄
+jailkit-2.13.orig/extra 和 jailkit-2.13/extra 有共同的副目錄
+jailkit-2.13.orig/ini 和 jailkit-2.13/ini 有共同的副目錄
+diff -Nu jailkit-2.13.orig/Makefile.in jailkit-2.13/Makefile.in
+--- jailkit-2.13.orig/Makefile.in	2010-09-11 21:45:26.000000000 +0800
++++ jailkit-2.13/Makefile.in	2010-10-21 14:54:46.364505878 +0800
+@@ -69,13 +69,6 @@
+ 	@cd man/ && $(MAKE) install
+ 	# test if the jk_chrootsh is already in /etc/shells
+ 	# this previously had @echo but that fails on FreeBSD
+-	if test -w /etc/shells; then \
+-		if ! grep ${prefix}/sbin/jk_chrootsh /etc/shells ; then \
+-			echo "appending ${prefix}/sbin/jk_chroots to /etc/shells";\
+-			echo ${prefix}/sbin/jk_chrootsh >> /etc/shells ;\
+-		fi \
+-	fi
+-
+ 
+ uninstall:
+ 	rm -f ${iniprefix}/*.ini
+jailkit-2.13.orig/man 和 jailkit-2.13/man 有共同的副目錄
+jailkit-2.13.orig/py 和 jailkit-2.13/py 有共同的副目錄
+jailkit-2.13.orig/src 和 jailkit-2.13/src 有共同的副目錄

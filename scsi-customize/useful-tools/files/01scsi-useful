@@ -1,0 +1,3 @@
+PATH=/usr/bin/scsi-useful
+ROOTPATH=/usr/bin/scsi-useful
+ES_BASHCOMP_DIRS=/usr/share/bash-completion/completions

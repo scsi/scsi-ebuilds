@@ -1,0 +1,28 @@
+#!/bin/sh
+
+################################################################################
+##
+## unsocks - Don't let the dynamic socks library be loaded
+##
+## If you have in your ~/.profile the following
+##
+##	export LD_PRELOAD=libsocks5_sh.so
+##
+## All your session will be socksified.
+## Some programs don't like it so you can use unsocks to run them unsocksified.
+## The usage is very similar to runsocks(1).
+## 
+## This is free software distributed under GPL
+##
+## Avi Alkalay <avi@br.ibm.com>
+## 5 Jun 1999
+################################################################################
+
+
+if [ -n "$LD_PRELOAD" ]; then
+	ld_new=`echo $LD_PRELOAD | sed -e 's|libsocks5_sh.so||g'`
+	LD_PRELOAD=$ld_new
+	export LD_PRELOAD
+fi
+
+exec "$@"

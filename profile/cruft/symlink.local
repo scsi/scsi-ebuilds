@@ -1,0 +1,8 @@
+echo /usr/doc  /usr/share/doc
+echo /usr/info  /usr/share/info
+echo /usr/man  /usr/share/man
+echo /usr/tmp  /var/tmp
+echo /usr/X11R6  /usr
+echo /usr/mail  /var/spool/mail
+echo /lib/libacl.la  /usr/lib/libacl.la
+echo /lib/libattr.la  /usr/lib/libattr.la

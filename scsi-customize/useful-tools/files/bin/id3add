@@ -1,0 +1,88 @@
+#!/bin/bash
+set -- `getopt a:A:c:C:y:g:hr $*`
+trflag=_
+usage()
+{
+	echo 'Usage: id3add [OPTIONS]... [FILES]...
+	-a STRING	Set the artist information
+	-A STRING	Set the album title information
+	-c STRING	Set the comment information
+	-C STRING	Set the comment description
+	-y STRING	Set the year
+	-t STRING	Set the track number
+	-g SHORT	Set the genre'
+}
+if test $? != 0
+then
+	usage
+	exit 2
+fi
+for i
+do
+	case "$i"
+	in
+		-h)
+			#flag=$i; shift;;
+			usage
+			exit 0;;
+		-r)
+			trflag='_';shift;;
+		-a)
+			_artist=$2; shift; shift;;
+		-A)
+			_album=$2; shift; shift;;
+		-c)
+			_comment=$2; shift; shift;;
+		-C)
+			_desc=$2; shift; shift;;
+		-y)
+			_year=$2; shift; shift;;
+		-g)
+			_genre=$2; shift; shift;;
+		--)
+			shift; break;;
+	esac
+done
+
+_total=$#
+OLDIFS=$IFS
+
+for mfile in $*
+do
+	for aa in . - _ " "
+	do
+		tt=`echo "$mfile"|cut -d"$aa" -f 1`
+		if expr $tt + 2 &>/dev/null
+		then
+			_track=$tt
+			_song="`echo "$mfile"|cut -d"$aa" -f 2|cut -d'.' -f 1`"
+			break
+		else
+			_track=""
+			_song="`echo "$mfile"|cut -d'.' -f 1`"
+		fi
+	done
+
+	_song="`echo $_song|tr $trflag ' '`"
+
+	id3tag --artist="$_artist" \
+		--album="$_album" \
+		--song="$_song" \
+		--comment="$_comment" \
+		--desc="$_desc" \
+		--year="$_year" \
+		--track="$_track" \
+		--total="$_total" \
+		--genre="$_genre" \
+		"$mfile"
+	mid3iconv "$mfile"
+done
+#   -aSTRING   --artist=STRING   Set the artist information
+#   -ASTRING   --album=STRING    Set the album title information
+#   -sSTRING   --song=STRING     Set the title information
+#   -cSTRING   --comment=STRING  Set the comment information
+#   -CSTRING   --desc=STRING     Set the comment description
+#   -ySTRING   --year=STRING     Set the year
+#   -tSTRING   --track=STRING    Set the track number
+#   -TSTRING   --total=STRING    Set the total number of tracks
+#   -gSHORT    --genre=SHORT     Set the genre

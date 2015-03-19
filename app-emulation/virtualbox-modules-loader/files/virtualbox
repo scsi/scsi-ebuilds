@@ -1,0 +1,22 @@
+#!/sbin/runscript
+# Copyright 1999-2007 Gentoo Foundation
+# Distributed under the terms of the GNU General Public License v2
+# $Header: /var/cvsroot/gentoo-x86/net-misc/ntp/files/ntp-client.rc,v 1.11 2007/03/09 17:24:28 vapier Exp $
+
+start() {
+	ebegin "Loading virtualbox modules"
+	for m in vboxdrv vboxnetadp vboxnetflt;do
+		einfo "load $m."
+		modprobe $m
+	done
+	eend $? "Failed to load virtualbox modules"
+}
+
+stop() {
+	ebegin "UnLoading virtualbox modules"
+	for m in vboxnetflt vboxnetadp vboxdrv;do
+		einfo "unload $m."
+		rmmod $m
+	done
+	eend $? "Failed to unload virtualbox modules"
+}

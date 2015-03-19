@@ -1,0 +1,26 @@
+#!/bin/sh
+# http://blog.neutrino.es/2013/howto-properly-activate-trim-for-your-ssd-on-linux-fstrim-lvm-and-dmcrypt/
+#
+# To find which FS support trim, we check that DISC-MAX (discard max bytes)
+# is great than zero. Check discard_max_bytes documentation at
+# https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt
+
+LOGFILE=/var/log/fstrim.log
+
+if [ "`stat -c %s $LOGFILE`" -gt 50000000 ];then
+	mv $LOGFILE $LOGFILE.bak
+	rm $LOGFILE.bak.gz
+	gzip $LOGFILE.bak
+fi
+(
+echo
+date
+for fs in $(lsblk -o MOUNTPOINT,DISC-MAX,FSTYPE | grep -E '^/.* [1-9]+.* ' | awk '{print $1}'); do
+	time fstrim -v "$fs"
+done
+
+#for mpoint in $@ ; do
+#	fstrim $mpoint -v 
+#done
+
+) >>$LOGFILE 2>&1

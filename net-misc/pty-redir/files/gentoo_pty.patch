@@ -1,0 +1,75 @@
+diff -Nur pty-redir-0.1/pty-redir.c pty-redir-0.1.new/pty-redir.c
+--- pty-redir-0.1/pty-redir.c	1997-05-03 21:10:44.000000000 +0800
++++ pty-redir-0.1.new/pty-redir.c	2011-09-19 03:02:10.000000000 +0800
+@@ -35,6 +35,7 @@
+ 
+ */
+ 
++#define _XOPEN_SOURCE 
+ #include <unistd.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+@@ -42,46 +43,29 @@
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ 
+-
+-#define PTY00 "/dev/ptyXX"
+-#define PTY10 "pqrs"
+-#define PTY01 "0123456789abcdef"
+-
+-static int
+-getPtyMaster(char *tty10, char *tty01)
++int get_pty_master()
+ {
+-    char *p10;
+-    char *p01;
+-    static char dev[] = PTY00;
+     int fd;
+-
+-    for (p10 = PTY10; *p10 != '\0'; p10++) {
+-        dev[8] = *p10;
+-        for (p01 = PTY01; *p01 != '\0'; p01++) {
+-            dev[9] = *p01;
+-            fd = open(dev, O_RDWR);
+-            if (fd >= 0) {
+-                *tty10 = *p10;
+-                *tty01 = *p01;
+-                return fd;
+-            }
+-        }
++    fd=open("/dev/ptmx",O_RDWR);
++    if(fd>0) 
++    {
++    	grantpt(fd);
++	unlockpt(fd);
++        return fd;
+     }
+     fprintf(stderr,"Ran out of pty.\n");
+     exit(1);
+-    return fd;
+ }
+ 
+-void main(int argc,char *argv[])
++int main(int argc,char *argv[])
+ {
+ 	int fd;
+-	char a,b;
+ 	char **args;
+ 	char *envs[]={NULL};
+ 	int i;
+ 	
+-	fd=getPtyMaster(&a,&b);
+-	fprintf(stdout,"/dev/tty%c%c",a,b);
++	fd=get_pty_master();
++	fprintf(stdout,"%s",ptsname(fd));
+ 	fflush(stdout);
+ 	if(NULL==(args=malloc((argc)*sizeof(char *))))
+ 	{
+@@ -106,4 +90,6 @@
+ 			exit(-2);
+ 		}
+ 	}
++
++	return 0;
+ }

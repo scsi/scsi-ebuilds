@@ -1,0 +1,10 @@
+#!/bin/sh
+PROGRAMNAME=`basename $0`
+showhelp() {
+	echo "Usage: $PROGRAMNAME HEX"
+	exit 1
+}
+for hex in $@ ; do
+	printf "%08X" 0x0$hex |echohex -r|iconv -f ucs4 -t utf8
+done
+echo

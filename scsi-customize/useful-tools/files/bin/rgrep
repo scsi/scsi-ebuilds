@@ -1,0 +1,20 @@
+#!/bin/sh
+# rgrep: recursive grep
+# »¼°j¦¡Â^¨ú
+
+#if [ $# != 3 ]
+#then
+#  echo "Usage: rgrep --switches 'pattern' 'directory'"
+#  exit 1
+#fi
+#find $3 -name "*" -exec grep $1 $2 {} \; 2> /dev/null
+
+if [ $# = 1 ]
+then
+   find . -name "*" -exec grep -l $1 {} \; 2> /dev/null
+fi
+
+if [ $# = 2 ]
+then
+   find . -name "*" -exec grep $1 $2 {} \; 2> /dev/null
+fi

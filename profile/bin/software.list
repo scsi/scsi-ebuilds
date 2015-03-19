@@ -1,0 +1,7 @@
+id3iconv - convert to utf-8 idtage
+mp3gain - reset sound volum
+mutagen >> mid3iconv - convert idtag format to UTF-8
+findcruft - find file which not taged by portage
+makepasswd - generaterandom passwd
+pwgen - generate random passwd
+john - John the Ripper password cracker

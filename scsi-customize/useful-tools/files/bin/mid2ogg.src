@@ -1,0 +1,43 @@
+#!/bin/bash
+
+# man timidity for more information
+TIMIDITY_CMD="/usr/bin/timidity -a -Ew -Ep -Ev -Es -Et -Eo -idq -Owsl"
+# man oggenc for more information
+OGGENC_CMD="/usr/bin/oggenc -b 256 "
+
+
+while [ ! "$1" = "" ]
+do
+	destfile=`basename "$1" .mid`.ogg
+	$TIMIDITY_CMD "$1" -o - 2> /dev/null |$OGGENC_CMD -o "$destfile" -
+        mpg123 -w "$destfile" "$1"
+	ret=$?
+        shift
+done
+exit $ret
+
+# Find the everything in the dir you're in
+#for FILE in ./*.mid
+#do
+    # Check is it a file
+#    if [ -f "$FILE" ]
+#    then
+#        # If something is MIDI file
+#        # then convert it to Ogg
+#        case "${FILE##*.}" in
+#            mid)
+#                echo -n "converting  " && echo -n "$FILE" && echo -n " to " \
+#                  && echo -n "${FILE/.mid}.ogg" && echo -n "..."
+#
+#                # Convert MIDI to WAV and then to Ogg OnTheFly
+#                $TIMIDITY_CMD "${FILE}" -o - 2> /dev/null | \
+#                  $OGGENC_CMD -o "${FILE/.mid}.ogg" -
+#                   ;;
+#              *)
+#                 echo -n "Be sure" && echo -n "${FILE}" \
+#                   && echo -n "is a MIDI file"
+#                   ;;
+#        esac
+#    fi
+#done
+

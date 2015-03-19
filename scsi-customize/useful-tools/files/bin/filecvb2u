@@ -1,0 +1,15 @@
+#!/bin/sh
+
+[ $# -le 0 ] && { echo filecvb2u.sh file ;exit 1; }
+
+for I in $@ ; do
+    echo "check... $I"
+    cat "$I" | iconv -f big5 -t utf8 >/dev/null 2>&1
+    if [ $? = 0 ]; then
+		cp $I ${I}~
+		iconv -f big5 -t utf8 <${I}~ >$I
+    else
+        echo "skip $I"
+    fi
+done
+echo "ok!"

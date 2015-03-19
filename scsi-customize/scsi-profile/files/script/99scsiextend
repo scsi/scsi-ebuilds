@@ -1,0 +1,8 @@
+#LESSCHARSET=latin1
+LESS="-isMRrf"
+EDITOR="/usr/bin/vi"
+PAGER="/usr/bin/less"
+EMERGE_DEFAULT_OPTS='--with-bdeps y'
+#FLASH_GTK_LIBRARY=libgtk-x11-2.0.so.0
+#LD_ASSUME_KERNEL=2.3.98
+LIBXCB_ALLOW_SLOPPY_LOCK=1

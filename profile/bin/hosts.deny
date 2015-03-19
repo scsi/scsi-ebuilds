@@ -1,0 +1,20 @@
+#
+# hosts.deny	This file describes the names of the hosts which are
+#		*not* allowed to use the local INET services, as decided
+#		by the '/usr/sbin/tcpd' server.
+#
+
+in.telnetd : ALL : spawn (/bin/echo Security notice from host `/bin/hostname`; \
+/bin/echo; /usr/sbin/safe_finger @%h ) | \
+/bin/mail -s "%d -%h security" root@localhost & \
+: twist ( /bin/echo -e "\n\nWARNING connectin not allowed. Your attempt has been logged. \n\n\n警告您尚未允許登入，您的連線將會被紀錄，並且作為以後的參考\n\n ". )
+
+in.ftpd : ALL : spawn (/bin/echo Security notice from host `/bin/hostname`; \
+/bin/echo; /usr/sbin/safe_finger @%h ) | \
+/bin/mail -s "%d -%h security" root@localhost & \
+: twist ( /bin/echo -e "\n\nWARNING connectin not allowed. Your attempt has been logged. \n\n\n警告您尚未允許登入，您的連線將會被紀錄，並且作為以後的參考\n\n ". )
+
+sshd : ALL : spawn (/bin/echo Security notice from host `/bin/hostname`; \
+/bin/echo; /usr/sbin/safe_finger @%h ) | \
+/bin/mail -s "%d -%h security" root@localhost & \
+: twist ( /bin/echo -e "\n\nWARNING connectin not allowed. Your attempt has been logged. \n\n\n警告您尚未允許登入，您的連線將會被紀錄，並且作為以後的參考\n\n ". )

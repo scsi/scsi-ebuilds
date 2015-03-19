@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=jude
+Name=Jude
+GenericName=Jude - UML Modeller
+MimeType=application/x-designer
+Icon=/opt/jude/jude.ico
+Type=Application
+MimeType=application/x-uml
+Categories=Development;
+Terminal=false

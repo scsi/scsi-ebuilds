@@ -1,0 +1,4 @@
+id="got2"
+description="Gentoo Taiwan Ebuilds"
+rsync="rsync://rsync2.gentoo.org.tw/gotebuilds/"
+overlay="/root/portage/got"

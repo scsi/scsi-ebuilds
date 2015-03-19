@@ -1,0 +1,13 @@
+for fn in $@
+do
+	printf "%s: " $fn
+	[ -e "$fn" ] || { echo "not found."; continue; }
+	(
+		cd `dirname $fn`
+		old_fn=`basename $fn`
+		echo $old_fn|iconv -t gb2312 -f utf8 >/dev/null 2>&1|| { echo skip.; continue; }
+		new_fn=`echo $old_fn|iconv -f utf8 -t gb2312 -c | iconv -f gb2312 -t big5 -c|iconv -f big5 -t utf8 -c`
+		[ $old_fn = $new_fn ] && echo "no change." || \
+		  { mv $old_fn $new_fn && echo "done." || echo "fail."; }
+	)
+done

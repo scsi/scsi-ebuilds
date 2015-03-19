@@ -1,0 +1,5 @@
+#!/bin/sh
+for file in "$@" ; do
+name=`echo "$file" | sed -e "s/.MTS$//g"`
+ffmpeg -i "$file" -s 1024x768 -b:v 4000k "$name.mp4"
+done

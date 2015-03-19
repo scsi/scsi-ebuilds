@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+
+#
+# put this in your ~/.gitconfig
+#
+#[core]
+#	gitProxy = git-http-proxy
+
+HOST=$1
+PORT=$2
+
+PROXY_HOST=`echo $http_proxy | sed -e 's/^http:\/\/\([^:]*\):\([0-9]*\).*/\1/g'`
+PROXY_PORT=`echo $http_proxy | sed -e 's/^http:\/\/\([^:]*\):\([0-9]*\).*/\2/g'`
+
+if test -n "$http_proxy"; then
+    CMD="/usr/bin/socat STDIO,ignoreeof PROXY:$PROXY_HOST:$HOST:$PORT,proxyport=$PROXY_PORT"
+else
+    CMD="/usr/bin/socat STDIO,ignoreeof TCP:$HOST:$PORT"
+fi
+#echo $CMD >&2
+exec $CMD

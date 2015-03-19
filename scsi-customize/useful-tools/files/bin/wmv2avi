@@ -1,0 +1,11 @@
+#!/bin/bash
+#http://www.wer-weiss-was.de/theme12/article1590806.htm
+
+while [ ! "$1" = "" ]
+do
+	destfile=`basename "$1" .wmv`.avi
+	transcode -x mplayer -i "$1" -g 640x480 -y mpeg -Z 480x576 -F s -o "$destfile" -e 44100 -b 128 -f 30
+	ret=$?
+        shift
+done
+exit $ret

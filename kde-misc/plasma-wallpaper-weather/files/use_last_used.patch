@@ -1,0 +1,38 @@
+diff -Nur plasma-wallpaper-weather-0.2.1.bak/weather.cpp plasma-wallpaper-weather-0.2.1/weather.cpp
+--- plasma-wallpaper-weather-0.2.1.bak/weather.cpp	2009-04-07 22:51:13.000000000 +0800
++++ plasma-wallpaper-weather-0.2.1/weather.cpp	2009-04-24 09:52:14.581001798 +0800
+@@ -52,6 +52,7 @@
+ 
+ void WeatherWallpaper::init(const KConfigGroup & config)
+ {
++    m_config = config;
+     m_weatherUpdateTime = config.readEntry("updateWeather", 30);
+ 
+     // Connect to weather engine.
+@@ -61,6 +62,7 @@
+     // Set custom options
+     m_ionPlugins = m_weatherEngine->query("ions");
+ 
++    m_wallpaper = config.readEntry("wallpaper");
+     m_activePlace = config.readEntry("place");
+     m_activeIon = config.readEntry("ion");
+     m_extraData[m_activePlace] = config.readEntry("data");
+@@ -503,6 +505,7 @@
+         m_wallpaper = QString(m_dir + "Icy_Tree");
+     }
+ 
++    m_config.writeEntry("wallpaper",m_wallpaper);
+     loadImage();
+     emit update(boundingRect());
+ }
+diff -Nur plasma-wallpaper-weather-0.2.1.bak/weather.h plasma-wallpaper-weather-0.2.1/weather.h
+--- plasma-wallpaper-weather-0.2.1.bak/weather.h	2009-04-07 22:36:23.000000000 +0800
++++ plasma-wallpaper-weather-0.2.1/weather.h	2009-04-24 09:52:47.323239291 +0800
+@@ -76,6 +76,7 @@
+ private:
+     QWidget* m_configWidget;
+     KDialog *m_addDialog;
++    KConfigGroup m_config;
+     Ui::weatherLocations locationsUi;
+     Ui::weatherAddPlace addUi;
+     QStandardItemModel *m_amodel;

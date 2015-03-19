@@ -1,0 +1,13 @@
+# ChangeLog for scsi-customize/useful-tools
+# Copyright 1999-2008 Gentoo Foundation; Distributed under the GPL v2
+# $Header: $
+
+  10 Mar 2008; scsi <scsichen@gmail.com> useful-tools-1.9.ebuild,
+  files/dumphex.c, +files/stripc.c:
+  fix
+
+  19 Feb 2008; scsi <scsichen@gmail.com> +files/01scsi-useful,
+  useful-tools-1.9.ebuild, files/bin/mconvert.sh, files/mconvert.link,
+  +metadata.xml:
+  add amr format
+

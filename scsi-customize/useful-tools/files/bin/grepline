@@ -1,0 +1,39 @@
+#!/bin/sh
+PROGRAMNAME=`basename $0`
+showhelp()
+{
+	echo "Usage: $PROGRAMNAME [-c count] LineNumber [FileName]"
+	exit 1
+}
+OPTS=$(getopt c: "$@")
+if [ $? -ne 0 ]
+then
+        showhelp
+fi
+
+COUNT=1
+
+set -- $OPTS
+for o
+do      case "$o" in
+	-c)     shift;
+		expr 0 + "$1" >/dev/null 2>&1
+		if [ $? -ne 0 ]
+		then
+			echo "$PROGRAMNAME: '$1' is not an nature number."
+			exit 2;
+		fi
+		COUNT="$1";
+		shift;;
+	--)     shift; break;;
+	esac
+done
+
+[ -z "$1" ] && showhelp
+expr 0 + "$1" >/dev/null 2>&1
+if [ $? -ne 0 ] 
+then
+	echo "$PROGRAMNAME: '$1' is not an nature number."
+	exit 2;
+fi
+sed -n "$1,${COUNT}p" $2

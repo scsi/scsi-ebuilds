@@ -1,0 +1,19 @@
+diff -Nur plasma-netgraph-0.3.orig/CMakeLists.txt plasma-netgraph-0.3/CMakeLists.txt
+--- plasma-netgraph-0.3.orig/CMakeLists.txt	2008-08-20 04:33:51.000000000 +0800
++++ plasma-netgraph-0.3/CMakeLists.txt	2009-02-24 09:51:25.463000783 +0800
+@@ -2,7 +2,6 @@
+  
+ find_package(KDE4 REQUIRED)
+ include(KDE4Defaults)
+-find_package(Plasma REQUIRED)
+  
+ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+ 
+@@ -37,7 +36,6 @@
+ 
+ find_package(KDE4 REQUIRED)
+ include(KDE4Defaults)
+-find_package(Plasma REQUIRED)
+  
+ add_definitions (${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+ include_directories(

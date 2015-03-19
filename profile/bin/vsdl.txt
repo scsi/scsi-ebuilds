@@ -1,0 +1,5 @@
+zyxel p-874
+Web interface
+ip: 192.168.1.1
+id：cht
+password: chtnvdsl

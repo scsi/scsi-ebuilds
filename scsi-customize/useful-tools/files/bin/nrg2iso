@@ -1,0 +1,19 @@
+#!/bin/bash
+
+useage()
+{
+	echo Usage: `basename $0` file.nrg [file.iso]
+	exit 1
+}
+[ $# = 2 -o $# = 1 ]||useage
+infile="$1"
+[ -z "$2" ]&&outfile=`basename "$infile" .nrg`.iso||outfile="$2"
+[ "`extname \"$infile\"`" = nrg ]||useage
+[ "`extname \"$outfile\"`" = iso ]||useage
+
+[ -f "$infile" ] ||  echo $infile not exist. 
+[ -f "$outfile" ] &&  echo $outfile exist. 
+echo "convert $infile to $outfile"
+
+dd if=$infile of=$outfile bs=2048 skip=150
+

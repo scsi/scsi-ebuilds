@@ -1,0 +1,33 @@
+net-ftp/pure-ftpd paranoidmsg
+dev-java/sun-jdk doc
+app-i18n/fcitx table
+net-nds/openldap syslog -minimal
+app-accessibility/espeak portaudio
+net-misc/nxserver-freenx nxclient
+app-portage/layman git subversion
+dev-db/mysql embedded
+virtual/mysql embedded
+dev-python/PyQt4 webkit declarative
+dev-vcs/git cgi cvs subversion
+dev-vcs/subversion -dso
+media-libs/libpng apng
+media-video/mplayer bl bs2b cddb cdparanoia cpudetection dga dvb ftp ladspa libcaca lirc md5sum nas nut pnm pvr radio tga v4l xanim xvmc
+sys-apps/pciutils -zlib
+sys-libs/zlib minizip
+dev-java/swing-layout source
+sys-libs/zlib minizip
+media-plugins/alsa-plugins pulseaudio
+sys-auth/pambase systemd
+>=dev-libs/elfutils-0.158 static-libs
+net-libs/webkit-gtk -opengl
+>=kde-base/kdelibs-4.12.4 zeroconf
+>=app-office/akonadi-server-1.12.1 soprano
+gnome-base/gnome-settings-daemon -i18n
+lxqt-base/lxqt-panel alsa clock desktopswitch kbindicator mainmenu mount quicklaunch showdesktop taskbar tray volume colorpicker cpuload dom networkmonitor screensaver sensors sysstat teatime worldclock
+lxqt-base/lxqt-meta  powermanagement
+dev-java/oracle-jdk-bin source
+dev-java/sun-jdk source
+>=net-dns/avahi-0.6.31-r6 mdnsresponder-compat
+=app-crypt/qca-2.0.3-r1 openssl
+media-libs/gst-plugins-bad -opengl
+media-libs/clutter egl

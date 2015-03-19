@@ -1,0 +1,46 @@
+#!/bin/sh
+#
+# chkconfig: 345 86 24
+# description: This script takes care of starting and stopping socks5.
+#
+
+# Source function library.
+. /etc/rc.d/init.d/functions
+
+# Source networking configuration.
+. /etc/sysconfig/network
+
+# Check that networking is up.
+[ ${NETWORKING} = "no" ] && exit 0
+
+[ -f /usr/sbin/socks5 ] || exit 0
+
+# See how we were called.
+case "$1" in
+  start)
+        # Start daemons.
+        echo -n "Starting socks5: "
+        daemon socks5
+        touch /var/lock/subsys/socks5
+        echo
+        ;;
+  stop)
+        # Stop daemons.
+        echo -n "Shutting down socks5: "
+	stopsocks
+        echo "done"
+        rm -f /var/lock/subsys/socks5
+        ;;
+  restart|reload)
+	$0 stop
+	$0 start
+	;;
+  status)
+	status socks5
+	;;
+  *)
+        echo "Usage: socks5 {start|stop|status|restart|reload}"
+        exit 1
+esac
+
+exit 0

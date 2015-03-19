@@ -1,0 +1,14 @@
+service socks
+{
+	flags           = REUSE
+	socket_type     = stream
+	wait            = no
+	user            = root
+	server          = /usr/sbin/socks5
+	server_args	= -i
+	log_on_success += HOST
+	log_on_failure += HOST
+        log_on_success += USERID
+	log_on_failure += USERID		
+	disable         = yes
+}

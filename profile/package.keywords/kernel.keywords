@@ -1,0 +1,6 @@
+sys-fs/zfs-kmod
+sys-fs/zfs
+sys-kernel/spl
+#sys-kernel/gentoo-sources
+#sys-fs/btrfs-progs
+sys-fs/bedup

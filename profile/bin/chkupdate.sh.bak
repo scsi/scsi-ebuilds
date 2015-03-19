@@ -1,0 +1,414 @@
+#!/bin/sh
+#set -x
+
+#trap "echo stoping `basename $0` ; (ps -aef|awk \"{if (\$3 == $$) print \$2}\"|xargs kill) 1>/dev/null 2>&1 ; exit 1" 1 2 9 15
+trap "echo stoping `basename $0` ; INTERRUP=1 ; (ps -aef|awk \"{if (\$3 == $$) print \$2}\"|xargs kill) 1>/dev/null 2>&1" 1 2 9 15
+
+INTERRUP=0
+TIMEOUT=30s
+RETRY=1
+. /etc/profile
+MAILADDR=yc.chen@infoexplorer.com.tw
+WORKDIR=/var/lib/checkupdate
+
+unset mailflag
+index=1
+MAXNAMELEN=0
+
+pscount()
+{
+        cnt=`ps -aef|awk '{print $3}'|grep $$|wc -l`
+        expr $cnt - 1
+}
+
+waitpsc()
+{
+        while [ `pscount` -ge $1 ]
+        do
+                sleep 1
+        done
+}
+
+add_data()
+{
+	[ `printf "$1"|wc -c` -gt $MAXNAMELEN ] && MAXNAMELEN=`printf "$1"|wc -c`
+	NAME[$index]="$1"
+	URL[$index]="$2"
+	PATTERN[$index]="$3"
+	GREPOPT[$index]="$4"
+	HTTPPROG[$index]="$5"
+	SEDOPT[$index]="$6"
+	AWKOPT[$index]="$7"
+	[ -z "$PATTERN[$index]" ] && PATTERN[$index]="."
+	[ -z "$HTTPPROG[$index]" ] && HTTPPROG[$index]="w3m"
+	index=`expr $index + 1`
+}
+
+usage()
+{
+	echo "Usage: `basename $0` [-m/-M Email@Address] [check [items...]|showdata [items...]|reset [items...]|showurl [items...]|showweb item|list]"
+	exit 2
+}
+
+progress()
+{
+	trap "ext=1;exit 0" 15 1 9
+	sleep_param=0.05s
+	ext=0
+	while [ $ext -eq 0 ]
+	do
+	        echo -e  '\b-\c'
+	        sleep $sleep_param
+	        echo -e '\b\\\c'
+	        sleep $sleep_param
+	        echo -e '\b|\c'
+	        sleep $sleep_param
+	        echo -e '\b/\c'
+	        sleep $sleep_param
+	done
+}
+
+startprogress()
+{
+	progress&
+	ppid=$!
+}
+
+stopprogress()
+{
+	kill -15 $ppid
+	wait $swpid
+	echo -e '\b\c'
+}
+
+checkit()
+{
+	trap "(ps -aef|awk \"{if (\$3 == $$) print \$2}\"|xargs kill) 1>/dev/null 2>&1; exit 1" 1 2 9 15
+	NAME="$1"
+	URL="$2"
+	PATTERN="$3"
+	GREPOPT="$4"
+	HTTPPROG="$5"
+	SEDOPT="$6"
+	AWKOPT="$7"
+
+	SUBWORKDIR=$WORKDIR/$NAME
+	RAWDATA=$SUBWORKDIR/raw.html
+	NOWLISTTMP=$SUBWORKDIR/now.list.tmp
+	NOWLIST=$SUBWORKDIR/now.list
+	ORIGLIST=$SUBWORKDIR/orig.list
+	DIFFDATA=$SUBWORKDIR/diff.list
+	mkdir -p $SUBWORKDIR
+
+	if [ ! -f $NOWLIST -o "$action" != reset ]
+	then
+		if wget --no-cache --timeout="$TIMEOUT" -t "$RETRY" -q -O - $URL>$RAWDATA 2>/dev/null
+		then
+			if [ `ls -s $RAWDATA|awk '{print $1}'` -eq 0 ]
+			then
+				printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Get zero data."
+				return
+			fi
+			case "$HTTPPROG" in
+			lynx)
+				HTEXT=`cat $RAWDATA|lynx -stdin -dump`;;
+			*)
+				HTEXT=`cat $RAWDATA|sed 's/width/widta/'|w3m -O utf8 -dump -T  text/html -cols 1000`;;
+			esac
+			cmd='echo "$HTEXT"|grep $GREPOPT -e "$PATTERN"|tr -s " " '
+			[ -n "$SEDOPT" ]&&cmd=$cmd'|sed "$SEDOPT"'
+			[ -n "$AWKOPT" ]&&cmd=$cmd'|awk "$AWKOPT"'
+			eval "$cmd>$NOWLISTTMP"
+			mv -f $NOWLISTTMP $NOWLIST >/dev/null 2>&1
+		else
+			rtn=$?
+			printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Get information fail [wget errno: $rtn]."
+			return
+		fi
+	fi
+
+
+	if [ "$action" = reset ]
+	then
+		if [ -f $ORIGLIST -a "`md5sum $NOWLIST|awk '{print $1}'`" = "`md5sum $ORIGLIST|awk '{print $1}'`" ]
+		then
+			#printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Reset unnecessary."
+			:
+		else
+			rm -f $ORIGLIST  >/dev/null 2>&1
+			cp $NOWLIST $ORIGLIST >/dev/null 2>&1
+			printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Reset data."
+		fi
+	else
+		[ -f $ORIGLIST ]  || cp $NOWLIST $ORIGLIST
+		if diff -Nu $ORIGLIST $NOWLIST >$DIFFDATA
+		then
+			#printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Up to date."
+			[ -s $ORIGLIST ] || printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "WARNING: orignal data is empty."
+			:
+		else
+		       	if [ -n "$mailflag" ]
+			then
+				printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Update available, mail to admin"
+				printf "subject: Data update - ${NAME}\n\n`echo $URL;cat $DIFFDATA`\r\n"|/usr/lib/sendmail $MAILADDR
+			else
+				printf "%-${MAXNAMELEN}s: %s\n%s\n%s\n%s\n" "$NAME" "Update available" "=================================" "`echo $URL;cat $DIFFDATA`" "================================="
+			fi
+		fi
+	fi
+}
+
+add_data "garmin-extra" "http://www.garmin.com.tw/m/buzz/tw/exclusive" ""
+add_data "groovy" "http://groovy.codehaus.org/Download" "^Groovy"
+add_data "oracle-oepe" "http://www.oracle.com/technetwork/developer-tools/eclipse/downloads/index.html" "Oracle Enterprise Pack for Eclipse"
+add_data "weblogic" "http://www.oracle.com/technetwork/middleware/fusion-middleware/downloads/index.html" "Oracle WebLogic Server"
+add_data "minicm" "http://code.google.com/p/minicm/downloads/list" "dl_arrow" "" "wget" 's/source.*$//' "{print \$2}"
+add_data "slf4j" "http://www.slf4j.org/dist/" "slf4j" "" "" "" "{print \$3}"
+add_data "spring" "http://www.springsource.org/download" "Spring.* release"
+add_data "primefaces" "http://www.primefaces.org/downloads.html" "primefaces.*\.jar"
+add_data "logback" "http://logback.qos.ch/dist/" "logback" "" "" "" "{print \$3}"
+add_data "git" "http://git-scm.com/" "\(v[0-9][0-9]*\.\)\|\(release notes\)" "" "wget" '' ""
+add_data "ibus" "http://code.google.com/p/ibus/downloads/list" "\(\(ibus\)\|\(ibus-qt\)\|\(ibus-chewing\)\|\(ibus-table\)\|\(ibus-table-zhuyin\)\|\(ibus-table-cangjie\)\|\(ibus-pinyin\)\)-[0-9]" "" "wget" 's/source.*$//' "{print \$2}"
+add_data "gtk-qt-engine" "http://code.google.com/p/gtk-qt-engine/downloads/list" "gtk-qt-engine" "" "wget" 's/\.tar.*$//'
+add_data "PGP116N" "http://tw.aximcom.com/tw/support/downloads-/cat_view/87-/60-p2p-gear-pro-/96-pgp-116n.html" "韌體" "" "wget" "s/Hits:.*$//"
+#add_data "ShellED" "http://sourceforge.net/projects/shelled/files/" "Subscribe Folder view" "" "wget" "s/20[0-9]\{2\}-\(0[0-9]\|1[0-2]\)-[0-3][0-9].*$//"
+add_data "ShellED" "http://sourceforge.net/projects/shelled/files/" "Download" "" "wget" "s/^.*Download//"
+add_data "jxplorer" "http://sourceforge.net/projects/jxplorer/files/jxplorer" "version" "" "wget" "" "{print \$2 \$3}"
+add_data "winscp" "http://sourceforge.net/projects/winscp/files/" "Download" "" "wget" "s/^.*Download//"
+add_data "itext" "http://sourceforge.net/projects/itext/files/" "Download" "" "wget" "s/^.*Download//"
+
+add_data "XR-3008" "http://conqueror.gpscamera.org/" "^台灣" "-A 1"
+add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp?n_team=&page=1" "GPS.*9900.*台灣"
+add_data "GPS9968" "http://www.5685.com.tw" "台灣"
+add_data "GPS-GP1" "http://www.ghtc.com.tw/FileDownLoad/FileDownLoadHtml.aspx" "台灣"
+add_data "compiz" "http://wiki.compiz.org/" "released"
+add_data "Garmin765" "http://www.garmin.com.tw/products/car/nuvi765/#updateTab" "Download"
+#add_data "Garmin" "http://www.garmin.com.tw/whatsNew/index.html" "—" "" "w3m" "s/^.*•//"
+#add_data "Gcin" "http://cle.linux.org.tw/gcin/download" "gcin.*\.tar\."
+add_data "Gcin" "http://www.csie.nctu.edu.tw/~cp76/gcin/download" "gcin.*\.tar\."
+add_data "oxim" "ftp://ftp.opendesktop.org.tw/odp/others/OXIM/Source/tarball/" "oxim.*\.tar\."
+add_data "PCManX" "http://code.google.com/p/pcmanx-gtk2" "pcmanx-gtk2.*\.tar\."
+#add_data "SMPlayer" "http://kde-apps.org/content/show.php/SMPlayer?content=54487" "SMPlayer"
+add_data "smplayer-theme" "http://smplayer.sourceforge.net/downloads.php?tr_lang=en" "smplayer-.*\.tar\."
+add_data "QStarDict" "http://qstardict.ylsoftware.com" "latest version"
+#add_data "XulBooster" "http://sourceforge.net/project/showfiles.php?group_id=177536" "Release Notes"
+add_data "Stardict" "http://code.google.com/p/stardict-3/downloads/list" "dl_arrow" "" "" "" "{print \$2}"
+
+add_data "Sdcv" "http://sdcv.sourceforge.net/" "sdcv.*\.tar.*"
+add_data "scim-chewing" "http://chewing.csie.net/download/scim/" "scim-chewing"
+add_data "libchewing" "http://chewing.csie.net/download/libchewing/" "libchewing"
+#add_data "pcmanfm" "http://sourceforge.net/project/showfiles.php?group_id=156956" "Release Notes"
+add_data "scim-array" "http://scimarray.openfoundry.org/" "目前最新版本"
+add_data "hinedo" "http://www.openfoundry.org/projects/814/download" "[Hh]inedo"
+add_data "tongwen" "http://www.openfoundry.org/of/projects/333/download" "tongwen"
+add_data "CDFS" "http://trappist.elis.ugent.be/~mronsse/cdfs/download/" "cdfs.*"
+add_data "eclipse" "http://download.eclipse.org/eclipse/downloads/" "\(Stream Stable Build\)\|\(Latest Release\)"
+add_data "eclipse3" "http://download.eclipse.org/eclipse/downloads/eclipse3x.php" "\(Stream Stable Build\)\|\(Latest Release\)"
+add_data "eclipsefacelets" "http://www.eclipse.org/webtools/incubator/downloads/" "version of the JSF Facelets"
+add_data "scim" "http://www.scim-im.org/downloads/scim_download" "Version"
+add_data "skim" "http://www.scim-im.org/downloads/skim_download" "Version"
+
+add_data "KGtk" "http://kde-apps.org/content/show.php/KGtk+%28Use+KDE+Dialogs+in+Gtk+Apps%29?content=36077" "^KGtk (Use KDE Dialogs in Gtk Apps)$" "-A 2" "lynx"
+add_data "kconnections" "http://kde-apps.org/content/show.php?content=71204" "^KConnections$" "-A 2" "lynx"
+add_data "imageshack-upload" "http://kde-apps.org/content/show.php?content=51247" "^Host on Imageshack$" "-A 2" "lynx"
+add_data "MPlayerThumbs" "http://kde-apps.org/content/show.php/MPlayerThumbs?content=41180" "^MPlayerThumbs$" "-A 2" "lynx"
+#add_data "KDMTheme" "http://kde-apps.org/content/show.php/KDM+Theme+Manager?content=22120" "^KDM Theme Manager$" "-A 2" "lynx"
+add_data "KSquirrel" "http://kde-apps.org/content/show.php/KSquirrel?content=12317" "^KSquirrel$" "-A 2" "lynx"
+add_data "Yakuake" "http://kde-apps.org/content/show.php/Yakuake?content=29153" "^Yakuake$" "-A 2" "lynx"
+add_data "KSniffer" "http://kde-apps.org/content/show.php/KSniffer?content=26258" "^KSniffer$" "-A 2" "lynx"
+add_data "plasma-countdown" "http://www.kde-look.org/content/show.php/countdown?content=74950" "^countdown$" "-A 2" "lynx"
+add_data "plasma-flickrop" "http://www.kde-look.org/content/show.php/Flickr+On+Plasma?content=94800" "^Flickr On Plasma$" "-A 2" "lynx"
+add_data "plasma-flickrplasmoid" "http://www.kde-look.org/content/show.php/Flickr+Plasmoid?content=83246" "^Flickr Plasmoid$" "-A 2" "lynx"
+add_data "plasma-netgraph" "http://www.kde-look.org/content/show.php/plasma-netgraph?content=74071" "^plasma-netgraph$" "-A 2" "lynx"
+add_data "plasma-playwolf" "http://www.kde-look.org/content/show.php/PlayWolf?content=93882" "^PlayWolf$" "-A 2" "lynx"
+add_data "plasma-quicklauncher" "http://www.kde-look.org/content/show.php/QuickLauncher+Applet?content=78061" "^QuickLauncher Applet$" "-A 2" "lynx"
+add_data "plasma-systemmonitor" "http://www.kde-look.org/content/show.php/SystemMonitorNG?content=94746" "^SystemMonitorNG$" "-A 2" "lynx"
+add_data "plasma-weatherforecast" "http://www.kde-look.org/content/show.php/weatherforecast?content=92149" "^simple weather forecast$" "-A 2" "lynx"
+add_data "plasma-yawp" "http://www.kde-look.org/content/show.php/yaWP+(Yet+Another+Weather+Plasmoid)?content=94106" "^yaWP (Yet Another Weather Plasmoid)$" "-A 2" "lynx"
+add_data "plasma-stasks" "http://www.kde-look.org/content/show.php/STasks?content=99739" "^STasks$" "-A 2" "lynx"
+add_data "plasma-nvidia-sensors" "http://www.kde-look.org/content/show.php?content=87195" "^Nvidia sensors monitor$" "-A 2" "lynx"
+add_data "yasp-scripted" "http://www.kde-look.org/content/show.php?content=109367" "^Yasp-Scripted (Systemmonitor).*$" "-A 2" "lynx"
+add_data "plasma-crystal-monitor" "http://www.kde-look.org/content/show.php/Crystal+Monitor?content=28165" "^Crystal Monitor$" "-A 2" "lynx"
+add_data "plasma-oxygen-monitor" "http://www.kde-look.org/content/show.php/Oxygen+System+Monitor?content=86664" "^Oxygen System Monitor$" "-A 2" "lynx"
+add_data "plasma-custom-weather" "http://www.kde-look.org/content/show.php/Customizable+Weather+Plasmoid?content=98925" "^Customizable Weather Plasmoid (CWP)$" "-A 2" "lynx"
+add_data "plasma-system-status" "http://www.kde-look.org/content/show.php/System+Load+Viewer?content=74891" "^System Load Viewer$" "-A 2" "lynx"
+add_data "plasma-mail" "http://www.kde-look.org/content/show.php/mail_plasmoid?content=98952" "^mail_plasmoid$" "-A 2" "lynx"
+add_data "plasma-gmail-notifier" "http://www.kde-look.org/content/show.php/Gmail+Notifier?content=99709" "^Gmail Notifier$" "-A 2" "lynx"
+add_data "plasma-quickaccess" "http://www.kde-look.org/content/show.php/Quickaccess+for+KDE+4.2?content=98521" "^Quickaccess for KDE 4.2$" "-A 2" "lynx"
+add_data "plasma-fancytasks" "http://www.kde-look.org/content/show.php/Fancy+Tasks?content=99737" "^Fancy Tasks$" "-A 2" "lynx"
+add_data "plasma-wallpaper-weather" "http://www.kde-look.org/content/show.php/Weather+Wallpaper+Plugin?content=102185" "^Weather Wallpaper Plugin$" "-A 2" "lynx"
+add_data "plasma-gmail-plasmoid" "http://www.kde-look.org/content/show.php/gmail-plasmoid?content=101229" "^gmail-plasmoid$" "-A 2" "lynx"
+add_data "plasma-magic-folder" "http://www.kde-look.org/content/show.php/Magic+Folder?content=100348" "^Magic Folder$" "-A 2" "lynx"
+add_data "plasma-devicemanager" "http://www.kde-look.org/content/show.php/Device+Manager?content=106051" "^Device Manager$" "-A 2" "lynx"
+add_data "plasma-applet-luna2" "http://www.kde-look.org/content/show.php/Luna+2?content=100337" "^Luna 2$" "-A 2" "lynx"
+add_data "rssremix" "http://www.kde-look.org/content/show.php/rssremix?content=102542" "^rssremix$" "-A 2" "lynx"
+add_data "geek-clock-plasmoid" "http://www.kde-look.org/content/show.php/Geek+Clock?content=107807" "^Geek Clock$" "-A 2" "lynx"
+add_data "starfield-wallpaper" "http://www.kde-look.org/content/show.php/Star+Field+Plasma+Wallpaper?content=105973" "^Star Field Plasma Wallpaper$" "-A 2" "lynx"
+add_data "Meniny" "http://www.kde-look.org/content/show.php/Meniny+%28Slovakian+name-day%29?content=108173" "^Meniny (Slovakian name-day)$" "-A 2" "lynx"
+add_data "RSIBreak" "http://www.kde-apps.org/content/show.php?content=29725" "^RSIBreak$" "-A 2" "lynx"
+add_data "KOSD" "http://kde-apps.org/content/show.php/KOSD?content=81457" "^KOSD$" "-A 2" "lynx"
+add_data "QtCurve" "http://www.kde-look.org/content/show.php/QtCurve+%28KDE4%2C+KDE3%2C+%26+Gtk2+Theme%29?content=40492" "^QtCurve (KDE4, KDE3, & Gtk2 Theme)$" "-A 2" "lynx"
+add_data "AnalogMeter" "http://www.kde-look.org/content/show.php/Analog+Meter?content=111651" "^Analog Meter$" "-A 2" "lynx"
+add_data "AnimatedVideoWallpaper" "http://www.kde-look.org/content/show.php/Animated+Video+Wallpaper?content=112105" "^Animated Video Wallpaper$" "-A 2" "lynx"
+add_data "SmoothTasks" "http://www.kde-look.org/content/show.php/Smooth+Tasks?content=101586" "^Smooth Tasks$" "-A 2" "lynx"
+add_data "gtk-kde4" "http://kde-apps.org/content/show.php/gtk-kde4?content=74689" "^gtk-kde4$" "-A 2" "lynx"
+add_data "scripted-image" "http://www.kde-look.org/content/show.php?content=91749" "^Scripted Image$" "-A 2" "lynx"
+add_data "tuxeyes" "http://www.kde-look.org/content/show.php?content=120161" "^Tux Eyes$" "-A 2" "lynx"
+add_data "socketsentry" "http://kde-look.org/content/show.php?content=122350" "^Socket Sentry$" "-A 2" "lynx"
+add_data "kopete-psyko" "http://kde-apps.org/content/show.php?content=121585" "^kopete psyko$" "-A 2" "lynx"
+add_data "knemo" "http://opendesktop.org/content/show.php?content=12956" "^KNemo$" "-A 2" "lynx"
+add_data "wicd-client-kde" "http://opendesktop.org/content/show.php?content=132366" "^Wicd Client KDE$" "-A 2" "lynx"
+
+#add_data "" "" "^$" "-A 2" "lynx"
+
+set -- `getopt mM: $*||usage`
+for i
+do
+	case "$i" in
+		-m)
+			mailflag=mail;shift;;
+		-M)
+			mailflag=mail;
+			MAILADDR=$2
+			shift;shift;;
+		--)
+			shift; break;;
+	esac
+done
+action=$1;shift
+items=( $@ )
+
+[ -z "$items" -o -z "$action" ] && items=( ${NAME[@]} )
+
+[ -n "${mailflag}" ] && { echo $MAILADDR|grep -e "^[a-zA-Z_0-9-]\+\(\.[a-zA-Z_0-9-]\+\)*@[a-zA-Z_0-9-]\+\(\.[a-zA-Z_0-9-]\+\)\+$" >/dev/null 2>&1||{ echo "email $MAILADDR not valid."; exit 1; } }
+
+case "$action" in
+	reset|""|check)
+		#for ((i=1; i<=12; i++))
+		for item in ${items[@]}
+		do
+			no=1
+			thisno=0
+			while [ -n "${NAME[$no]}" ]
+			do
+				if echo ${NAME[$no]}|grep -i "^$item$" >/dev/null 2>&1
+				then
+					thisno=$no
+					break;
+				fi
+				no=`expr $no + 1`
+			done
+			if [ $thisno -gt 0 ]
+			then
+				if [ ! "$action" = "reset" ]
+				then
+					if [ "$INTERRUP" -eq 1 ]
+					then
+						childprocess=`ps -aef|awk "{if (\\$3 == $$) print \\$2}"`
+						echo kill $childprocess
+						kill $childprocess
+						break
+					fi
+						waitpsc 6
+						checkit "${NAME[$thisno]}" "${URL[$thisno]}" "${PATTERN[$thisno]}" "${GREPOPT[$thisno]}" "${HTTPPROG[$thisno]}" "${SEDOPT[$thisno]}" "${AWKOPT[$thisno]}" &
+				else
+					checkit "${NAME[$thisno]}" "${URL[$thisno]}" "${PATTERN[$thisno]}" "${GREPOPT[$thisno]}" "${HTTPPROG[$thisno]}" "${SEDOPT[$thisno]}" "${AWKOPT[$thisno]}"
+				fi
+			else
+				echo $item: Not valid.
+			fi
+		done
+		while [ 1 = 1 ]
+		do
+			sleep 0.1
+			pscontent=`ps -aef |awk "{if (\\$3==\"$$\") print \\$0}"`
+			pscontent=`echo "$pscontent"|grep -v -e grep -e ps -e awk`
+			[ `echo "$pscontent"|wc -l` -le 1 ] && break;
+		done
+		;;
+	list)
+		[ -n "$1" ] && usage
+		no=1
+		while [ -n "${NAME[$no]}" ]
+		do
+			echo "${NAME[$no]}"
+			no=`expr $no + 1`
+		done
+		;;
+	showdata)
+		for item in ${items[@]}
+		do
+			no=1
+			thisno=0
+			while [ -n "${NAME[$no]}" ]
+			do
+				if echo ${NAME[$no]}|grep -i "^$item$" >/dev/null 2>&1
+				then
+					thisno=$no
+					break;
+				fi
+				no=`expr $no + 1`
+			done
+			if [ $thisno -gt 0 ]
+			then
+				SUBWORKDIR=$WORKDIR/${NAME[$thisno]}
+				RAWDATA=$SUBWORKDIR/raw.html
+				NOWLIST=$SUBWORKDIR/now.list
+				ORIGLIST=$SUBWORKDIR/orig.list
+				DIFFDATA=$SUBWORKDIR/diff.list
+				echo ${NAME[$thisno]}:
+				echo "================================="
+				cat $ORIGLIST
+				echo "================================="
+			else
+				echo $item: Not valid.
+			fi
+		done
+		;;
+	showurl)
+		for item in ${items[@]}
+		do
+			no=1
+			thisno=0
+			while [ -n "${NAME[$no]}" ]
+			do
+				if echo ${NAME[$no]}|grep -i "^$item$" >/dev/null 2>&1
+				then
+					thisno=$no
+					break;
+				fi
+				no=`expr $no + 1`
+			done
+			if [ $thisno -gt 0 ]
+			then
+				echo $item: ${URL[${thisno}]}
+			else
+				echo $item: Not valid.
+			fi
+		done
+		;;
+	showweb)
+		[  ${#items[@]} -ne 1 ] && usage
+		no=1
+		thisno=0
+		item=${items[0]}
+		while [ -n "${NAME[$no]}" ]
+		do
+			if echo ${NAME[$no]}|grep -i "^$item$" >/dev/null 2>&1
+			then
+				thisno=$no
+				break;
+			fi
+			no=`expr $no + 1`
+		done
+		if [ $thisno -gt 0 ]
+		then
+			w3m ${URL[${thisno}]}
+		else
+			echo $item: Not valid.
+		fi
+		;;
+	*)
+		usage;;
+esac
+

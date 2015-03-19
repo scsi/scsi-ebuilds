@@ -1,0 +1,5 @@
+#!/bin/bash
+#echo "get $1" 1>&2
+#will lost some frame
+#mencoder $1 -o `basename $1` -ovc copy -oac copy
+mplayer $1 -dumpstream -dumpfile `basename $1`

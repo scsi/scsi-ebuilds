@@ -1,0 +1,8 @@
+#!/bin/sh
+PROGRAMNAME=`basename $0`
+showhelp() {
+	echo "Usage: $PROGRAMNAME HEX"
+	exit 1
+}
+printf ${1^^}|echohex -r
+echo

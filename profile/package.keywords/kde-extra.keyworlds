@@ -1,0 +1,15 @@
+kde-misc/kcm-grub2
+kde-misc/yakuake
+app-admin/system-config-printer-common
+dev-python/pycups
+x11-apps/scripts
+media-sound/amarok
+media-video/kplayer
+x11-themes/gtk-engines-qtcurve
+kde-misc/rsibreak
+net-misc/knemo
+kde-misc/networkmanagement
+kde-misc/plasma-nm
+kde-misc/homerun
+kde-misc/baloo-kcmadv
+kde-misc/kcmsystemd

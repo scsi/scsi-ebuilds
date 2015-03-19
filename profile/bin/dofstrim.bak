@@ -1,0 +1,14 @@
+LOGFILE=/var/log/fstrim.log
+
+if [ "`stat -c %s $LOGFILE`" -gt 50000000 ];then
+	mv $LOGFILE $LOGFILE.bak
+	rm $LOGFILE.bak.gz
+	gzip $LOGFILE.bak
+fi
+(
+echo
+date
+for mpoint in $@ ; do
+	fstrim $mpoint -v 
+done
+) >>$LOGFILE

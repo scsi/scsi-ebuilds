@@ -1,0 +1,23 @@
+diff -Nur plasmoid-countdown-0.2.2.orig/CMakeLists.txt plasmoid-countdown-0.2.2/CMakeLists.txt
+--- plasmoid-countdown-0.2.2.orig/CMakeLists.txt	2008-11-28 07:32:48.000000000 +0800
++++ plasmoid-countdown-0.2.2/CMakeLists.txt	2009-02-25 14:31:37.000000000 +0800
+@@ -4,7 +4,6 @@
+ # Find the required Libaries
+ find_package( KDE4 REQUIRED )
+ include( KDE4Defaults )
+-find_package( Plasma REQUIRED )
+  
+ add_definitions ( ${QT_DEFINITIONS} ${KDE4_DEFINITIONS} )
+ include_directories(
+diff -Nur plasmoid-countdown-0.2.2.orig/src/CMakeLists.txt plasmoid-countdown-0.2.2/src/CMakeLists.txt
+--- plasmoid-countdown-0.2.2.orig/src/CMakeLists.txt	2008-11-28 07:32:47.000000000 +0800
++++ plasmoid-countdown-0.2.2/src/CMakeLists.txt	2009-02-25 14:32:02.000000000 +0800
+@@ -5,7 +5,7 @@
+ # Now make sure all files get to the right place
+ kde4_add_plugin(plasma_applet_countdown ${countdown_SRCS})
+ target_link_libraries(plasma_applet_countdown
+-                      ${PLASMA_LIBS} ${KDE4_KDEUI_LIBS})
++                      ${KDE_PLASMA_LIBS} ${KDE4_KDEUI_LIBS})
+  
+ install(TARGETS plasma_applet_countdown
+         DESTINATION ${PLUGIN_INSTALL_DIR})

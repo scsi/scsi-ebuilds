@@ -1,0 +1,87 @@
+<?xml version="1.0" ?>
+<layman>
+  <overlay
+      type = "svn"
+      src  = "http://svn.gentoo-portage.com:8080/gentoo-portage"
+      contact = "mikevalstar@thrashcorp.com"
+      name = "gentoo-portage.com">
+    <link>
+	    http://gentoo-portage.com/
+    </link>
+    <description>
+	    http://gentoo-portage.com
+    </description>
+  </overlay>
+
+  <overlay
+      type = "svn"
+      src  = "http://scsi-ebuilds.googlecode.com/svn/trunk"
+      contact = "scsichen@gmail.com"
+      name = "scsi-ebuilds">
+    <link>
+	http://scsichen.blogspot.com
+    </link>
+    <description>
+	A collection of ebuilds by scsi
+    </description>
+  </overlay>
+
+  <overlay
+      type = "rsync"
+      src  = "rsync://192.168.9.90/private-portage"
+      contact = "scsichen@gmail.com"
+      name = "private-portage">
+    <link>
+	http://scsichen.blogspot.com
+    </link>
+    <description>
+	A collection of private used ebuilds by scsi
+    </description>
+  </overlay>
+
+  <overlay
+     type = "svn"
+     src  = "http://gentoo-taiwan.googlecode.com/svn/trunk/"
+     contact = "scsichen@gmail.com"
+     name = "gentoo-taiwan-clone">
+     <link>
+         http://www.gentoo.tw/proj/ebuild/ebuild.xml
+     </link>
+     <description>
+         A collection of ebuilds from Gentoo Taiwan.
+     </description>
+  </overlay>
+
+  <overlay
+      type = "svn"
+      src  = "http://zen-overlay-clone.googlecode.com/svn/trunk/"
+      contact = "scsichen@gmail.com"
+      status = "unofficial"
+      name = "zen-overlay-clone">
+      <description>
+        Experimental overlay for zen related packages.
+      </description>
+   </overlay>
+   
+   <overlay
+      type = "svn"
+      src  = "http://kdesvn-portage-clone.googlecode.com/svn/trunk/"
+      contact = "scsichen@gmail.com"
+      status = "unofficial"
+      name = "kdesvn-portage-clone">
+      <description>
+        Experimental overlay for kdesvn-portage related packages.
+      </description>
+   </overlay>
+
+   <overlay
+      type = "git"
+      src  = "git://github.com/gentoo-qt/qting-edge.git"
+      contact = "scsichen@gmail.com"
+      status = "unofficial"
+      name = "qting-edge">
+      <description>
+        Experimental overlay for qting related packages.
+      </description>
+   </overlay>
+</layman>

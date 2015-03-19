@@ -1,0 +1,29 @@
+#!/bin/bash
+set -- `getopt hu:p: $*`
+
+usage()
+{
+	echo "Usage: smbmount [-u username] -p [passwd] url mountdir"
+	exit 0
+}
+
+for i
+do
+        case "$i"
+        in
+                -h)
+                        #flag=$i; shift;;
+                        usage
+                        exit 0;;
+                -u)
+                        username=$2; shift; shift;;
+                -p)
+                        passwd=$2; shift; shift;;
+                --)
+                        shift; break;;
+        esac
+done
+
+[ "$#" -ne 2 ] && usage
+
+mount -t smbfs -o username="$username",password="$passwd",fmask=0117 $1 $2

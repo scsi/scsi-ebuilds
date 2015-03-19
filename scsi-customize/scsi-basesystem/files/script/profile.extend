@@ -1,0 +1,122 @@
+########### scsi ##############
+alias ls='/bin/ls -FN --color=auto'
+alias mv='mv -iv'
+alias rm='rm -iv'
+alias cp='cp -iv'
+alias telnet="telnet -8"
+alias iftop="iftop -PB"
+alias iftopn="iftop -PBn"
+alias df='df -h'
+alias du='du -h'
+alias cflags='eval export `grep "^CFLAGS=" /etc/make.conf`'
+alias uncolor='sed -e "s/^[\[[0-7;]*m//g"'
+
+if [ ! -z "$DISPLAY" -o "$TERM" =  "xterm" ]
+then
+        lenv=big5
+        xinput=scim
+        case $lenv in
+        utf8)
+                export LANG=zh_TW.UTF-8
+                #export LC_ALL=zh_TW.UTF-8 
+		;;
+        big5)
+                export LANG=zh_TW.Big5
+                #export LC_ALL=zh_TW.Big5
+		;;
+        esac
+        case $xinput in
+        scim)
+                export XMODIFIERS="@im=SCIM"
+                export GTK_IM_MODULE=xim
+                export XIM_PROGRAM=SCIM
+                export XIM=SCIM;;
+        xcin)
+		case $LC_ALL in
+		zh_TW.Big5)
+	                export XIM_PROGRAM=xcin
+			export GTK_IM_MODULE=xim
+                	export XMODIFIERS="@im=xcin"
+	                export XIM=xcin 
+			;;
+		zh_TW.UTF-8)
+			export XIM=xcin-zh_TW.UTF-8
+			export XIM_PROGRAM=xcin-zh_TW.UTF-8
+			export XMODIFIERS=@im=xcin-zh_TW.UTF-8
+			export GTK_IM_MODULE=xim
+			;;
+		esac
+        esac
+fi
+
+#THIS_TTY=`ps aux | grep $$ | grep bash | awk '{ print $7 }'`
+THIS_TTY=`ps aux | awk "{ if (\\$2 == $$) print \\$7 }"`
+SESS_SRC=`who | grep $THIS_TTY | awk '{ print $6 }'`
+ppid=`ps -aef | awk "{ if (\\$2 == $$) print \\$3 }"`
+CONN=`ps aux| awk "{ if (\\$2 == $ppid) print \\$11 \\$12}"`
+MODE=""
+echo $CONN|grep su &>/dev/null && MODE=su
+echo $CONN|grep sshd &>/dev/null && MODE=ssh
+echo $CONN|grep telnet &>/dev/null && MODE=tel
+
+# Okay...Now who we be?
+if [ `/usr/bin/whoami` = "root" ] ; then
+  USR=priv
+else
+  USR=nopriv
+fi
+
+case $MODE in
+ssh)
+        SSH_IP=`echo $SSH_CLIENT | awk '{ print $1 }'`
+        if [ $SSH_IP ] ; then
+                SSH_FLAG=1
+        fi
+        SSH2_IP=`echo $SSH2_CLIENT | awk '{ print $1 }'`
+        if [ $SSH2_IP ] ; then
+                SSH_FLAG=2
+        fi
+        if [ $SSH_FLAG -eq 2 ] ; then
+          CONN=ssh2
+        fi
+
+        fcolor="\[\033[01;35m\]"
+	rfcolor="\[\033[01;31m\]"
+        ;;
+tel)
+        fcolor="\[\033[01;30m\]"
+	rfcolor="\[\033[01;31m\]"
+        ;;
+*)
+        fcolor="\[\033[01;33m\]"
+	rfcolor="\[\033[01;31m\]"
+        ;;
+esac
+
+rmcolor="\[\033[0m\]"
+rdircolor="\[\033[01;34m\]"
+dircolor="\[\033[01;32m\]"
+scrcolor="\[\033[01;36m\]"
+if [ ! $MODE = "" ]
+then
+        MODE=${MODE}:
+fi
+
+if [ -z "$WINDOW" ]
+then
+        S_WIN=""
+else
+        S_WIN="[$WINDOW]"
+fi
+case $USR in
+priv)
+        PS1="${scrcolor}${S_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} "
+        ;;
+*)
+        PS1="${scrcolor}${S_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
+        ;;
+esac
+
+export PS1
+#eval `dircolors -b /etc/DIR_COLORS`
+#export LS_COLORS

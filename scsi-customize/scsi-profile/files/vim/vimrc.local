@@ -1,0 +1,4 @@
+highlight comment ctermfg=blue
+set fileencodings=utf-8
+set tabstop=4
+set ffs=unix

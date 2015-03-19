@@ -1,0 +1,173 @@
+#!
+#OPTIONS
+#Separate multiple options with white space.
+
+#-b [host:port]| --bindintfc [host:port]
+	#host:port specifies the host and the port number on that host on
+	#which  socks5  runs,  instead of the default port. When you omit
+	#host, socks5 uses 0.0.0.0 as the host value.
+
+#-d [val] |--debug [val]
+	#Turn on debug mode and optionally set the debug level to val. If
+	#you  omit# val, socks5 sends only warning messages. Valid values
+	#for val are 1, 2, and 3. If you  specify#other  values,#socks5
+	#assumes 3. Valid values and their meanings are:
+	#1  LOG_NOTICE   Reports#non-error  conditions that may require
+	#special handling
+	#2 LOG_INFO    Reports informational messages
+	#3 LOG_DEBUG   Reports information useful for debugging
+
+#-f  |--foreground
+	#Run in the foreground, and prevent dissociation from the#parent
+	#shell  when  running standalone. --foreground is most useful for
+	#debugging when you start and stop the daemon frequently.
+
+#-i |--inetd
+	#Run socks5 through inetd.
+
+#-n  val |--nchildren val
+	#Set the maximum number of child processes that can exist at  one
+	#time to val.
+	#socks5  presets  the  maximum number of child processes to 64. Use
+	#this option to lower that preset value. You cannot set the maximum
+	#number  of#child  processes to a value that exceeds the operating
+	#system limit.
+	#socks5 ignores this value in threaded mode, and it is  not useful
+	#in oneshot and inetd mode.
+
+#-o |--oneshot
+	#Service  one  request in the foreground, turn on debugging, send
+	#output to stderr, and exit. The oneshot option  is  most#useful
+	#during debugging.
+
+#-p |--prefork
+	#Run socks5 as a preforking process. Also include the --nchildren
+	#option to control the number of forked processes.
+
+#-s |--stderr
+	#Log all output to stderr only, instead of# the  syslog.  Logging
+	#output  to  stderr is most useful in debug mode, which generates
+	#more output.
+
+#-t | --threaded
+	#Run socks5 in threaded mode, if your operating  system  supports
+	#POSIX  threads  and  you#built  socks5  with the --with-threads
+	#option. When threaded mode is not# available,  socks5  prints  a
+	#warning and reverts to standalone mode.
+
+#-v |--version
+	#Print a message containing the current socks5 version to stderr.
+
+
+#ENVIRONMENT
+#Environment variables control how socks5# operates.  Set# them  in  the
+#environment,  or include them in the configuration file. When the envi-
+#ronment and the configuration file contain  conflicting#settings,  the
+#configuration files has precedence over the environment.
+
+#To set the variables in the configuration file, use the syntax:
+
+#set variable [value]
+
+#SOCKS5_BINDINTFC host:port
+	#host:port specifies the host and the port number on that host on
+	#which socks5 runs, instead of the default port.  When  you  omit
+	#host, socks5 uses 0.0.0.0 as the host value.
+
+#SOCKS5_CONFFILE filename
+	#filename#specifies the configuration file. In most systems, the
+	#default is /etc/socks5.conf. Set the environment before  running
+	#socks5. With multiple socks5 daemons, use a different configura-
+	#tion file for each daemon.
+
+#SOCKS5_DEMAND_IDENT
+	#Cause No authentication to fail when the client fails to respond
+	#to an ident request. Use SOCKS5_DEMAND_IDENT to ensure that each
+	#connection has an associated username.
+
+#SOCKS5_ENCRYPT
+	#Request that the next socks5 process encrypt the data, if possi-
+	#ble.  SOCKS5_ENCRYPT  is#only  useful  when  the# socks5# build
+	#includes GSS-API authentication.
+
+#SOCKS5_FORCE_ENCRYPT
+	#Force the client to encrypt the  data  when  the#authentication
+	#method supports encryption.
+
+#SOCKS5_IDENTFILE filename
+	#filename#specifies  the filename that stores the ident informa-
+	#tion.  In# most  systems,# the  default  is   /tmp/socks5.ident.
+	#SOCKS5_IDENTFILE is most useful with multiple socks5 daemons.
+
+#SOCKS5_MAXCHILD val
+	#val  specifies  the  maximum  number of child processes that can
+	#exist at one time.
+	#socks5 presets the maximum number of child processes  to  64.  Use
+	#this  environment  variable to lower that preset value. You cannot
+	#set the maximum number of child processes to a value that  exceeds
+	#the operating system limit.
+	#socks5  ignores  this value in threaded mode, and it is not useful
+	#in oneshot and inetd mode.
+
+#SOCKS5_NOIDENT
+	#Omit ident requests. Use SOCKS5_NOIDENT to reduce timeouts  when
+	#you are certain clients are not running identd's.
+
+#SOCKS5_NOINTCHK
+	#Request  that  the next socks5 process perform the proxy request
+	#without integrity checking. SOCKS5_NOINTCHK is only useful  when
+	#the socks5 build includes GSS-API authentication.
+
+#SOCKS5_NONETMASKCHECK
+	#Instruct the daemon to disregard checking the server host's net-
+	#mask. By default, the daemon checks  the#netmask# and  connects
+	#directly#to hosts on the same subnet before consulting the con-
+	#figuration file.
+
+#SOCKS5_REVERSEMAP
+	#Always attempt to# map  addresses# to  hostnames.#  By  default,
+	#socks5  only maps when hostnames or domains are used in the con-
+	#figuration file.#When set, the log file will contain hostnames,
+	#but degrades performance.
+
+#SOCKS5_SERVICENAME
+	#Always  map  port# numbers  to service names. By default, socks5
+	#only maps when services are  used# in  the  configuration# file.
+	#When  set, the log file will contain services, but degrades per-
+	#formance.
+
+#SOCKS5_PASSWD [password]
+	#Specify the password for Username/Password  authentication  when
+	#the socks5 daemon connects to another socks server.
+
+#SOCKS5_PIDFILE filename
+	#Specify  the  filename that stores the socks5 process ID. socks5
+	#stores the PID in /tmp/socks5.pid. You can run socks5 on a  port
+	#other than the default port by including the --bindintfc command
+	#line option or setting the  SOCKS5_BINDINTFC  environment# vari-
+	#able. When you run socks5 on a port other than the default port,
+	#socks5 stores the PID in /tmp/socks5.pid-port.  Use  SOCKS5_PID-
+	#FILE to specify an alternate filename.
+
+#SOCKS5_PWDFILE filename
+	#Specify  the  password  file.  In# most  systems, the default is
+	#/etc/socks5.passwd.
+
+#SOCKS5_TIMEOUT minutes
+	#minutes specifies the maximum number of minutes  the  connection
+	#remains  idle.  After  minutes number of minutes, socks5 discon-
+	#nects. When you omit SOCKS5_TIMEOUT,  socks5  disconnects# after
+	#the connection is idle for 15 minutes.
+
+#SOCKS5_UDPPORTRANGE port1-port2
+	#Specify  a  range of UDP ports. port1-port2 specifies a range of
+	#UDP ports that socks5 uses to send UDP packets.
+
+#SOCKS5_USER [user id]
+	#Specify the username for Username/Password  authentication  when
+	#the socks5 daemon connects to another socks server.
+
+#SOCKS5_V4SUPPORT
+	#By default, socks5 will only accept SOCKS V5 protocol (rfc 1928)
+	#requests.# When  set,  socks5  will  accept  SOCKS  V4  protocol
+	#requests.

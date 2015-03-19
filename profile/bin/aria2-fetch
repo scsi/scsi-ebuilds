@@ -1,0 +1,139 @@
+#!/usr/bin/perl
+
+use strict;
+
+# Mirrors for distfiles
+my @GENTOO_MIRRORS = (
+# Taiwan
+	# 交通大學
+	'http://gentoo.cs.nctu.edu.tw/gentoo',
+	# 暨南大學
+	'http://ftp.ncnu.edu.tw/Linux/Gentoo',
+	# 台灣高品質學術研究網路
+	'http://ftp.twaren.net/Linux/Gentoo',
+	# 靜宜大學
+	'http://ftp.cs.pu.edu.tw/Linux/Gentoo',
+# Japan
+	# ChannelX.biz
+	'http://gentoo.channelx.biz',
+	# gg3.net
+	'http://gentoo.gg3.net',
+	# Internet Initiative Japan
+	'http://ftp.iij.ad.jp/pub/linux/gentoo',
+	# Japan Advanced Institute of Science and Technology
+	'http://ftp.jaist.ac.jp/pub/Linux/Gentoo',
+	# University of Tokyo
+	#'ftp://ftp.ecc.u-tokyo.ac.jp/GENTOO',
+# South Korea
+	# Daum Communications Corp
+	'http://ftp.daum.net/gentoo',
+	# KAIST
+	'http://ftp.kaist.ac.kr/pub/gentoo',
+	# lecl.net
+	'http://ftp.lecl.net/pub/gentoo',
+# USA
+	# Argonne National Laboratory
+	'http://mirror.mcs.anl.gov/pub/gentoo',
+	# TDS Internet Services
+	'http://gentoo.mirrors.tds.net/gentoo',
+);
+
+# Aria2 stores servers' traffic data in this file.
+# It should be writable in the sandbox.
+my $ARIA2C_SERVER_STAT = '/var/tmp/aria2-fetch.stat';
+
+# Options for aria2c(1).
+my @ARIA2C_OPTS = (
+	'--continue',
+	'--ftp-pasv',
+	'--timeout=20',
+	'--file-allocation=none',
+	'--check-certificate=false',
+	"--server-stat-of=$ARIA2C_SERVER_STAT",
+	'--uri-selector=adaptive',
+	'--server-stat-timeout=' . (30 * 24 * 60 * 60), # 30 days
+);
+push @ARIA2C_OPTS, "--server-stat-if=$ARIA2C_SERVER_STAT" if (-e $ARIA2C_SERVER_STAT);
+
+# Amount of expected connections per mirror.
+my $SPLITS_FACTOR = 2;
+# Minimal connections per file. 
+my $MIN_SPLITS = 10;
+# Maximal connections per file.
+my $MAX_SPLITS = 20;
+
+#################################################################
+# END OF CONFIGIRATIONS
+#################################################################
+
+my $GENTOO_MIRROR = 'http://distfiles.gentoo.org';
+my $OTHER_MIRRORS_FILE = '/var/portage/official/profiles/thirdpartymirrors';
+
+sub expand_uri
+{
+	my $uris = shift;
+	my $u = shift;
+	my $mir = shift;
+
+	$u =~ s/^$mir//g;
+	shift @$uris;
+	for (@_) {
+		if (m!\.tw/!) { unshift @$uris, $_ . $u; } # it's likely a mirror in Taiwan.
+		else { push @$uris, $_ . $u; }
+	}
+}
+
+sub find_mirrors
+{
+	my $uris = shift;
+	my $uri = $uris->[0];
+
+	if ($uri =~ /^$GENTOO_MIRROR/) {
+		expand_uri($uris, $uri, $GENTOO_MIRROR, @GENTOO_MIRRORS);
+	}
+	else {
+		open IN, $OTHER_MIRRORS_FILE
+			or die "Can't load thirdpartymirrors.";
+		while (<IN>) {
+			my @m = split /\s+/;
+			my $n = shift @m;
+			for my $mir (@m) {
+				if ($uri =~ /^$mir/) {
+					expand_uri($uris, $uri, $mir, @m);
+					last;
+				}
+			}
+		}
+		close IN;
+	}
+}
+
+die 'invalid arguments.' if (@ARGV < 3);
+
+my $DIR = shift @ARGV;
+my $FILE = shift @ARGV;
+my @URIS = (shift @ARGV);
+
+find_mirrors(\@URIS);
+
+my $splits = @URIS * $SPLITS_FACTOR;
+if ($splits < $MIN_SPLITS) { $splits = $MIN_SPLITS; }
+elsif ($splits > $MAX_SPLITS) { $splits = $MAX_SPLITS; }
+
+my $TEMP_FILE = ".aria2-fetch.$FILE";
+
+if (-e "$DIR/$FILE") {
+	if (! -e "$DIR/$TEMP_FILE" && ! -e "$DIR/$TEMP_FILE.aria2") {
+		# resume the downloading that initiated by other programs.
+		rename "$DIR/$FILE", "$DIR/$TEMP_FILE";
+	}
+	else {
+		unlink "$DIR/$FILE";
+	}
+}
+my $ok = system('aria2c', @ARIA2C_OPTS, "--split=$splits", "--dir=$DIR", "--out=$TEMP_FILE", @URIS);
+if ($ok == 0) {
+	rename "$DIR/$TEMP_FILE", "$DIR/$FILE";
+}
+
+exit $ok;
