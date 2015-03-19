@@ -1,0 +1,13 @@
+<?xml version="1.0" ?>
+ 
+<repositories version="1.0">
+	<repo priority="50" quality="experimental" status="unofficial">
+		<name>scsi-ebuilds</name>
+		<description>scsi ebuilds.</description>
+		<homepage>https://github.com/scsi/scsi-ebuilds/wiki</homepage>
+		<owner>
+			<email>scsichen@gmail.com</email>
+		</owner>
+		<source type="git">https://github.com/scsi/scsi-ebuilds.git</source>
+	</repo>
+</repositories>
