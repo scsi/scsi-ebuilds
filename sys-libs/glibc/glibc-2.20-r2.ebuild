@@ -1,6 +1,8 @@
-# Copyright 1999-2014 Gentoo Foundation
+# Copyright 1999-2015 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
-# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.17.ebuild,v 1.26 2014/01/05 09:57:55 ago Exp $
+# $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.20-r2.ebuild,v 1.2 2015/03/22 20:38:54 zlogene Exp $
+
+EAPI="4"
 
 inherit eutils versionator toolchain-funcs flag-o-matic gnuconfig multilib systemd unpacker multiprocessing
 
@@ -8,7 +10,7 @@ DESCRIPTION="GNU libc6 (also called glibc2) C library"
 HOMEPAGE="http://www.gnu.org/software/libc/libc.html"
 
 LICENSE="LGPL-2.1+ BSD HPND ISC inner-net rc PCRE"
-KEYWORDS="alpha amd64 ~arm hppa ~ia64 ~mips ppc ppc64 ~s390 ~sh ~sparc x86"
+KEYWORDS="~alpha amd64 ~arm ~arm64 -hppa ~ia64 ~m68k ~mips ~ppc ~ppc64 ~s390 ~sh ~sparc ~x86"
 RESTRICT="strip" # strip ourself #46186
 EMULTILIB_PKG="true"
 
@@ -24,8 +26,9 @@ case ${PV} in
 	RELEASE_VER=${PV}
 	;;
 esac
-PATCH_VER="8"                                  # Gentoo patchset
-NPTL_KERN_VER=${NPTL_KERN_VER:-"2.6.16"}       # min kernel version nptl requires
+GCC_BOOTSTRAP_VER="4.7.3-r1"
+PATCH_VER="4"                                  # Gentoo patchset
+: ${NPTL_KERN_VER:="2.6.32"}                   # min kernel version nptl requires
 
 IUSE="debug gd hardened multilib nscd selinux systemtap profile suid vanilla crosscompile_opts_headers-only"
 
@@ -51,8 +54,6 @@ if [[ ${CTARGET} == ${CHOST} ]] ; then
 	fi
 fi
 
-[[ ${CTARGET} == hppa* ]] && NPTL_KERN_VER=${NPTL_KERN_VER/2.6.16/2.6.20}
-
 is_crosscompile() {
 	[[ ${CHOST} != ${CTARGET} ]]
 }
@@ -68,39 +69,38 @@ DEPEND=">=app-misc/pax-utils-0.1.10
 	!<sys-apps/portage-2.1.2
 	selinux? ( sys-libs/libselinux )"
 RDEPEND="!sys-kernel/ps3-sources
+	sys-apps/gentoo-functions
 	selinux? ( sys-libs/libselinux )
 	!sys-libs/nss-db"
 
 if [[ ${CATEGORY} == cross-* ]] ; then
 	DEPEND+=" !crosscompile_opts_headers-only? (
-		>=${CATEGORY}/binutils-2.20
-		>=${CATEGORY}/gcc-4.3
+		>=${CATEGORY}/binutils-2.24
+		>=${CATEGORY}/gcc-4.4
 	)"
 	[[ ${CATEGORY} == *-linux* ]] && DEPEND+=" ${CATEGORY}/linux-headers"
 else
 	DEPEND+="
-		>=sys-devel/binutils-2.20
-		>=sys-devel/gcc-4.3
-		virtual/os-headers
-		!vanilla? ( >=sys-libs/timezone-data-2012c )"
-	RDEPEND+="
-		vanilla? ( !sys-libs/timezone-data )
-		!vanilla? ( sys-libs/timezone-data )"
+		>=sys-devel/binutils-2.24
+		>=sys-devel/gcc-4.4
+		virtual/os-headers"
+	RDEPEND+=" vanilla? ( !sys-libs/timezone-data )"
+	PDEPEND+=" !vanilla? ( sys-libs/timezone-data )"
 fi
 
+upstream_uris() {
+	echo mirror://gnu/glibc/$1 ftp://sourceware.org/pub/glibc/{releases,snapshots}/$1 mirror://gentoo/$1
+}
+gentoo_uris() {
+	local devspace="HTTP~vapier/dist/URI HTTP~azarah/glibc/URI HTTP~blueness/glibc/URI"
+	devspace=${devspace//HTTP/http://dev.gentoo.org/}
+	echo mirror://gentoo/$1 ${devspace//URI/$1}
+}
 SRC_URI=$(
-	upstream_uris() {
-		echo mirror://gnu/glibc/$1 ftp://sourceware.org/pub/glibc/{releases,snapshots}/$1 mirror://gentoo/$1
-	}
-	gentoo_uris() {
-		local devspace="HTTP~vapier/dist/URI HTTP~azarah/glibc/URI"
-		devspace=${devspace//HTTP/http://dev.gentoo.org/}
-		echo mirror://gentoo/$1 ${devspace//URI/$1}
-	}
-
 	[[ -z ${EGIT_REPO_URIS} ]] && upstream_uris ${P}.tar.xz
 	[[ -n ${PATCH_VER}      ]] && gentoo_uris ${P}-patches-${PATCH_VER}.tar.bz2
 )
+SRC_URI+=" ${GCC_BOOTSTRAP_VER:+multilib? ( $(gentoo_uris gcc-${GCC_BOOTSTRAP_VER}-multilib-bootstrap.tar.bz2) )}"
 
 # eblit-include [--skip] <function> [version]
 eblit-include() {
@@ -137,10 +137,12 @@ eblit-run() {
 	eblit-run-maybe eblit-$1-post
 }
 
-src_unpack()  { eblit-run src_unpack  ; }
-src_compile() { eblit-run src_compile ; }
-src_test()    { eblit-run src_test    ; }
-src_install() { eblit-run src_install ; }
+src_unpack()    { eblit-run src_unpack    ; }
+src_prepare()   { eblit-run src_prepare   ; }
+src_configure() { eblit-run src_configure ; }
+src_compile()   { eblit-run src_compile   ; }
+src_test()      { eblit-run src_test      ; }
+src_install()   { eblit-run src_install   ; }
 
 # FILESDIR might not be available during binpkg install
 for x in setup {pre,post}inst ; do
@@ -152,63 +154,41 @@ for x in setup {pre,post}inst ; do
 done
 
 eblit-src_unpack-pre() {
-	GLIBC_PATCH_EXCLUDE+=" 6600_mips_librt-mips.patch" #456912
+	[[ -n ${GCC_BOOTSTRAP_VER} ]] && use multilib && unpack gcc-${GCC_BOOTSTRAP_VER}-multilib-bootstrap.tar.bz2
 }
 
-eblit-src_unpack-post() {
+eblit-src_prepare-post() {
 	#scsi euctw patch
-	cp ${FILESDIR}/EUC-TW ${S}/localedata/charmaps
-	cp ${FILESDIR}/euc-tw.c ${S}/iconvdata
-	cp ${FILESDIR}/euc2ucs.h ${S}/iconvdata
-	cp ${FILESDIR}/ucs2euc.h ${S}/iconvdata
+	cp ${FILESDIR}/EUC-TW ${S}/localedata/charmaps || die "copy EUC-TW fail."
+	cp ${FILESDIR}/euc-tw.c ${S}/iconvdata || die "copy euc-tw.c fail."
+	cp ${FILESDIR}/euc2ucs.h ${S}/iconvdata || die "copy euc2ucs.h fail."
+	cp ${FILESDIR}/ucs2euc.h ${S}/iconvdata || die "copy ucs2euc.h fail."
+
+	cd "${S}"
 
 	if use hardened ; then
-		cd "${S}"
 		einfo "Patching to get working PIE binaries on PIE (hardened) platforms"
 		gcc-specs-pie && epatch "${FILESDIR}"/2.17/glibc-2.17-hardened-pie.patch
-		epatch "${FILESDIR}"/2.10/glibc-2.10-hardened-configure-picdefault.patch
-		epatch "${FILESDIR}"/2.10/glibc-2.10-hardened-inittls-nosysenter.patch
+		epatch "${FILESDIR}"/2.20/glibc-2.20-hardened-inittls-nosysenter.patch
 
+		# We don't enable these for non-hardened as the output is very terse --
+		# it only states that a crash happened.  The default upstream behavior
+		# includes backtraces and symbols.
 		einfo "Installing Hardened Gentoo SSP and FORTIFY_SOURCE handler"
-		cp -f "${FILESDIR}"/2.6/glibc-2.6-gentoo-stack_chk_fail.c \
-			debug/stack_chk_fail.c || die
-		cp -f "${FILESDIR}"/2.10/glibc-2.10-gentoo-chk_fail.c \
-			debug/chk_fail.c || die
+		cp "${FILESDIR}"/2.20/glibc-2.20-gentoo-stack_chk_fail.c debug/stack_chk_fail.c || die
+		cp "${FILESDIR}"/2.20/glibc-2.20-gentoo-chk_fail.c debug/chk_fail.c || die
 
 		if use debug ; then
-			# When using Hardened Gentoo stack handler, have smashes dump core for
-			# analysis - debug only, as core could be an information leak
-			# (paranoia).
+			# Allow SIGABRT to dump core on non-hardened systems, or when debug is requested.
 			sed -i \
-				-e '/^CFLAGS-backtrace.c/ iCFLAGS-stack_chk_fail.c = -DSSP_SMASH_DUMPS_CORE' \
-				debug/Makefile \
-				|| die "Failed to modify debug/Makefile for debug stack handler"
-			sed -i \
-				-e '/^CFLAGS-backtrace.c/ iCFLAGS-chk_fail.c = -DSSP_SMASH_DUMPS_CORE' \
-				debug/Makefile \
-				|| die "Failed to modify debug/Makefile for debug fortify handler"
+				-e '/^CFLAGS-backtrace.c/ iCPPFLAGS-stack_chk_fail.c = -DSSP_SMASH_DUMPS_CORE' \
+				-e '/^CFLAGS-backtrace.c/ iCPPFLAGS-chk_fail.c = -DSSP_SMASH_DUMPS_CORE' \
+				debug/Makefile || die
 		fi
 
-		# Build nscd with ssp-all
+		# Build various bits with ssp-all
 		sed -i \
 			-e 's:-fstack-protector$:-fstack-protector-all:' \
-			nscd/Makefile \
-			|| die "Failed to ensure nscd builds with ssp-all"
-	fi
-}
-
-eblit-pkg_preinst-post() {
-	if [[ ${CTARGET} == arm* ]] ; then
-		# Backwards compat support for renaming hardfp ldsos #417287
-		local oldso='/lib/ld-linux.so.3'
-		local nldso='/lib/ld-linux-armhf.so.3'
-		if [[ -e ${D}${nldso} ]] ; then
-			if scanelf -qRyi "${ROOT}$(alt_prefix)"/*bin/ | grep -s "^${oldso}" ; then
-				ewarn "Symlinking old ldso (${oldso}) to new ldso (${nldso})."
-				ewarn "Please rebuild all packages using this old ldso as compat"
-				ewarn "support will be dropped in the future."
-				ln -s "${nldso##*/}" "${D}$(alt_prefix)${oldso}"
-			fi
-		fi
+			*/Makefile || die
 	fi
 }
