@@ -22,7 +22,6 @@ sys-auth/pambase systemd
 net-libs/webkit-gtk -opengl
 >=kde-base/kdelibs-4.12.4 zeroconf
 >=app-office/akonadi-server-1.12.1 soprano
-gnome-base/gnome-settings-daemon -i18n
 lxqt-base/lxqt-panel alsa clock desktopswitch kbindicator mainmenu mount quicklaunch showdesktop taskbar tray volume colorpicker cpuload dom networkmonitor screensaver sensors sysstat teatime worldclock
 lxqt-base/lxqt-meta  powermanagement
 dev-java/oracle-jdk-bin source
