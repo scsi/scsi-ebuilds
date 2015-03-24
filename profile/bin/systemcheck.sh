@@ -54,7 +54,7 @@ hname=$(/bin/uname -n)
 #[ -z "$MAILTEST" ] && /root/bin/genportage.sh 1>/dev/null 2>&1
 [ -z "$MAILTEST" ] && { 
 layman -S 1>/dev/null 2>&1
-( cd /usr/portage/scsi-ebuilds; svn update ) 1>/dev/null 2>&1
+( cd /usr/portage/scsi-ebuilds; git pull ) 1>/dev/null 2>&1
 ( cd /usr/portage/gentoo-zh; git pull ) 1>/dev/null 2>&1
 makewhatis -u 1>/dev/null 2>&1
 killall -9 emerge
