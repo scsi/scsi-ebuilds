@@ -30,3 +30,4 @@ dev-java/sun-jdk source
 =app-crypt/qca-2.0.3-r1 openssl
 media-libs/gst-plugins-bad -opengl
 media-libs/clutter egl
+=media-libs/phonon-4.7.2 designer
