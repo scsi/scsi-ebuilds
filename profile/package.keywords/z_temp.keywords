@@ -25,3 +25,4 @@
 =dev-libs/nss-3.17.4 ~amd64
 =dev-python/pymountboot-0.2.2 ~amd64
 =app-admin/eclean-kernel-0.4 ~amd64
+=dev-python/alembic-0.6.7 ~amd64
