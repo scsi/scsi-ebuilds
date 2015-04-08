@@ -100,3 +100,5 @@
 >=dev-libs/libtasn1-4.4 abi_x86_32
 >=dev-libs/expat-2.1.0-r4 abi_x86_32
 =dev-util/pkgconfig-0.28-r2 abi_x86_32
+=media-libs/harfbuzz-0.9.38 abi_x86_32
+
