@@ -98,3 +98,5 @@
 >=x11-libs/pixman-0.32.6 abi_x86_32
 >=x11-libs/libXfixes-5.0.1 abi_x86_32
 >=dev-libs/libtasn1-4.4 abi_x86_32
+>=dev-libs/expat-2.1.0-r4 abi_x86_32
+=dev-util/pkgconfig-0.28-r2 abi_x86_32
