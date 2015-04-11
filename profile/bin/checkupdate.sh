@@ -116,7 +116,7 @@ checkit()
 				echo "Update available"
 				echo "-"
 				cat $DIFFDATA
-				echo 
+				echo "================================="
 			fi
 		fi
 	fi
@@ -240,7 +240,7 @@ case "$action" in
 				ORIGLIST=$SUBWORKDIR/orig.list
 				DIFFDATA=$SUBWORKDIR/diff.list
 				echo ${NAME[$thisno]}:
-				echo "================================="
+				echo "-"
 				cat $ORIGLIST
 				echo "================================="
 			else
