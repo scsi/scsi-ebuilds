@@ -3,7 +3,6 @@ dev-java/sun-jdk doc
 app-i18n/fcitx table
 net-nds/openldap syslog -minimal
 app-accessibility/espeak portaudio
-net-misc/nxserver-freenx nxclient
 app-portage/layman git subversion
 dev-db/mysql embedded
 virtual/mysql embedded

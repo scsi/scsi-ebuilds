@@ -12,7 +12,6 @@
 >=x11-proto/compositeproto-0.4.2-r1 abi_x86_32
 >=x11-proto/fixesproto-5.0-r1 abi_x86_32
 >=x11-proto/xf86driproto-2.1.1-r1 abi_x86_32
-=media-libs/harfbuzz-0.9.35 abi_x86_32
 >=virtual/libudev-215-r1 abi_x86_32
 =app-arch/bzip2-1.0.6-r6 abi_x86_32
 >=x11-libs/pango-1.36.8 abi_x86_32
@@ -70,19 +69,16 @@
 >=virtual/libintl-0-r1 abi_x86_32
 >=virtual/jpeg-0-r2:0 abi_x86_32
 >=x11-proto/dri2proto-2.8-r1 abi_x86_32
-=dev-libs/libtasn1-4.2 abi_x86_32
 >=x11-proto/xextproto-7.3.0 abi_x86_32
 =media-libs/freeglut-2.8.1-r1 abi_x86_32
 >=x11-libs/libvdpau-0.9 abi_x86_32
 >=x11-libs/pangox-compat-0.0.2-r1 abi_x86_32
 >=virtual/libiconv-0-r2 abi_x86_32
 >=virtual/glu-9.0-r1 abi_x86_32
-=dev-util/pkgconfig-0.28-r1 abi_x86_32
 >=x11-libs/libSM-1.2.2-r1 abi_x86_32
 =dev-libs/libgpg-error-1.13 abi_x86_32
 >=x11-proto/xcb-proto-1.11 abi_x86_32
 =media-libs/mesa-10.4.4 abi_x86_32
-=dev-libs/expat-2.1.0-r3 abi_x86_32
 >=x11-proto/dri3proto-1.0 abi_x86_32
 >=virtual/jpeg-62 abi_x86_32
 >=dev-libs/icu-54.1-r1 abi_x86_32
@@ -101,4 +97,3 @@
 >=dev-libs/expat-2.1.0-r4 abi_x86_32
 =dev-util/pkgconfig-0.28-r2 abi_x86_32
 =media-libs/harfbuzz-0.9.38 abi_x86_32
-
