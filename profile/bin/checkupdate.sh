@@ -55,7 +55,8 @@ stopprogress()
 	wait $swpid
 	echo -e '\b\c'
 }
-
+w3mpaser(){ sed 's/width/widta/'|w3m -O utf8 -dump -T  text/html -cols 1000|tr -s " "; }
+lynxpaser() { lynx -stdin -dump|tr -s " "; }
 checkit()
 {
 	NAME="$1"
@@ -68,24 +69,24 @@ checkit()
 	NOWLIST=$SUBWORKDIR/now.list
 	ORIGLIST=$SUBWORKDIR/orig.list
 	DIFFDATA=$SUBWORKDIR/diff.list
-	printf "%-20s: " "$NAME"
+	printf "%-20s:  " "$NAME"
 	mkdir -p $SUBWORKDIR
 
 	if [ ! -f $NOWLIST -o "$action" != reset ]
 	then
-		#startprogress
+		startprogress
 		if wget --no-cache --timeout="$TIMEOUT" -t "$RETRY" -q -O - $URL>$RAWDATA 2>/dev/null
 		then
-			cat $RAWDATA|sed 's/width/widta/'|w3m -O utf-8 -dump -T  text/html -cols 1000 >$RAWTEXT
+			cat $RAWDATA|w3mpaser >$RAWTEXT
 			if [ -n "$PATTERN" ]
 			then
-				cat $RAWTEXT|(eval $PATTERN)|tr -s " ">$NOWLIST
+				cat $RAWTEXT|(eval $PATTERN)>$NOWLIST
 			else
-				cat $RAWTEXT|tr -s " ">$NOWLIST
+				cat $RAWTEXT >$NOWLIST
 			fi
-			#stopprogress
+			stopprogress
 		else
-			#stopprogress
+			stopprogress
 			echo "Get information fail."
 			return
 		fi
@@ -114,7 +115,7 @@ checkit()
 				printf "subject: Data update - ${NAME}\n\n`cat $DIFFDATA`\r\n"|/usr/lib/sendmail $MAILADDR
 			else
 				echo "Update available"
-				echo "-"
+				echo "~"
 				cat $DIFFDATA
 				echo "================================="
 			fi
@@ -240,7 +241,7 @@ case "$action" in
 				ORIGLIST=$SUBWORKDIR/orig.list
 				DIFFDATA=$SUBWORKDIR/diff.list
 				echo ${NAME[$thisno]}:
-				echo "-"
+				echo "~"
 				cat $ORIGLIST
 				echo "================================="
 			else
