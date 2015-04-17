@@ -67,12 +67,13 @@ stopprogress()
 	echo -e '\b\c'
 }
 
+w3mpaser(){ sed 's/width/widta/'|w3m -O utf8 -dump -T  text/html -cols 1000; }
+lynxpaser() { lynx -stdin -dump; }
 checkit()
 {
 	trap "(ps -aef|awk \"{if (\$3 == $$) print \$2}\"|xargs kill) 1>/dev/null 2>&1; exit 1" 1 2 9 15
 
-	local NAME
-	local URL
+	local NAME URL PASER FILTER
 	local IFS
 	NAME=$1 ; shift
 	URL=$1 ; shift
@@ -85,34 +86,27 @@ checkit()
 		eval $opt
 	done
 	
-	[ -z "$PATTERN" ] && PATTERN="."
-	[ -z "$HTTPPROG" ] && HTTPPROG="w3m"
+	[ -z "$PASER" ] && PASER="w3mpaser"
 
 	SUBWORKDIR=$WORKDIR/$NAME
 	RAWDATA=$SUBWORKDIR/raw.html
+	RAWTEXT=$SUBWORKDIR/raw.text
 	NOWLISTTMP=$SUBWORKDIR/now.list.tmp
 	NOWLIST=$SUBWORKDIR/now.list
 	ORIGLIST=$SUBWORKDIR/orig.list
 	DIFFDATA=$SUBWORKDIR/diff.list
 	mkdir -p $SUBWORKDIR
 
-	#NAME="$1"
-	#URL="$2"
-	#PATTERN="$3"
-	#GREPOPT="$4"
-	#HTTPPROG="$5"
-	#SEDOPT="$6"
-	#AWKOPT="$7"
-
 	if [ ! -f $NOWLIST -o "$action" != reset ]
 	then
 		if wget --no-cache --timeout="$TIMEOUT" -t "$RETRY" -q -O - $URL>$RAWDATA 2>/dev/null
 		then
-			if [ `ls -s $RAWDATA|awk '{print $1}'` -eq 0 ]
+			if [ ! -s $RAWDATA ]
 			then
 				printf "%-${MAXNAMELEN}s: %s\n" "$NAME" "Get zero data."
 				return
 			fi
+			cat $RAWDATA|($)>$RAWTEXT
 			case "$HTTPPROG" in
 			lynx)
 				HTEXT=`cat $RAWDATA|lynx -stdin -dump`;;
