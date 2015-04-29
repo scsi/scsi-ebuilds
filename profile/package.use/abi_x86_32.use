@@ -17,7 +17,6 @@
 >=x11-libs/pango-1.36.8 abi_x86_32
 >=x11-libs/libXau-1.0.8 abi_x86_32
 >=x11-libs/libXrandr-1.4.2 abi_x86_32
-=net-print/cups-2.0.1-r1 abi_x86_32
 >=x11-libs/libXxf86vm-1.1.4 abi_x86_32
 =x11-libs/libXdmcp-1.1.1-r1 abi_x86_32
 >=x11-proto/damageproto-1.2.1-r1 abi_x86_32
@@ -28,7 +27,6 @@
 >=media-libs/freetype-2.5.5 abi_x86_32
 =net-libs/gnutls-3.3.10-r2 abi_x86_32
 >=x11-proto/inputproto-2.3.1 abi_x86_32
-=sys-apps/systemd-219-r2 abi_x86_32
 >=x11-proto/glproto-1.4.17-r1 abi_x86_32
 =app-arch/lz4-0_p120 abi_x86_32
 =dev-libs/openssl-1.0.1l-r1 abi_x86_32
