@@ -26,3 +26,5 @@
 =virtual/jdk-1.8.0
 =virtual/jre-1.8.0
 =sys-fs/btrfs-progs-3.19.1 ~amd64
+# required by app-emulation/docker (argument)
+=app-emulation/docker-1.6.0 ~amd64
