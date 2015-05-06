@@ -98,3 +98,4 @@
 >=gnome-base/librsvg-2.40.8 abi_x86_32
 >=dev-libs/libcroco-0.6.8-r1 abi_x86_32
 >=sys-apps/systemd-219_p112 abi_x86_32
+>=net-libs/gnutls-3.3.15 abi_x86_32
