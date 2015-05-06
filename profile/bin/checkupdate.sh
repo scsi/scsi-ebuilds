@@ -127,6 +127,7 @@ add_data "XR-3008" "http://conqueror.gpscamera.org/" "grep '台灣目前最新�
 add_data "Redmine" "http://www.redmine.org/projects/redmine/wiki/Download" "awk '/Latest releases/,/Resources/'|grep -v -e : -e '^$'"
 add_data "Eclipse" "https://eclipse.org/downloads/" "grep 'Release for'"
 add_data "Jenkins" "https://jenkins-ci.org/" "grep 'Latest and greatest'"
+add_data "Docker" "https://docs.docker.com/release-notes/" "grep 'Release Notes Version'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
