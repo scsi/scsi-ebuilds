@@ -19,12 +19,29 @@
 =dev-python/pymountboot-0.2.2 ~amd64
 =app-admin/eclean-kernel-0.4 ~amd64
 =dev-python/alembic-0.6.7 ~amd64
-# required by www-client/chromium-43.0.2357.18
-# required by @selected
-# required by @world (argument)
 =media-libs/libvpx-1.4.0 ~amd64
 =virtual/jdk-1.8.0
 =virtual/jre-1.8.0
 =sys-fs/btrfs-progs-3.19.1 ~amd64
-# required by app-emulation/docker (argument)
 =app-emulation/docker-1.6.0 ~amd64
+=dev-qt/designer-5.4.1 ~amd64
+=dev-qt/qttest-5.4.1 ~amd64
+=dev-qt/qtconcurrent-5.4.1 ~amd64
+=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 ~amd64
+=dev-qt/qtx11extras-5.4.1 ~amd64
+=dev-qt/qtnetwork-5.4.1 ~amd64
+=dev-qt/qtsvg-5.4.1 ~amd64
+=dev-qt/qtopengl-5.4.1 ~amd64
+=dev-qt/qtscript-5.4.1 ~amd64
+=dev-qt/qtdbus-5.4.1 ~amd64
+=dev-qt/qtgui-5.4.1-r1 ~amd64
+=dev-qt/qtxml-5.4.1 ~amd64
+=dev-qt/qtsql-5.4.1 ~amd64
+=dev-qt/qtdeclarative-5.4.1 ~amd64
+=app-i18n/fcitx-qt5-1.0.2 ~amd64
+=dev-qt/linguist-tools-5.4.1 ~amd64
+=dev-qt/qtcore-5.4.1 ~amd64
+=dev-qt/qtwebkit-5.4.1 ~amd64
+=dev-qt/qtxmlpatterns-5.4.1 ~amd64
+=dev-qt/qtwidgets-5.4.1 ~amd64
+=dev-qt/qtprintsupport-5.4.1 ~amd64

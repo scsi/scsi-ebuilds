@@ -30,13 +30,10 @@ dev-java/sun-jdk source
 media-libs/gst-plugins-bad -opengl
 media-libs/clutter egl
 =media-libs/phonon-4.7.2 designer
-# required by x11-libs/gtk+-2.24.27
-# required by media-video/vlc-2.1.5-r1[libnotify]
-# required by media-libs/phonon-vlc-0.7.2
-# required by media-libs/phonon-4.7.2[vlc]
-# required by kde-base/dragon-4.14.3
-# required by kde-base/kdemultimedia-meta-4.14.3
-# required by kde-base/kde-meta-4.14.3
-# required by @selected
-# required by @world (argument)
 =net-print/cups-2.0.2-r1 abi_x86_32
+>=media-libs/phonon-4.7.2 qt5
+>=media-libs/phonon-gstreamer-4.7.2 qt5
+>=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
+>=dev-libs/libpcre-8.36 pcre16
+>=sys-auth/polkit-qt-0.112.0-r1 qt5
+>=media-libs/phonon-vlc-0.7.2 qt5
