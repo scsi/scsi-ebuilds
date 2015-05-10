@@ -42,3 +42,10 @@ media-libs/clutter egl
 # required by kde-frameworks/kinit-5.10.0::gentoo
 # required by kde-frameworks/kded-5.10.0::gentoo
 >=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
+# required by dev-qt/designer-4.8.6-r1::gentoo[kde,phonon]
+# required by kde-base/kollision-4.14.3::gentoo
+# required by kde-base/kdegames-meta-4.14.3::gentoo
+# required by kde-base/kde-meta-4.14.3::gentoo
+# required by @selected
+# required by @world (argument)
+>=media-libs/phonon-4.8.3 designer
