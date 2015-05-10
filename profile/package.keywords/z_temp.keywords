@@ -21,3 +21,14 @@
 =virtual/jdk-1.8.0
 =virtual/jre-1.8.0
 =sys-fs/btrfs-progs-3.19.1 ~amd64
+# required by app-i18n/kcm-fcitx-0.5.0::gentoo
+# required by @selected
+# required by @world (argument)
+=app-i18n/fcitx-qt5-1.0.2 ~amd64
+# required by kde-base/kdelibs-4.14.7::gentoo
+# required by kde-base/kdeartwork-colorschemes-4.14.3::gentoo
+# required by kde-base/kdeartwork-meta-4.14.3::gentoo
+# required by kde-base/kde-meta-4.14.3::gentoo
+# required by @selected
+# required by @world (argument)
+=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 ~amd64

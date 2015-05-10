@@ -36,3 +36,9 @@ media-libs/clutter egl
 >=dev-libs/libpcre-8.36 pcre16
 >=sys-auth/polkit-qt-0.112.0-r1 qt5
 >=media-libs/phonon-vlc-0.7.2 qt5
+# required by kde-frameworks/knotifications-5.10.0::gentoo[dbus]
+# required by kde-frameworks/kwallet-5.10.0::gentoo
+# required by kde-frameworks/kio-5.10.0::gentoo
+# required by kde-frameworks/kinit-5.10.0::gentoo
+# required by kde-frameworks/kded-5.10.0::gentoo
+>=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
