@@ -33,7 +33,6 @@ media-libs/clutter egl
 =net-print/cups-2.0.2-r1 abi_x86_32
 >=media-libs/phonon-4.7.2 qt5
 >=media-libs/phonon-gstreamer-4.7.2 qt5
->=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
 >=dev-libs/libpcre-8.36 pcre16
 >=sys-auth/polkit-qt-0.112.0-r1 qt5
 >=media-libs/phonon-vlc-0.7.2 qt5

@@ -18,7 +18,6 @@ dev-qt/qtwebkit:5
 dev-qt/qtxmlpatterns:5
 dev-qt/qtwidgets:5
 dev-qt/qtprintsupport:5
-
 kde-frameworks/kcompletion:5
 kde-frameworks/kjobwidgets:5
 kde-frameworks/kf-env
