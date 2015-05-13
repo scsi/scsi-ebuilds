@@ -21,9 +21,30 @@
 =virtual/jdk-1.8.0
 =virtual/jre-1.8.0
 =sys-fs/btrfs-progs-3.19.1 ~amd64
+# required by app-i18n/kcm-fcitx-0.5.0::gentoo
+# required by @selected
+# required by @world (argument)
 =app-i18n/fcitx-qt5-1.0.2 ~amd64
+# required by kde-base/kdelibs-4.14.7::gentoo
+# required by kde-base/kdeartwork-colorschemes-4.14.3::gentoo
+# required by kde-base/kdeartwork-meta-4.14.3::gentoo
+# required by kde-base/kde-meta-4.14.3::gentoo
+# required by @selected
+# required by @world (argument)
 =dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 ~amd64
+# required by media-libs/phonon-4.8.3::gentoo[gstreamer]
+# required by media-libs/phonon-vlc-0.8.2::gentoo
 =media-libs/phonon-gstreamer-4.8.2 ~amd64
+# required by media-libs/phonon-vlc-0.8.2::gentoo
 =media-libs/phonon-4.8.3 ~amd64
+# required by media-libs/phonon-4.8.3::gentoo[vlc]
+# required by kde-frameworks/knotifications-5.10.0::gentoo
+# required by kde-frameworks/kio-5.10.0::gentoo
+# required by app-i18n/kcm-fcitx-0.5.0::gentoo
+# required by @selected
+# required by @world (argument)
 =media-libs/phonon-vlc-0.8.2 ~amd64
+# required by app-office/libreoffice-4.4.3.2::gentoo
+# required by @selected
+# required by @world (argument)
 =dev-util/mdds-0.12.0 ~amd64
