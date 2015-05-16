@@ -1,7 +1,7 @@
 sys-fs/zfs-kmod
 sys-fs/zfs
 sys-kernel/spl
-#sys-kernel/gentoo-sources
+sys-kernel/gentoo-sources
 #sys-fs/btrfs-progs
 sys-fs/bedup
-=sys-kernel/gentoo-sources-4.0.2
+#=sys-kernel/gentoo-sources-4.0.3
