@@ -97,3 +97,6 @@ x11-wm/enlightenment
 gnome-extra/nm-applet
 kde-misc/kgtk
 media-sound/mp3gain
+media-video/cinelerra
+media-video/openshot
+media-video/kdenlive

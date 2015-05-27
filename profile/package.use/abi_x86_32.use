@@ -100,4 +100,4 @@
 >=net-libs/gnutls-3.3.15 abi_x86_32
 >=dev-libs/openssl-1.0.1m abi_x86_32
 >=dev-libs/openssl-0.9.8z_p6:0.9.8 abi_x86_32
-
+>=x11-libs/cairo-1.14.2 abi_x86_32
