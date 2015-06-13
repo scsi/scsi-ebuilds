@@ -23,14 +23,11 @@
 >=media-libs/jasper-1.900.1-r9 abi_x86_32
 >=x11-libs/libXi-1.7.4 abi_x86_32
 >=x11-proto/xineramaproto-1.2.1-r1 abi_x86_32
-=dev-libs/openssl-0.9.8z_p5-r1 abi_x86_32
 >=media-libs/freetype-2.5.5 abi_x86_32
 >=x11-proto/inputproto-2.3.1 abi_x86_32
 >=x11-proto/glproto-1.4.17-r1 abi_x86_32
 =app-arch/lz4-0_p120 abi_x86_32
-=dev-libs/openssl-1.0.1l-r1 abi_x86_32
 >=x11-proto/videoproto-2.3.2 abi_x86_32
-=dev-libs/nettle-2.7.1-r1 abi_x86_32
 >=sys-apps/attr-2.4.47-r1 abi_x86_32
 =x11-libs/libXvMC-1.0.8 abi_x86_32
 >=virtual/libffi-3.0.13-r1 abi_x86_32
@@ -60,7 +57,6 @@
 =net-nds/openldap-2.4.38-r2 abi_x86_32
 >=x11-libs/gdk-pixbuf-2.30.8 abi_x86_32
 >=dev-libs/glib-2.42.2 abi_x86_32
-=x11-libs/cairo-1.12.18-r1 abi_x86_32
 >=x11-libs/libXdamage-1.1.4-r1 abi_x86_32
 >=sys-libs/zlib-1.2.8-r1 abi_x86_32
 >=virtual/libintl-0-r1 abi_x86_32
@@ -75,7 +71,6 @@
 >=x11-libs/libSM-1.2.2-r1 abi_x86_32
 =dev-libs/libgpg-error-1.13 abi_x86_32
 >=x11-proto/xcb-proto-1.11 abi_x86_32
-=media-libs/mesa-10.4.4 abi_x86_32
 >=x11-proto/dri3proto-1.0 abi_x86_32
 >=virtual/jpeg-62 abi_x86_32
 >=dev-libs/icu-54.1-r1 abi_x86_32
