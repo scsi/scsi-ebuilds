@@ -12,10 +12,5 @@
 =media-libs/phonon-gstreamer-4.8.2 ~amd64
 =media-libs/phonon-4.8.3 ~amd64
 =media-libs/phonon-vlc-0.8.2 ~amd64
-# required by net-misc/networkmanager-1.0.2::gentoo[nss]
-# required by gnome-base/gnome-settings-daemon-3.14.2::gentoo[networkmanager]
-# required by gnome-base/gnome-shell-3.14.3::gentoo
-# required by x11-terms/gnome-terminal-3.14.2-r2::gentoo[gnome-shell]
-# required by @selected
-# required by @world (argument)
 =x11-misc/xdg-utils-1.1.0_rc3_p20150119 ~amd64
+=dev-libs/leveldb-1.18-r1 ~amd64
