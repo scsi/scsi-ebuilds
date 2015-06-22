@@ -97,3 +97,4 @@
 >=dev-libs/openssl-0.9.8z_p6:0.9.8 abi_x86_32
 >=x11-libs/cairo-1.14.2 abi_x86_32
 >=dev-libs/nettle-2.7.1-r4 abi_x86_32
+>=x11-libs/gtk+-2.24.28-r1:2 abi_x86_32
