@@ -7,7 +7,6 @@
 =dev-python/alembic-0.6.7 ~amd64
 =virtual/jdk-1.8.0
 =virtual/jre-1.8.0
-=app-i18n/fcitx-qt5-1.0.2 ~amd64
 =dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 ~amd64
 =media-libs/phonon-gstreamer-4.8.2 ~amd64
 =media-libs/phonon-4.8.3 ~amd64
