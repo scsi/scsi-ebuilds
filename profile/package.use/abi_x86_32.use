@@ -97,3 +97,5 @@
 >=dev-libs/nettle-2.7.1-r4 abi_x86_32
 >=x11-libs/gtk+-2.24.28-r1:2 abi_x86_32
 >=net-dns/libidn-1.30 abi_x86_32
+>=net-print/cups-2.0.3 abi_x86_32
+
