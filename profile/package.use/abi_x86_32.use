@@ -99,3 +99,4 @@
 >=net-dns/libidn-1.30 abi_x86_32
 >=net-print/cups-2.0.3 abi_x86_32
 >=sys-apps/util-linux-2.26.2 abi_x86_32
+>=sys-libs/libcap-2.22-r2 abi_x86_32
