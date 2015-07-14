@@ -18,3 +18,4 @@
 =dev-libs/libgudev-230 ~amd64
 =media-libs/clutter-1.22.4
 =media-libs/cogl-1.20.0 ~amd64
+=kde-misc/systemd-kcm-0.7.0 ~amd64
