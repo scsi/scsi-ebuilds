@@ -28,7 +28,6 @@ dev-java/sun-jdk source
 >=net-dns/avahi-0.6.31-r6 mdnsresponder-compat
 media-libs/gst-plugins-bad -opengl
 media-libs/clutter egl
-=net-print/cups-2.0.2-r1 abi_x86_32
 >=media-libs/phonon-4.7.2 qt5
 >=media-libs/phonon-gstreamer-4.7.2 qt5
 >=dev-libs/libpcre-8.36 pcre16
