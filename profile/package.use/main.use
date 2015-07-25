@@ -37,3 +37,7 @@ media-libs/clutter egl
 >=dev-libs/libdbusmenu-qt-0.9.3_pre20140619-r1 qt5
 >=media-libs/phonon-4.8.3 designer
 >=media-libs/libvpx-1.4.0 postproc
+>=app-text/poppler-0.32.0 qt5
+>=dev-qt/qtmultimedia-5.4.2-r1 qml
+#>=dev-qt/qtgui-5.4.2-r1 -gles2
+>=dev-qt/qtquickcontrols-5.4.2 widgets
