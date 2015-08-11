@@ -6,7 +6,6 @@ virtual/udev
 virtual/libudev
 virtual/libgudev
 sys-apps/dbus
-sys-boot/unetbootin
 net-misc/networkmanager
 net-misc/networkmanager-pptp
 net-misc/netctl
