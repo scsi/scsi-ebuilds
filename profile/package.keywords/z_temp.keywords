@@ -1,5 +1,4 @@
 #eix -cTt
-=app-text/mupdf-1.5-r1
 =x11-proto/glproto-1.4.17-r1 ~amd64
 =lxqt-base/lxqt-panel-0.7.0-r1 ~amd64
 =dev-python/pymountboot-0.2.2 ~amd64
@@ -12,7 +11,6 @@
 =media-libs/phonon-4.8.3 ~amd64
 =media-libs/phonon-vlc-0.8.2 ~amd64
 =x11-misc/xdg-utils-1.1.0_rc3_p20150119 ~amd64
-=dev-libs/leveldb-1.18-r1 ~amd64
 =sys-apps/util-linux-2.26.2 ~amd64
 =dev-libs/libgudev-230 ~amd64
 =media-libs/clutter-1.22.4
