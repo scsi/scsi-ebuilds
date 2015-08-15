@@ -17,3 +17,4 @@
 =media-libs/cogl-1.20.0 ~amd64
 =kde-misc/systemd-kcm-0.7.0 ~amd64
 =sys-apps/hwids-20150421 ~amd64
+=media-libs/libpng-1.6.18 ~amd64
