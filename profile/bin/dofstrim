@@ -5,22 +5,12 @@
 # is great than zero. Check discard_max_bytes documentation at
 # https://www.kernel.org/doc/Documentation/block/queue-sysfs.txt
 
-LOGFILE=/var/log/fstrim.log
+. $(dirname $0)/commfunc.sh
 
-if [ "`stat -c %s $LOGFILE`" -gt 50000000 ];then
-	mv $LOGFILE $LOGFILE.bak
-	rm $LOGFILE.bak.gz
-	gzip $LOGFILE.bak
-fi
-(
-echo
-date
+LOGFILE=/var/log/fstrim.log
+#set -x
+#for fs in $@ ; do
 for fs in $(lsblk -o MOUNTPOINT,DISC-MAX,FSTYPE | grep -E '^/.* [1-9]+.* ' | awk '{print $1}'); do
-	time fstrim -v "$fs"
+	log_info "`fstrim -v "$fs"` [`usedtime`]" 
 done
 
-#for mpoint in $@ ; do
-#	fstrim $mpoint -v 
-#done
-
-) >>$LOGFILE 2>&1
