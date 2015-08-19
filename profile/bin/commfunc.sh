@@ -1,6 +1,7 @@
 #!/bin/bash
 if [ -z "$COMMFUNC_LOAD" ]; then
 COMMFUNC_LOAD=LOAD
+PROGRAM=`basename $(which $0)`
 trap "_killchild" 1 2 9 15
 
 case `uname` in
@@ -155,20 +156,27 @@ _INFO=2
 _DEBUG=3
 LOGLEVEL=$_INFO
 
-_rawlog() { sed -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" >>$2; _check_rolling $2; }
+_rawlog() { sed -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
+_writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local loglevel=$1; shift
   local logfile=$1; shift
   [[ $loglevel > $LOGLEVEL ]] && return 0
-  local logldesc
+  local logldesc syslogdesc
   case "$loglevel" in
-    $_ERROR) logldesc=E;;
-    $_WARN ) logldesc=W;;
-    $_INFO ) logldesc=I;;
-    $_DEBUG) logldesc=D;;
-    *)       logldesc=N
+    $_ERROR) logldesc=E;syslogdesc=daemon.err;;
+    $_WARN ) logldesc=W;syslogdesc=daemon.warning;;
+    $_INFO ) logldesc=I;syslogdesc=daemon.info;;
+    $_DEBUG) logldesc=D;syslogdesc=daemon.debug;;
+    *)       logldesc=N;syslogdesc=
   esac
-  [[ -n $1 ]] && echo "$@"| _rawlog $logldesc $logfile || _rawlog $logldesc $logfile;
+  if [ "$logfile" = "[SYSLOG]" ]; then
+    logger -t "$PROGRAM" -p $syslogdesc "$*"
+  elif [ -n "$logfile" ];then
+    echo "$*"| _rawlog $logldesc|_writelog $logfile
+  else
+    echo "$*"| _rawlog $logldesc
+  fi
 }
 log()       { _log $LOGLEVEL $LOGFILE "$@"; }
 log_debug() { _log $_DEBUG   $LOGFILE "$@"; }
