@@ -109,12 +109,14 @@ checkit()
 		then
 			echo "Up to date."
 		else
-		       	if [ -n "$mailflag" ]
+		    if [ -n "$mailflag" ]
 			then
 				echo "Update available, mail to admin"
-				printf "subject: Data update - ${NAME}\n\n`cat $DIFFDATA`\r\n"|/usr/lib/sendmail $MAILADDR
+				printf "subject: Data update - ${NAME}\n\n$URL\n\n~\n\n`cat $DIFFDATA`\r\n"|/usr/lib/sendmail $MAILADDR
 			else
 				echo "Update available"
+				echo "~"
+				echo $URL
 				echo "~"
 				cat $DIFFDATA
 				echo "================================="
