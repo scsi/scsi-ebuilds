@@ -18,3 +18,4 @@
 =kde-misc/systemd-kcm-0.7.0 ~amd64
 =sys-apps/hwids-20150421 ~amd64
 =media-libs/libpng-1.6.18 ~amd64
+=dev-util/cmake-3.3.1-r1 ~amd64
