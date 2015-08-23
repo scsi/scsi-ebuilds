@@ -12,8 +12,10 @@ alias free='free -h'
 alias cflags='eval export `grep "^CFLAGS=" /etc/make.conf`'
 alias uncolor='sed -e "s/^[\[[0-7;]*m//g"'
 if [ "`id -u`" = 0 ]; then
-	alias poweroff='systemctl poweroff'
-	alias reboot='systemctl reboot'
+	if ps 1|grep -q systemd; then
+		alias poweroff='systemctl poweroff'
+		alias reboot='systemctl reboot'
+	fi
 	alias gentooupdate='time (layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild)'
 fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
