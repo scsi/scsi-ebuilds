@@ -11,6 +11,7 @@ alias du='du -h'
 alias free='free -h'
 alias cflags='eval export `grep "^CFLAGS=" /etc/make.conf`'
 alias uncolor='sed -e "s/^[\[[0-7;]*m//g"'
+alias cpubenchmark='time echo "scale=5000; 4*a(1)" | bc -l -q'
 if [ "`id -u`" = 0 ]; then
 	if ps 1|grep -q systemd; then
 		alias poweroff='systemctl poweroff'
