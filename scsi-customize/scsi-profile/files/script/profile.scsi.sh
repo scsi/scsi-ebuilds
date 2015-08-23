@@ -14,7 +14,7 @@ alias uncolor='sed -e "s/^[\[[0-7;]*m//g"'
 if [ "`id -u`" = 0 ]; then
 	alias poweroff='systemctl poweroff'
 	alias reboot='systemctl reboot'
-	alias emupdate='time ((cd /usr/portage/scsi-ebuilds && git pull);layman -S;eix-sync ;emerge -uDNv world;emerge @preserved-rebuild)'
+	alias emupdate='time ((cd /usr/portage/scsi-ebuilds && git pull);layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild)'
 fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
 export NMON="dc-"
