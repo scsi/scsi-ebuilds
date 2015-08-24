@@ -8,7 +8,7 @@ case `uname` in
   AIX)
     export PATH=/SRIS/bin:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java6_64/jre/bin:/usr/vac/bin:/usr/vacpp/bin:/usr/local/mysql/bin:/opt/freeware/bin
     #export LIBPATH=/opt/freeware/lib:$LIBPATH
-    export LIBPATH=$LIBPATH:/opt/freeware/lib
+    export LIBPATH=$LIBPATH:/usr/lib:/opt/freeware/lib
   ;;
 esac
 
@@ -70,14 +70,10 @@ usedtime() {
 }
 _sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }
-_tab(){ 
-  [ -z "$1" ] && return 0
-  echo "$1"|sed "s/^/  |/"
-  echo
-}
+_tab(){ [ -z "$1" ] && return 0; echo "$1"|sed "s/^/  |/"; echo; }
 _buexec(){
   [ $# -lt 2 ] && { echo wrong param. ;return 1; }
-  local _stime=`_nowtime`; local desc="$1"; local cmd="$2"; local ext="$3"; local mode="$4"
+  local _stime=`nowtime`; local desc="$1"; local cmd="$2"; local ext="$3"; local mode="$4"
   local tmpfile=/tmp/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
@@ -102,24 +98,28 @@ _buexec(){
   return $rtn
 }
 singlexec(){ _buexec "$1" "$2" "$3" "single"; }
-multiexec(){ _buexec "$1" "$2" "$3" "multi" & }
-waitchild() {
-  while [ 1 = 1 ]; do
-    [ $(ps -aef|awk "{if (\$3 == $$) print \$2}"|wc -l) -gt 1 ] || break
-    usleep 500
-  done
-}
-maxchild() {
-  while [ 1 = 1 ]; do
-    [ $(ps -aef|awk "{if (\$3 == $$) print \$2}"|wc -l) -gt $1 ] || break
-    usleep 100
-  done
-}
-_killchild() {
-  echo stoping `basename $0`
-  (ps -aef|awk "{if (\$3 == $$) print \$2}"|xargs kill) 1>/dev/null 2>&1
-  exit 1
-}
+multiexec(){ _buexec "$1" "$2" "$3" "multi" & local cpid=$!; [ -n "$4" ] && eval $4=\"\$$4 $cpid\"; }
+waitchild(){ local jl;[ -n "$1" ]&&eval jl=\"\$$1\"||jl=`jobs -p`;for job in $jl; do wait $job; done; }
+maxchild(){ while [ `local cols=(jobs -p);echo ${#cols[@]}` -gt $1 ];do usleep 500; done; }
+_killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
+
+#waitchild() {
+#  while [ 1 = 1 ]; do
+#    [ $(ps -aef|awk "{if (\$3 == $$) print \$2}"|wc -l) -gt 1 ] || break
+#    usleep 500
+#  done
+#}
+#maxchild() {
+#  while [ 1 = 1 ]; do
+#    [ $(ps -aef|awk "{if (\$3 == $$) print \$2}"|wc -l) -gt $1 ] || break
+#    usleep 100
+#  done
+#}
+#_killchild() {
+#  echo stoping `basename $0`
+#  (ps -aef|awk "{if (\$3 == $$) print \$2}"|xargs kill) 1>/dev/null 2>&1
+#  exit 1
+#}
 
 filesize(){ ls -l $1 |awk '{print $5}'; }
 
