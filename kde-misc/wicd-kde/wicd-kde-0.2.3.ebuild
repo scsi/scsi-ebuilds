@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/kde-misc/kosd/kosd-0.4.2.ebuild,v 1.2 2009/10/27 23:42:22 ssuominen Exp $
 
-EAPI="4"
+EAPI=5
 inherit kde4-base
 
 DESCRIPTION="Wicd Client KDE is a Wicd client build on the KDE Development Platform."

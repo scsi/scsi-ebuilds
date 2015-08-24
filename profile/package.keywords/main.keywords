@@ -2,6 +2,8 @@ x11-drivers/xf86-video-ati
 sys-kernel/genkernel-next
 sys-apps/systemd
 sys-apps/anything-sync-daemon
+www-misc/profile-sync-daemon
+app-admin/profile-cleaner
 #sys-apps/systemd-ui
 virtual/udev
 virtual/libudev

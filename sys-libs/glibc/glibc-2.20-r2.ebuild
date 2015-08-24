@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: /var/cvsroot/gentoo-x86/sys-libs/glibc/glibc-2.20-r2.ebuild,v 1.2 2015/03/22 20:38:54 zlogene Exp $
 
-EAPI="4"
+EAPI=5
 
 inherit eutils versionator toolchain-funcs flag-o-matic gnuconfig multilib systemd unpacker multiprocessing
 
