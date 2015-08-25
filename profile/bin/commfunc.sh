@@ -2,6 +2,9 @@
 if [ -z "$COMMFUNC_LOAD" ]; then
 COMMFUNC_LOAD=LOAD
 PROGRAM=`basename $(which $0)`
+OIFS="$IFS"
+LIFS="
+"
 trap "_killchild" 1 2 9 15
 
 case `uname` in
@@ -11,9 +14,6 @@ case `uname` in
     export LIBPATH=$LIBPATH:/usr/lib:/opt/freeware/lib
   ;;
 esac
-OIFS="$IFS"
-LIFS="
-"
 readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
