@@ -1,5 +1,6 @@
 #!/bin/bash
 if [ -z "$COMMFUNC_LOAD" ]; then
+[ -z "$BASH" ] && die "Plz use bash for shell execute."
 COMMFUNC_LOAD=LOAD
 PROGRAM=`basename $(which $0)`
 OIFS="$IFS"
@@ -12,14 +13,21 @@ case `uname` in
     export PATH=/SRIS/bin:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java6_64/jre/bin:/usr/vac/bin:/usr/vacpp/bin:/usr/local/mysql/bin:/opt/freeware/bin
     #export LIBPATH=/opt/freeware/lib:$LIBPATH
     export LIBPATH=$LIBPATH:/usr/lib:/opt/freeware/lib
+    _FIND=/opt/freeware/bin/find
+    _SED=/opt/freeware/bin/sed
   ;;
+  *) _SED=sed
+     _FIND=find
 esac
-readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
+
+SED(){ $_SED "$@"; }
+FIND(){ $_FIND "$@"; }
+readprop(){ SED -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
   local IFS="$LIFS"
   local ca=""; local stat=0
-  for aa in `grep -v '[[:space:]]*#' $cfile|sed "s/^[[:space:]]*\([^[:space:]].*[^[:space:]]\)[[:space:]]*$/\1/"`;  do
+  for aa in `grep -v '[[:space:]]*#' $cfile|SED "s/^[[:space:]]*\([^[:space:]].*[^[:space:]]\)[[:space:]]*$/\1/"`;  do
     #aa=`echo "$aa"|tr -d "\n"|tr -d "\r"`
     if [ $stat = 0 ]; then
       [[ "$aa" =~ ^\[(.*)\]$ ]] && { [ "${BASH_REMATCH[1]}" = "$qca" ] && stat=1 || continue; } || continue
@@ -34,11 +42,9 @@ readcfg(){
 }
  
 die() { echo "$@" >&2; exit 1; }
-[ -z "$BASH" ] && die "Plz use bash for shell execute."
 check_env_show(){
   for var in $@; do
-    eval value=\$$var
-    echo $var=$value
+    eval value=\$$var; echo $var=$value
     [ -z "$value" ] && die "$var is not set. Pls check environment."
   done
 }
@@ -49,15 +55,13 @@ check_env(){
   done
 }
 replace_env() {
-   local var=$2
-   local sfile=$1
-   local value
-   eval value=\$$var
+   local var=$2; local sfile=$1
+   local value; eval value=\$$var
    eval export $var
    #[ -n "$value" ] && printf "%-11s = %s\n" $var  $value || die "$var not set"
    #printf "%-12s = %s\n" $var  "$value"
-   value=`echo "$value"|sed -e "s/\//\\\\\\\\\\\\//g"`
-   /opt/freeware/bin/sed -i "s/\${$var}/$value/g" $sfile
+   value=`echo "$value"|SED -e "s/\//\\\\\\\\\\\\//g"`
+   SED -i "s/\${$var}/$value/g" $sfile
 }
 testclient(){ testclient $@; }
 printtitle() {
@@ -89,7 +93,7 @@ usedtime() {
 }
 _sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }
-_tab(){ [ -z "$1" ] && return 0; echo "$1"|sed "s/^/  |/"; echo; }
+_tab(){ [ -z "$1" ] && return 0; echo "$1"|SED "s/^/  |/"; echo; }
 _buexec(){
   [ $# -lt 2 ] && { echo wrong param. ;return 1; }
   local _stime=`nowtime`; local desc="$1"; local cmd="$2"; local ext="$3"; local mode="$4"
@@ -175,7 +179,7 @@ _INFO=2
 _DEBUG=3
 LOGLEVEL=$_INFO
 
-_rawlog() { sed -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
+_rawlog() { SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
 _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local loglevel=$1; shift
