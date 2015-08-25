@@ -11,8 +11,28 @@ case `uname` in
     export LIBPATH=$LIBPATH:/usr/lib:/opt/freeware/lib
   ;;
 esac
-
+OIFS="$IFS"
+LIFS="
+"
 PROG=$0
+readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p} $1"; }
+readcfg(){
+  local cfile=$1; local qca=$2; local qparam=$3
+  local IFS="$LIFS"
+  local ca=""; local stat=0
+  for aa in `grep -v '[[:space:]]*#' $cfile|sed "s/^[[:space:]]*\([^[:space:]].*[^[:space:]]\)[[:space:]]*$/\1"`;  do
+    #aa=`echo "$aa"|tr -d "\n"|tr -d "\r"`
+    if [ $stat = 0 ]; then
+      [[ "$aa" =~ ^\[(.*)\]$ ]] && { [ "${BASH_REMATCH[1]}" = "$qca" ] && stat=1 || continue; } || continue
+    elif [[ "$aa" =~ ^\[(.*)\]$ ]]; then
+      return 1
+    elif [[ $aa =~ ^[[:space:]]*([^[:space:]].*[^[:space:]])[[:space:]]*=[[:space:]]*([^[:space:]].*[^[:space:]])[[:space:]]*$ ]]; then
+      [ "${BASH_REMATCH[1]}" = "$qparam" ]&& echo ${BASH_REMATCH[2]} 
+    else
+      continue
+    fi
+  done
+}
  
 die() { echo "$@" >&2; exit 1; }
 [ -z "$BASH" ] && die "Plz use bash for shell execute."
