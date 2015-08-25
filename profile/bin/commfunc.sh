@@ -14,7 +14,6 @@ esac
 OIFS="$IFS"
 LIFS="
 "
-PROG=$0
 readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
