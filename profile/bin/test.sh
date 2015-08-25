@@ -8,13 +8,16 @@
 #_killchild(){ kill `jobs -p`; }
 
 
-multiexec "sleep" "sleep 5" 2 SLEEP
-multiexec "sleep" "sleep 5" 2 SLEEP
-multiexec "sleep1" "sleep 10" 2 SLEEP1
-multiexec "sleep1" "sleep 10" 2 SLEEP1
+multiexec "sleep" "sleep 2" 2 SLEEP
+multiexec "sleep" "sleep 2" 2 SLEEP
+multiexec "sleep1" "sleep 5" 2 SLEEP1
+multiexec "sleep1" "sleep 5" 2 SLEEP1
 echo $SLEEP
 waitchild SLEEP
 
 echo finish SLEEP
 waitchild
 echo all finish
+
+readprop ~/aa.p aaa
+readcfg ~/bb.p second aaa

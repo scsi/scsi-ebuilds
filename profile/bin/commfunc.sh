@@ -15,12 +15,12 @@ OIFS="$IFS"
 LIFS="
 "
 PROG=$0
-readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p} $1"; }
+readprop(){ sed -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
   local IFS="$LIFS"
   local ca=""; local stat=0
-  for aa in `grep -v '[[:space:]]*#' $cfile|sed "s/^[[:space:]]*\([^[:space:]].*[^[:space:]]\)[[:space:]]*$/\1"`;  do
+  for aa in `grep -v '[[:space:]]*#' $cfile|sed "s/^[[:space:]]*\([^[:space:]].*[^[:space:]]\)[[:space:]]*$/\1/"`;  do
     #aa=`echo "$aa"|tr -d "\n"|tr -d "\r"`
     if [ $stat = 0 ]; then
       [[ "$aa" =~ ^\[(.*)\]$ ]] && { [ "${BASH_REMATCH[1]}" = "$qca" ] && stat=1 || continue; } || continue
