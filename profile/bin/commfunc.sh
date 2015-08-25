@@ -6,6 +6,7 @@ PROGRAM=`basename $(which $0)`
 OIFS="$IFS"
 LIFS="
 "
+die() { echo "$@" >&2; exit 1; }
 trap "_killchild" 1 2 9 15
 
 case `uname` in
@@ -15,13 +16,20 @@ case `uname` in
     export LIBPATH=$LIBPATH:/usr/lib:/opt/freeware/lib
     _FIND=/opt/freeware/bin/find
     _SED=/opt/freeware/bin/sed
+    _STAT=/opt/freeware/bin/stat
   ;;
   *) _SED=sed
      _FIND=find
+	 _STAT=stat
 esac
+
+for aa in $_SED $_FIND $_STAT;do
+	which $aa >/dev/null 2>/dev/null || die "cmd $aa not exist."
+done
 
 SED(){ $_SED "$@"; }
 FIND(){ $_FIND "$@"; }
+STAT(){ $_STAT "$@"; }
 readprop(){ SED -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
@@ -41,7 +49,6 @@ readcfg(){
   done
 }
  
-die() { echo "$@" >&2; exit 1; }
 check_env_show(){
   for var in $@; do
     eval value=\$$var; echo $var=$value
@@ -66,15 +73,15 @@ replace_env() {
 testclient(){ testclient $@; }
 printtitle() {
   local line="+---------------------------------------------------------------------+"
-  local msg="$@"; local tnu=$((${#line} - 6));tnu=$((${tnu} - ${#msg}))
-  local lnu=`expr $tnu / 2`; local rnu=`expr $tnu - $lnu`
+  local msg="$@"; local tnu=$((${#line}-6));tnu=$((${tnu}-${#msg}))
+  local lnu=$(($tnu/2)); local rnu=$(($tnu-$lnu))
   echo "$line"; printf "|>" ; local nu=0
   while [ $nu -le $lnu ]; do
-    printf " "; nu=`expr $nu + 1`
+    printf " "; ((nu++))
   done
   printf "$msg"; nu=0
   while [ $nu -le $rnu ]; do
-     printf " "; nu=`expr $nu + 1`
+     printf " "; ((nu++))
   done
   echo "<|"; echo "$line"
 }
@@ -102,7 +109,7 @@ _buexec(){
   local rtn msg rst
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
   [ -n "$mode" ] || printf "$titlestr"
-  msg=`eval $cmd 2>&1`
+  local msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
   rtn=$?
   [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.  [`usedtime $_stime`]"
@@ -144,11 +151,12 @@ _killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
 #  exit 1
 #}
 
-filesize(){ ls -l $1 |awk '{print $5}'; }
+#_filesize(){ ls -l $1 |awk '{print $5}'; }
+_filesize(){ stat -c $1; }
 
 _rollingfile(){
   local fname=$1; local _FILE_NUM=$2; local num=$3
-  local next_num=`expr $num + 1`
+  local next_num=$(($num + 1))
   [ -n "_$FILE_NUM" ] || _FILE_NUM=5
   [ "$num" -ge $_FILE_NUM ] && return
   [ -e ${fname}.${num} ] && _rollingfile $fname $_FILE_NUM $next_num
@@ -161,7 +169,7 @@ _check_rolling(){
   [ -n "$_LIMIT_SIZE" ] || _LIMIT_SIZE=$LIMIT_SIZE; [ -n "$_LIMIT_SIZE" ] || _LIMIT_SIZE=5000000
   [ -n "$_FILE_NUM" ] || _FILE_NUM=$FILE_NUM; [ -n "$_FILE_NUM" ] || _FILE_NUM=5
   [ -f $logfile ] || return
-  if [ "`filesize $logfile`" -gt $_LIMIT_SIZE ]; then
+  if [ "`_filesize $logfile`" -gt $_LIMIT_SIZE ]; then
     echo cp $logfile ${logfile}.0
     cp $logfile ${logfile}.0
     >$logfile
@@ -194,11 +202,11 @@ _log() {
     *)       logldesc=N;syslogdesc=
   esac
   if [ "$logfile" = "[SYSLOG]" ]; then
-    logger -t "$PROGRAM" -p $syslogdesc "$*"
+    [ -n "$*" ] && logger -t "$PROGRAM" -p $syslogdesc "$*" || logger -t "$PROGRAM" -p $syslogdesc
   elif [ -n "$logfile" ];then
-    echo "$*"| _rawlog $logldesc|_writelog $logfile
+    [ -n "$*" ] && { echo "$*"| _rawlog $logldesc|_writelog $logfile; } || { _rawlog $logldesc|_writelog $logfile; }
   else
-    echo "$*"| _rawlog $logldesc
+    [ -n "$*" ] && { echo "$*"| _rawlog $logldesc; } ||  _rawlog $logldesc
   fi
 }
 log()       { _log $LOGLEVEL $LOGFILE "$@"; }
