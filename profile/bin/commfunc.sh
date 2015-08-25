@@ -201,6 +201,7 @@ _log() {
     $_DEBUG) logldesc=D;syslogdesc=daemon.debug;;
     *)       logldesc=N;syslogdesc=
   esac
+
   if [ "$logfile" = "[SYSLOG]" ]; then
     [ -n "$*" ] && logger -t "$PROGRAM" -p $syslogdesc "$*" || logger -t "$PROGRAM" -p $syslogdesc
   elif [ -n "$logfile" ];then
@@ -209,10 +210,10 @@ _log() {
     [ -n "$*" ] && { echo "$*"| _rawlog $logldesc; } ||  _rawlog $logldesc
   fi
 }
-log()       { _log $LOGLEVEL $LOGFILE "$@"; }
-log_debug() { _log $_DEBUG   $LOGFILE "$@"; }
-log_info()  { _log $_INFO    $LOGFILE "$@"; }
-log_warn()  { _log $_WARN    $LOGFILE "$@"; }
-log_error() { _log $_ERROR   $LOGFILE "$@"; }
+log()       { _log $LOGLEVEL "$LOGFILE" "$@"; }
+log_debug() { _log $_DEBUG   "$LOGFILE" "$@"; }
+log_info()  { _log $_INFO    "$LOGFILE" "$@"; }
+log_warn()  { _log $_WARN    "$LOGFILE" "$@"; }
+log_error() { _log $_ERROR   "$LOGFILE" "$@"; }
 
 fi

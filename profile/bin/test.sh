@@ -7,17 +7,17 @@
 #maxchild(){ while [ `local cols=(jobs -p);echo ${#cols[@]}` -gt $1 ];do usleep 500; done; }
 #_killchild(){ kill `jobs -p`; }
 
-printtitle SLEEP |log
-multiexec "sleep" "sleep 2" 2 SLEEP|log
+printtitle SLEEP 
 multiexec "sleep" "sleep 2" 2 SLEEP
+multiexec "sleep" "sleep 2" 2 SLEEP
+multiexec "sleep1" "sleep 3" 2 SLEEP1
 multiexec "sleep1" "sleep 5" 2 SLEEP1
-multiexec "sleep1" "sleep 5" 2 SLEEP1
-echo $SLEEP | log
+echo $SLEEP
 waitchild SLEEP
 
 echo finish SLEEP
 waitchild
 echo all finish
-
+log "abc"
 readprop ~/aa.p aaa
 readcfg ~/bb.p second aaa
