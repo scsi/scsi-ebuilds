@@ -17,10 +17,12 @@ case `uname` in
     _FIND=/opt/freeware/bin/find
     _SED=/opt/freeware/bin/sed
     _STAT=/opt/freeware/bin/stat
+	_SLEEP=/opt/freeware/bin/sleep
   ;;
   *) _SED=sed
      _FIND=find
 	 _STAT=stat
+	 _SLEEP=sleep
 esac
 
 for aa in $_SED $_FIND $_STAT;do
@@ -30,6 +32,7 @@ done
 SED(){ $_SED "$@"; }
 FIND(){ $_FIND "$@"; }
 STAT(){ $_STAT "$@"; }
+SLEEP(){ $_SLEEP "$@"; }
 readprop(){ SED -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
@@ -130,7 +133,7 @@ _buexec(){
 singlexec(){ _buexec "$1" "$2" "$3" "single"; }
 multiexec(){ _buexec "$1" "$2" "$3" "multi" & local cpid=$!; [ -n "$4" ] && eval $4=\"\$$4 $cpid\"; }
 waitchild(){ local jl;[ -n "$1" ]&&eval jl=\"\$$1\"||jl=`jobs -p`;for job in $jl; do wait $job; done; }
-maxchild(){ while [ `local cols=(jobs -p);echo ${#cols[@]}` -gt $1 ];do usleep 500; done; }
+maxchild(){ while [ `local cols=(jobs -p);echo ${#cols[@]}` -gt $1 ];do SLEEP 0.5s; done; }
 _killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
 
 #waitchild() {
@@ -150,6 +153,15 @@ _killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
 #  (ps -aef|awk "{if (\$3 == $$) print \$2}"|xargs kill) 1>/dev/null 2>&1
 #  exit 1
 #}
+
+_progress() {
+  local sleep_param=0.05s; local pchars=(- \\\\ '|' / ); local n=0
+  while true;do SLEEP 0.2s;((n++));((n%=4));echo -e "\b${pchars[$n]}\c"; done
+}
+
+_startprogress() { _progress& _progress_pid=$!;  }
+_stopprogress() { kill -15 $_progress_pid; wait $_progress_pid; echo -e '\b\c'; }
+
 
 #_filesize(){ ls -l $1 |awk '{print $5}'; }
 _filesize(){ stat -c $1; }
