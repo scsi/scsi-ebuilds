@@ -25,36 +25,17 @@ usage()
 	exit 2
 }
 
-progress()
-{
+progress() {
 	trap "ext=1;exit 0" 15 1 9
-	sleep_param=0.05s
-	ext=0
-	while [ $ext -eq 0 ]
-	do
-	        echo -e  '\b-\c'
-	        sleep $sleep_param
-	        echo -e '\b\\\c'
-	        sleep $sleep_param
-	        echo -e '\b|\c'
-	        sleep $sleep_param
-	        echo -e '\b/\c'
-	        sleep $sleep_param
+	local sleep_param=0.05s;local n=0
+	local pchars=(- \\\\ '|' / )
+	while true;do
+		sleep 0.1s;((n++));((n%=4));echo -e "\b${pchars[$n]}\c"
 	done
 }
 
-startprogress()
-{
-	progress&
-	ppid=$!
-}
-
-stopprogress()
-{
-	kill -15 $ppid
-	wait $swpid
-	echo -e '\b\c'
-}
+startprogress() { progress& _progress_pid=$!;  }
+stopprogress() { kill -15 $_progress_pid; wait $_progress_pid; echo -e '\b\c'; }
 w3mpaser(){ sed 's/width/widta/'|w3m -O utf8 -dump -T  text/html -cols 1000|tr -s " "; }
 lynxpaser() { lynx -stdin -dump|tr -s " "; }
 checkit()
@@ -138,6 +119,7 @@ add_data "Tomcat_JK" "http://tomcat.apache.org/connectors-doc" "grep 'JK.*releas
 add_data "asd" "https://github.com/graysky2/anything-sync-daemon/releases" "grep 'v'"
 add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 'v'"
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
+add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=37528" "grep 'aries'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
