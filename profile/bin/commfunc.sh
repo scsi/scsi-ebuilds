@@ -33,6 +33,7 @@ SED(){ $_SED "$@"; }
 FIND(){ $_FIND "$@"; }
 STAT(){ $_STAT "$@"; }
 SLEEP(){ $_SLEEP "$@"; }
+ask(){ local _x _y;printf "$* [y/N] "; read _x _y; echo "$_x"|grep -iq -e "y" -e "yes"; }
 readprop(){ SED -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
