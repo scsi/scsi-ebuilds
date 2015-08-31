@@ -1,8 +1,8 @@
 #!/bin/bash
-if [ -z "$COMMFUNC_LOAD" ]; then
+#if [ -z "$COMMFUNC_LOAD" ]; then
 [ -z "$BASH" ] && die "Plz use bash for shell execute."
 COMMFUNC_LOAD=LOAD
-PROGRAM=`basename $(which $0)`
+#PROGRAM=`basename $(which $0)`
 OIFS="$IFS"
 LIFS="
 "
@@ -120,7 +120,7 @@ _buexec(){
   local rtn msg rst
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
   [ -n "$mode" ] || printf "$titlestr"
-  local msg=`eval $cmd 2>&1`
+  msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
   rtn=$?
   [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.  [`usedtime $_stime`]"
@@ -237,4 +237,4 @@ log_info()  { _log $_INFO    "$LOGFILE" "$@"; }
 log_warn()  { _log $_WARN    "$LOGFILE" "$@"; }
 log_error() { _log $_ERROR   "$LOGFILE" "$@"; }
 
-fi
+#fi
