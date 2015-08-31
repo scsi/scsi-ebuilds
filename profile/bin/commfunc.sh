@@ -6,7 +6,9 @@ PROGRAM=`basename $(which $0)`
 OIFS="$IFS"
 LIFS="
 "
-die() { echo "$@" >&2; exit 1; }
+FUNC_AFTER_DIE=_after_die
+die() { echo "$*"; type $FUNC_AFTER_DIE >/dev/null 2>&1 && $FUNC_AFTER_DIE 1>/dev/null 2>&1; exit 1; }
+#die() { echo "$@" >&2; exit 1; }
 trap "_killchild" 1 2 9 15
 
 case `uname` in
@@ -53,15 +55,20 @@ readcfg(){
   done
 }
  
+show_env(){
+  for var in $@; do
+    eval value=\"\$$var\"; echo $var="$value"
+  done
+}
 check_env_show(){
   for var in $@; do
-    eval value=\$$var; echo $var=$value
+    eval value=\"\$$var\"; echo $var="$value"
     [ -z "$value" ] && die "$var is not set. Pls check environment."
   done
 }
 check_env(){
   for var in $@; do
-    eval value=\$$var
+    eval value=\"\$$var\"
     [ -z "$value" ] && die "$var is not set. Pls check environment."
   done
 }
