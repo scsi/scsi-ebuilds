@@ -47,8 +47,8 @@ readcfg(){
       [[ "$aa" =~ ^\[(.*)\]$ ]] && { [ "${BASH_REMATCH[1]}" = "$qca" ] && stat=1 || continue; } || continue
     elif [[ "$aa" =~ ^\[(.*)\]$ ]]; then
       return 1
-    elif [[ $aa =~ ^[[:space:]]*([^[:space:]].*[^[:space:]])[[:space:]]*=[[:space:]]*([^[:space:]].*[^[:space:]])[[:space:]]*$ ]]; then
-      [ "${BASH_REMATCH[1]}" = "$qparam" ]&& echo ${BASH_REMATCH[2]} 
+    elif [[ $aa =~ ^[[:space:]]*([^[:space:]](.*[^[:space:]]){0,1})[[:space:]]*=[[:space:]]*([^[:space:]](.*[^[:space:]]){0,1})[[:space:]]*$ ]]; then
+      [ "${BASH_REMATCH[1]}" = "$qparam" ]&& echo ${BASH_REMATCH[3]} 
     else
       continue
     fi

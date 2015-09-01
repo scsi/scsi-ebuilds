@@ -119,7 +119,7 @@ add_data "Tomcat_JK" "http://tomcat.apache.org/connectors-doc" "grep 'JK.*releas
 add_data "asd" "https://github.com/graysky2/anything-sync-daemon/releases" "grep 'v'"
 add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 'v'"
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
-add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=37528" "grep 'aries'"
+add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep '^ [0-9][0-9\.]*[0-9]$'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
