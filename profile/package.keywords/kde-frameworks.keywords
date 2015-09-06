@@ -46,7 +46,6 @@ dev-qt/qtwidgets:5
 dev-qt/qtx11extras:5
 dev-qt/qtxml:5
 dev-qt/qtxmlpatterns:5
-dev-qt/metadata.xml:5
 dev-qt/qtchooser:5
 dev-qt/qtwayland:5
 dev-qt/qt-docs:5
@@ -111,7 +110,6 @@ kde-frameworks/plasma:5
 kde-frameworks/solid:5
 kde-frameworks/sonnet:5
 kde-frameworks/threadweaver:5
-kde-frameworks/metadata.xml:5
 kde-frameworks/kpackage:5
 kde-frameworks/networkmanager-qt:5
 kde-frameworks/kpeople:5
@@ -119,20 +117,18 @@ kde-frameworks/kxmlrpcclient:5
 kde-frameworks/extra-cmake-modules:5
 kde-frameworks/modemmanager-qt:5
 kde-frameworks/bluez-qt:5
+kde-frameworks/baloo:5
+kde-frameworks/kfilemetadata:5
 kde-plasma/oxygen-fonts:5
-kde-plasma/metadata.xml:5
-kde-plasma/baloo:5
 kde-plasma/bluedevil:5
 kde-plasma/breeze:5
 kde-plasma/kde-cli-tools:5
 kde-plasma/kde-gtk-config:5
 kde-plasma/kdecoration:5
 kde-plasma/kdeplasma-addons:5
-kde-plasma/kfilemetadata:5
 kde-plasma/khelpcenter:5
 kde-plasma/khotkeys:5
 kde-plasma/kinfocenter:5
-kde-plasma/kio-extras:5
 kde-plasma/kmenuedit:5
 kde-plasma/kscreen:5
 kde-plasma/ksshaskpass:5
@@ -155,3 +151,8 @@ kde-plasma/polkit-kde-agent:5
 kde-plasma/powerdevil:5
 kde-plasma/sddm-kcm:5
 kde-plasma/systemsettings:5
+kde-plasma/kgamma:5
+kde-plasma/kwallet-pam:5
+kde-plasma/kwayland-integration:5
+kde-plasma/plasma-pa:5
+kde-plasma/user-manager:5
