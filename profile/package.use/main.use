@@ -39,4 +39,7 @@ media-libs/clutter egl
 >=app-text/poppler-0.32.0 qt5
 >=dev-qt/qtmultimedia-5.4.2-r1 qml
 #>=dev-qt/qtgui-5.4.2-r1 -gles2
->=dev-qt/qtquickcontrols-5.4.2 widgets
+#>=dev-qt/qtwidgets-5.4.2 -gles2
+#>=dev-qt/qtopengl-5.4.2 -gles2
+#>=dev-qt/qtquickcontrols-5.4.2 widgets
+kde-frameworks/plasma -opengl
