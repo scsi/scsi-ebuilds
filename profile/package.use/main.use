@@ -41,3 +41,4 @@ media-libs/clutter egl
 >=dev-qt/qtquickcontrols-5.4.2 widgets
 >=app-crypt/pinentry-0.9.5 gnome-keyring
 app-text/evince -nsplugin
+kde-frameworks/plasma -opengl
