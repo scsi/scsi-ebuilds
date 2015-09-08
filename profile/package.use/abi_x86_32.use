@@ -100,3 +100,5 @@
 >=sys-libs/libcap-2.22-r2 abi_x86_32
 >=dev-libs/libgpg-error-1.19 abi_x86_32
 >=dev-libs/libgcrypt-1.6.3-r4 abi_x86_32
+>=media-libs/harfbuzz-0.9.41 abi_x86_32
+

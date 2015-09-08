@@ -38,5 +38,6 @@ media-libs/clutter egl
 >=media-libs/libvpx-1.4.0 postproc
 >=app-text/poppler-0.32.0 qt5
 >=dev-qt/qtmultimedia-5.4.2-r1 qml
-#>=dev-qt/qtgui-5.4.2-r1 -gles2
 >=dev-qt/qtquickcontrols-5.4.2 widgets
+>=app-crypt/pinentry-0.9.5 gnome-keyring
+app-text/evince -nsplugin
