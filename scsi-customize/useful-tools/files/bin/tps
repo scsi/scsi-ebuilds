@@ -1,0 +1,19 @@
+#!/bin/bash
+
+ps_opt="user,pid,ppid,c,stime,tty,time,pcpu,stat,cmd"
+pps(){
+    #info=`ps -ho user,pid,ppid,class,rtprio,ni,pri,psr,pcpu,stat,comm,args $1`
+	[ "$1" -eq 0 ] && return
+    info=`ps -ho $ps_opt $1`
+    [ $? -eq 0 ] || return
+    echo "$info"
+    cols=($info)
+    _ppid=${cols[2]}
+    [ "$_ppid" = 1 ] && return || pps $_ppid
+}
+ps -o $ps_opt |head -1
+for _pid in $1;do
+    echo == $_pid ==
+    pps $_pid
+done
+
