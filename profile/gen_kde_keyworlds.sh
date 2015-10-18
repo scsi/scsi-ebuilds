@@ -1,5 +1,3 @@
-KDE_EBUILD_PATH=/usr/portage/official/kde-base
+(cd /usr/portage/official/;find dev-qt kde-base kde-apps -maxdepth 1 -mindepth 1 -type d|sed "s/$/:4/") \
+|tee package.keywords/kde.keywords
 
-for aa in `ls -1 $KDE_EBUILD_PATH`;do
-	echo kde-base/$aa
-done|grep -v metadata.xml|tee package.keywords/kde.keywords
