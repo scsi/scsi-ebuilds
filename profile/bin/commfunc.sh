@@ -144,7 +144,7 @@ singlexec(){ _buexec "$1" "$2" "$3" "single"; }
 multiexec(){ _buexec "$1" "$2" "$3" "multi" & local cpid=$!; [ -n "$4" ] && eval $4=\"\$$4 $cpid\"; }
 buexec(){ singlexec "$@"; } 
 waitchild(){ local ret=0;local jl job;[ -n "$1" ]&&eval jl=\"\$$1\"||jl=`jobs -p`;for job in $jl; do wait $job||ret= ; done; return $ret; }
-maxchild(){ while [ `local cols=($(jobs -p));echo ${#cols[@]}` -gt $1 ];do SLEEP 0.5s; done; }
+maxchild(){ local n=$1;[ "$n" -gt 0 ]||n=1;while [ `local cols=($(jobs -p));echo ${#cols[@]}` -ge $n ];do SLEEP 0.5s; done; }
 _killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
 
 #waitchild() {
