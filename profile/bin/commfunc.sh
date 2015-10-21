@@ -66,12 +66,14 @@ check_env_show(){
     [ -z "$value" ] && die "$var is not set. Pls check environment."
   done
 }
-check_env(){
+is_define_env(){
   for var in $@; do
     eval value=\"\$$var\"
-    [ -z "$value" ] && die "$var is not set. Pls check environment."
+    [ -z "$value" ] && return 1
   done
+  return 0
 }
+check_env(){ is_define_env "$@" || die "$var is not set. Pls check environment." }
 replace_env() {
    local var=$2; local sfile=$1
    local value; eval value=\$$var
