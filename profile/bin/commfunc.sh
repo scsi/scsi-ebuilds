@@ -73,7 +73,7 @@ is_define_env(){
   done
   return 0
 }
-check_env(){ is_define_env "$@" || die "$var is not set. Pls check environment." }
+check_env(){ is_define_env "$@" || die "$var is not set. Pls check environment."; }
 replace_env() {
    local var=$2; local sfile=$1
    local value; eval value=\$$var
