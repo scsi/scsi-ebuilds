@@ -140,11 +140,45 @@ _buexec(){
   fi
   return $rtn
 }
-singlexec(){ _buexec "$1" "$2" "$3" "single"; }
-multiexec(){ _buexec "$1" "$2" "$3" "multi" & local cpid=$!; [ -n "$4" ] && eval $4=\"\$$4 $cpid\"; }
 buexec(){ singlexec "$@"; } 
-waitchild(){ local ret=0;local jl job;[ -n "$1" ]&&eval jl=\"\$$1\"||jl=`jobs -p`;for job in $jl; do wait $job||ret= ; done; return $ret; }
-maxchild(){ local n=$1;[ "$n" -gt 0 ]||n=1;while [ `local cols=($(jobs -p));echo ${#cols[@]}` -ge $n ];do SLEEP 0.5s; done; }
+singlexec(){ _buexec "$1" "$2" "$3" "single"; }
+multiexec(){ 
+  local cpid
+  _buexec "$1" "$2" "$3" "multi" & cpid=$!
+  if [ -n "$4" ]; then
+    eval _pids_$4=\"\$_pids_$4 $cpid\"
+    _pids_all="$_pids_all $cpid"
+  fi
+}
+waitchild(){ 
+  local ret=0
+  local jl job
+  if [ -n "$1" ]; then
+    eval jl=\"\$_pids_$1\"
+	_pids_$1=""
+  else 
+    #jl="$_pids_all"
+    jl=`jobs -p`
+	_pids_all=""
+  fi
+  for job in $jl; do 
+    wait $job||ret=1 
+  done
+  return $ret
+}
+
+maxchild(){ 
+  local n=$1
+  [ "$n" -gt 0 ]||n=1
+  while true; do
+    local cpid
+	local exist_n=0
+    for cpid in `jobs -p` ;do
+      kill -0 $cpid && ((exist_n++))
+	done
+	[ $exist_n -ge $n ] && SLEEP 0.5s || break
+  done
+}
 _killchild(){ local plst=`jobs -p`;[ -n "$plst" ]&&kill $plst 2>/dev/null; }
 
 #waitchild() {
