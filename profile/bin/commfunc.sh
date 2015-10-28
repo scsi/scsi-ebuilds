@@ -168,13 +168,15 @@ waitchild(){
 }
 
 maxchild(){ 
+  # jops -p 可能會列出已結束的process
   local n=$1
   [ "$n" -gt 0 ]||n=1
   while true; do
     local cpid
 	local exist_n=0
     for cpid in `jobs -p` ;do
-      kill -0 $cpid && ((exist_n++))
+	  # 檢查process是否還存在
+      kill -0 $cpid >/dev/null 2>&1 && ((exist_n++))
 	done
 	[ $exist_n -ge $n ] && SLEEP 0.5s || break
   done
