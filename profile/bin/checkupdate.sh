@@ -120,6 +120,9 @@ add_data "asd" "https://github.com/graysky2/anything-sync-daemon/releases" "grep
 add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 'v'"
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
 add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep '^ [0-9][0-9\.]*[0-9]$'"
+add_data "logstash" "https://www.elastic.co/downloads/logstash" " grep '^Logstash '"
+add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" " grep '^Elasticsearch '"
+add_data "kibana" "https://www.elastic.co/downloads/kibana" " grep '^Kibana '"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"

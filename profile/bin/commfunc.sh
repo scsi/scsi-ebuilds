@@ -155,11 +155,11 @@ waitchild(){
   local jl job
   if [ -n "$1" ]; then
     eval jl=\"\$_pids_$1\"
-	_pids_$1=""
+	unset _pids_$1
   else 
     #jl="$_pids_all"
     jl=`jobs -p`
-	_pids_all=""
+	unset _pids_all
   fi
   for job in $jl; do 
     wait $job||ret=1 
