@@ -210,8 +210,12 @@ _startprogress() { _progress& _progress_pid=$!;  }
 _stopprogress() { kill -15 $_progress_pid; wait $_progress_pid; echo -e '\b\c'; }
 
 
+#ext=${file##*.}
+#basename=${filepath##*/}
+#dirname=${filepath%/*}
+
 #_filesize(){ ls -l $1 |awk '{print $5}'; }
-_filesize(){ stat -c "%B" $1; }
+_filesize(){ stat -c "%s" $1; }
 
 _rollingfile(){
   local fname=$1; local _FILE_NUM=$2; local num=$3
