@@ -209,7 +209,7 @@ _progress() {
 _startprogress() { _progress& _progress_pid=$!;  }
 _stopprogress() { kill -15 $_progress_pid; wait $_progress_pid; echo -e '\b\c'; }
 
-
+ismount(){ mountpoint -q $1; }
 #ext=${file##*.}
 #basename=${filepath##*/}
 #dirname=${filepath%/*}
