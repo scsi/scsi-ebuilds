@@ -249,12 +249,13 @@ _WARN=1
 _INFO=2
 _DEBUG=3
 LOGLEVEL=$_INFO
+DEFAULT_LOGLEVEL=$_INFO
 
 _rawlog() { SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
 _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
-  local loglevel=$1; shift
   local logfile=$1; shift
+  local loglevel=$1; shift
   [[ $loglevel > $LOGLEVEL ]] && return 0
   local logldesc syslogdesc
   case "$loglevel" in
@@ -273,10 +274,15 @@ _log() {
     [ -n "$*" ] && { echo "$*"| _rawlog $logldesc; } ||  _rawlog $logldesc
   fi
 }
-log()       { _log $LOGLEVEL "$LOGFILE" "$@"; }
-log_debug() { _log $_DEBUG   "$LOGFILE" "$@"; }
-log_info()  { _log $_INFO    "$LOGFILE" "$@"; }
-log_warn()  { _log $_WARN    "$LOGFILE" "$@"; }
-log_error() { _log $_ERROR   "$LOGFILE" "$@"; }
+log()       { _log "$LOGFILE" $DEFAULT_LOGLEVEL "$@"; }
+log_debug() { _log "$LOGFILE" $_DEBUG "$@"; }
+log_info()  { _log "$LOGFILE" $_INFO  "$@"; }
+log_warn()  { _log "$LOGFILE" $_WARN  "$@"; }
+log_error() { _log "$LOGFILE" $_ERROR "$@"; }
+log2file()      { local LOGFILE="$1";shift;log "$@"; }
+log_debug2file(){ local LOGFILE="$1";shift;log_debug "$@"; }
+log_info2file() { local LOGFILE="$1";shift;log_info  "$@"; }
+log_warn2file() { local LOGFILE="$1";shift;log_warn  "$@"; }
+log_error2file(){ local LOGFILE="$1";shift;log_error "$@"; }
 
 #fi
