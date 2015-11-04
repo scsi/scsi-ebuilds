@@ -244,18 +244,32 @@ _check_rolling(){
 #_log() { sed -e "1 s/^/`date '+%Y-%m-%d_%H:%M:%S'`|$$|/" -e "2,$ s/^/  |/" >>$1; check_rolling $1; }
 #log() { local logfile=$1; shift; [ -n "$1" ] && echo "$@"| _log $logfile || _log $logfile; }
 
-_ERROR=0
-_WARN=1
-_INFO=2
-_DEBUG=3
+_NONE=0
+_ERROR=1
+_WARN=2
+_INFO=3
+_DEBUG=4
+_MAX_USED_LOGLEVEL=0
+MAX_USED_LOGLEVEL=NONE
 LOGLEVEL=$_INFO
 DEFAULT_LOGLEVEL=$_INFO
 
+reset_max_used_loglevel(){ _MAX_USED_LEVEL=$_NONE; }
 _rawlog() { SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
 _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local logfile=$1; shift
   local loglevel=$1; shift
+  if [[ $loglevel > $_MAX_USED_LOGLEVEL ]];then
+    _MAX_USED_LOGLEVEL=$loglevel
+    case "$loglevel" in
+      $_ERROR) MAX_USED_LOGLEVEL=ERROR;;
+      $_WARN ) MAX_USED_LOGLEVEL=WARN;;
+      $_INFO ) MAX_USED_LOGLEVEL=INFO;;
+      $_DEBUG) MAX_USED_LOGLEVEL=DEBUG;;
+      *)       MAX_USED_LOGLEVEL=NONE
+    esac
+  fi
   [[ $loglevel > $LOGLEVEL ]] && return 0
   local logldesc syslogdesc
   case "$loglevel" in
