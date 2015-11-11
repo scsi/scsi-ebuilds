@@ -43,3 +43,4 @@ media-libs/clutter egl
 app-text/evince -nsplugin
 kde-frameworks/plasma -opengl
 >=media-video/ffmpeg-2.8.1 vpx
+sys-kernel/gentoo-sources kdbus experimental
