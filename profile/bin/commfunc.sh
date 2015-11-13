@@ -209,6 +209,12 @@ _progress() {
 _startprogress() { _progress& _progress_pid=$!;  }
 _stopprogress() { kill -15 $_progress_pid; wait $_progress_pid; echo -e '\b\c'; }
 
+#There is also direct support for white space removal in Bash variable substitution:
+#testvar=$(wc -l < log.txt)
+#trailing_space_removed=${testvar%%[[:space:]]}
+#leading_space_removed=${testvar##[[:space:]]}
+
+
 ismount(){ mountpoint -q $1; }
 #ext=${file##*.}
 #basename=${filepath##*/}

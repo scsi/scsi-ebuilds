@@ -3,6 +3,11 @@
 
 trap "stopprogress;exit 0" 15 1 2 9
 
+export http_proxy=http://bqproxy.iet:3128
+export https_proxy=http://bqproxy.iet:3128
+export ftp_proxy=http://bqproxy.iet:3128
+
+
 TIMEOUT=30s
 RETRY=1
 . /etc/profile
@@ -50,7 +55,7 @@ checkit()
 	NOWLIST=$SUBWORKDIR/now.list
 	ORIGLIST=$SUBWORKDIR/orig.list
 	DIFFDATA=$SUBWORKDIR/diff.list
-	printf "%-20s:  " "$NAME"
+	printf "%-30s:  " "$NAME"
 	mkdir -p $SUBWORKDIR
 
 	if [ ! -f $NOWLIST -o "$action" != reset ]
@@ -123,6 +128,12 @@ add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep 
 add_data "logstash" "https://www.elastic.co/downloads/logstash" " grep '^Logstash '"
 add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" " grep '^Elasticsearch '"
 add_data "kibana" "https://www.elastic.co/downloads/kibana" " grep '^Kibana '"
+for aa in compiler surefire clean install source jar javadoc antrun site jarsigner dependency;do
+	add_data "maven-$aa-plugin" "http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-$aa-plugin" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'"
+done
+
+
+
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
