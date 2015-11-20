@@ -68,7 +68,7 @@ nice -n 19 eix-sync 1>/dev/null 2>&1
  echo "To: $TMAILADDR"
  echo "----- clean -----"
 # [ -z "$MAILTEST" ] && nice -n 19 eclean-dist -C -q -d -f
- [ -z "$MAILTEST" ] && nice -n 19 eclean-dist -C -d -f 2>/dev/null
+ [ -z "$MAILTEST" ] && nice -n 19 eclean-dist -C -d -f >/dev/null
 # [ -z "$MAILTEST" ] && nice -n 19 eclean-pkg -C
  echo
  echo "----- ebuild update check -----"
