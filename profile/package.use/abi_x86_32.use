@@ -101,4 +101,5 @@
 >=dev-libs/libgcrypt-1.6.3-r4 abi_x86_32
 >=media-libs/harfbuzz-0.9.41 abi_x86_32
 >=dev-libs/gmp-6.0.0a::gentoo abi_x86_32
->=net-libs/gnutls-2.12.23-r6 abi_x86_32 
+>=net-libs/gnutls-2.12.23-r6 abi_x86_32
+>=app-arch/lz4-0_p131 abi_x86_32
