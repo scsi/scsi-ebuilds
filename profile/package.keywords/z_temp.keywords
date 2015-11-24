@@ -17,3 +17,4 @@
 =media-video/ffmpeg-2.8.1
 =sys-apps/util-linux-2.27.1
 =app-arch/lz4-0_p131
+=sys-apps/portage-2.2.25
