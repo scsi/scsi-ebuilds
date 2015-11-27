@@ -151,7 +151,7 @@ _buexec(){
   #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
 
   #msg=`cat $tmpfile`;rm -f $tmpfile
-  echo "output=$_bu_output"
+  #echo "output=$_bu_output"
   case "$_bu_output" in
   always) : ;;
   never) msg="";;
