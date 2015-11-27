@@ -129,12 +129,13 @@ _buexec(){
   local _stime=`nowtime`; 
   local desc="$1";shift
   local cmd="$1";shift
-  local _bu_mode _bu_output
+  local _bu_mode _bu_output _v1 _v2
   for opt in "$@";do
     [[ $opt =~ ^(^[A-Za-z][A-Za-z0-9_]*)=(.*)$ ]] || { echo "buexec extendion parameter error: '$opt'"; return 1; }
-	case "${BASH_REMATCH[1]}" in
-	mode) _bu_mode="${BASH_REMATCH[2]}";;
-	output) _bu_output="${BASH_REMATCH[2]}";;
+	_v1="${BASH_REMATCH[1]}";_v2="${BASH_REMATCH[2]}"
+	case "$_v1" in
+	mode) _bu_mode="$_v2";;
+	output) _bu_output="$_v2";;
 	group):;;
 	*) echo "buexec extendion parameter error: '$opt'"; return 1;
 	esac
@@ -172,7 +173,7 @@ buexec(){ singlexec "$@"; }
 singlexec(){ _buexec "$@" "mode=single"; }
 multiexec(){ 
   local cpid
-  buexec "$@" "mode=multi" & cpid=$!
+  _buexec "$@" "mode=multi" & cpid=$!
   if [[ "$*" =~ [[:blank:]]group=([^[:blank:]]+) ]]; then
     local grp="${BASH_REMATCH[1]}"
     eval _pids_$grp=\"\$_pids_$grp $cpid\"
