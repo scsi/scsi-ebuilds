@@ -9,7 +9,7 @@ LIFS="
 FUNC_AFTER_DIE=_after_die
 die() { echo "$*"; type $FUNC_AFTER_DIE >/dev/null 2>&1 && $FUNC_AFTER_DIE 1>/dev/null 2>&1; exit 1; }
 #die() { echo "$@" >&2; exit 1; }
-trap "_killchild" 1 2 9 15
+trap "_killchild;_clear_result" 0 1 2 9 15
 
 case `uname` in
   AIX)
@@ -123,7 +123,7 @@ list_result(){
 	*)cat $_result_file 2>/dev/null
 	esac
 }
-clear_result(){ rm -f $_result_file 2>/dev/null; }
+_clear_result(){ rm -f $_result_file 2>/dev/null; }
 _buexec(){
   [ $# -lt 2 ] && { echo wrong param. ;return 1; }
   local _stime=`nowtime`; 

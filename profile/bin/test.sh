@@ -28,4 +28,3 @@ echo success
 list_result success
 echo fail
 list_result fail
-clear_result
