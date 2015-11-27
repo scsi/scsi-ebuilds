@@ -142,7 +142,7 @@ _buexec(){
   local tmpfile=/tmp/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
-  local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
+  local titlestr=`printf "$_bu_mode|$bu_output(%s)%-45s: " "$busdate" "$desc"`
   [ "$_bu_mode" = multi ] || printf "$titlestr"
   msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
