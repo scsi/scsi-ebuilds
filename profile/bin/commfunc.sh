@@ -129,21 +129,20 @@ _buexec(){
   local _stime=`nowtime`; 
   local desc="$1";shift
   local cmd="$1";shift
-  local _bu_mode _bu_output
   for opt in "$@";do
     [[ $opt =~ ^(^[A-Za-z][A-Za-z0-9_]*)=(.*)$ ]] || { echo "buexec extendion parameter error: '$opt'"; return 1; }
-	eval local _bu_${BASH_REMATCH[1]}=\"${BASH_REMATCH[2]}\"
+	case "${BASH_REMATCH[1]}" in
+	mode) local _bu_mode="${BASH_REMATCH[2]}";;
+	output) local _bu_output="${BASH_REMATCH[2]}";;
+	group):;;
+	*) echo "buexec extendion parameter error: '$opt'"; return 1;
+	esac
   done
-  case "$_bu_mode" in
-  multi) : ;;
-  #single (default)
-  *) _bu_mode=single
-  esac
   local tmpfile=/tmp/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
-  [ "$_bu_mode" = single ] && printf "$titlestr"
+  [ "$_bu_mode" = multi ] || printf "$titlestr"
   msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
   rtn=$?
@@ -161,10 +160,10 @@ _buexec(){
   esac
   msg=`_tab "$msg"`
   [ -n "$_result_file" ] && printf "%s%s\n" "$titlestr" "$rst">>$_result_file
-  if [ "$_bu_mode" = single ]; then
-    [ -n "$msg" ] && printf "%s\n%s\n" "$rst" "$msg" || printf "%s\n" "$rst"
-  else
+  if [ "$_bu_mode" = multi ]; then
     [ -n "$msg" ] && printf "%s%s\n%s\n" "$titlestr" "$rst" "$msg" || printf "%s%s\n" "$titlestr" "$rst"
+  else
+    [ -n "$msg" ] && printf "%s\n%s\n" "$rst" "$msg" || printf "%s\n" "$rst"
   fi
   return $rtn
 }
