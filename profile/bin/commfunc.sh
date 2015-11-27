@@ -137,7 +137,7 @@ _buexec(){
   case "$_bu_mode" in
   multi) : ;;
   #single (default)
-  *) $_bu_mode=single
+  *) _bu_mode=single
   esac
   local tmpfile=/tmp/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
