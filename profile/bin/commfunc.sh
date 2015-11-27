@@ -143,7 +143,7 @@ _buexec(){
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
-  [ "$_bu_mode" = single ] || printf "$titlestr"
+  [ "$_bu_mode" = single ] && printf "$titlestr"
   msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
   rtn=$?
@@ -161,10 +161,10 @@ _buexec(){
   esac
   msg=`_tab "$msg"`
   [ -n "$_result_file" ] && printf "%s%s\n" "$titlestr" "$rst">>$_result_file
-  if [ "$$_bu_mode" = single ]; then
-    [ -n "$msg" ] && printf "%s%s\n%s\n" "$titlestr" "$rst" "$msg" || printf "%s%s\n" "$titlestr" "$rst"
-  else
+  if [ "$_bu_mode" = single ]; then
     [ -n "$msg" ] && printf "%s\n%s\n" "$rst" "$msg" || printf "%s\n" "$rst"
+  else
+    [ -n "$msg" ] && printf "%s%s\n%s\n" "$titlestr" "$rst" "$msg" || printf "%s%s\n" "$titlestr" "$rst"
   fi
   return $rtn
 }
