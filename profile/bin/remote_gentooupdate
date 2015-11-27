@@ -1,0 +1,1 @@
+ssh $1 'time (layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild)'

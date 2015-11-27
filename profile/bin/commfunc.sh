@@ -114,26 +114,52 @@ usedtime() {
 _sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }
 _tab(){ [ -z "$1" ] && return 0; echo "$1"|SED "s/^/  |/"; echo; }
+_result_file=`mktemp -u`
+_exec_result_list=
+list_result(){
+	case "$1" in
+	success)grep ":[[:blank:]]*success\." $_result_file 2>/dev/null;;
+	fail)grep ":[[:blank:]]*fail\." $_result_file 2>/dev/null;;
+	*)cat $_result_file 2>/dev/null
+	esac
+}
+clear_result(){ rm -f $_result_file 2>/dev/null; }
 _buexec(){
   [ $# -lt 2 ] && { echo wrong param. ;return 1; }
-  local _stime=`nowtime`; local desc="$1"; local cmd="$2"; local ext="$3"; local mode="$4"
+  local _stime=`nowtime`; 
+  local desc="$1";shift
+  local cmd="$1";shift
+  for opt in "$@";do
+    [[ $opt =~ ^(^[A-Za-z][A-Za-z0-9_]*)=(.*)$ ]] || { echo "buexec extendion parameter error: '$opt'"; return 1; }
+	eval local ${BASH_REMATCH[1]}=\"${BASH_REMATCH[2]}\"
+  done
+  case "$mode" in
+  multi) : ;;
+  #single (default)
+  *) mode=single
+  esac
   local tmpfile=/tmp/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
-  [ -n "$mode" ] || printf "$titlestr"
+  [ "$mode" = single ] || printf "$titlestr"
   msg=`eval $cmd 2>&1`
   #eval $cmd >$tmpfile 2>&1
   rtn=$?
-  [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.  [`usedtime $_stime`]"
+  [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.    [`usedtime $_stime`]"
+  #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
+
   #msg=`cat $tmpfile`;rm -f $tmpfile
-  case "$ext" in
-  1|always) : ;;
-  0|never) msg="";;
+  case "$output" in
+  always) : ;;
+  never) msg="";;
+  onsuccess) [ $rtn = 0 ] || msg="";;
+  #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
   msg=`_tab "$msg"`
-  if [ -n "$mode" ]; then
+  [ -n "$_result_file" ] && printf "%s%s\n" "$titlestr" "$rst">>$_result_file
+  if [ "$mode" = single ]; then
     [ -n "$msg" ] && printf "%s%s\n%s\n" "$titlestr" "$rst" "$msg" || printf "%s%s\n" "$titlestr" "$rst"
   else
     [ -n "$msg" ] && printf "%s\n%s\n" "$rst" "$msg" || printf "%s\n" "$rst"
@@ -141,12 +167,13 @@ _buexec(){
   return $rtn
 }
 buexec(){ singlexec "$@"; } 
-singlexec(){ _buexec "$1" "$2" "$3" "single"; }
+singlexec(){ _buexec "$@" "mode=single"; }
 multiexec(){ 
   local cpid
-  _buexec "$1" "$2" "$3" "multi" & cpid=$!
-  if [ -n "$4" ]; then
-    eval _pids_$4=\"\$_pids_$4 $cpid\"
+  buexec "$@" "mode=multi" & cpid=$!
+  if [[ "$*" =~ [[:blank:]]group=([^[:blank:]]+) ]]; then
+    local grp="${BASH_REMATCH[1]}"
+    eval _pids_$grp=\"\$_pids_$grp $cpid\"
     _pids_all="$_pids_all $cpid"
   fi
 }

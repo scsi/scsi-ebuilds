@@ -8,10 +8,11 @@
 #_killchild(){ kill `jobs -p`; }
 
 printtitle SLEEP 
-multiexec "sleep" "sleep 2" 2 SLEEP
-multiexec "sleep" "sleep 2" 2 SLEEP
-multiexec "sleep1" "sleep 3" 2 SLEEP1
-multiexec "sleep1" "sleep 5" 2 SLEEP1
+multiexec "sleep" "sleep 2" output=always group=SLEEP
+multiexec "sleep" "sleep 2" output=onsuccess group=SLEEP
+multiexec "sleep1" "sleep 3" output=onfail group=SLEEP1
+multiexec "sleep1" "sleep 5"  group=SLEEP1
+multiexec "sleep1" "sleep 4;return 1"  group=SLEEP1
 echo $SLEEP
 waitchild SLEEP
 
@@ -21,3 +22,10 @@ echo all finish
 log "abc"
 readprop ~/aa.p aaa
 readcfg ~/bb.p second aaa
+
+list_result
+echo success
+list_result success
+echo fail
+list_result fail
+clear_result
