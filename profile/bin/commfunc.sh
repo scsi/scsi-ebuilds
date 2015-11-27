@@ -129,11 +129,12 @@ _buexec(){
   local _stime=`nowtime`; 
   local desc="$1";shift
   local cmd="$1";shift
+  local _bu_mode _bu_output
   for opt in "$@";do
     [[ $opt =~ ^(^[A-Za-z][A-Za-z0-9_]*)=(.*)$ ]] || { echo "buexec extendion parameter error: '$opt'"; return 1; }
 	case "${BASH_REMATCH[1]}" in
-	mode) local _bu_mode="${BASH_REMATCH[2]}";;
-	output) local _bu_output="${BASH_REMATCH[2]}";;
+	mode) _bu_mode="${BASH_REMATCH[2]}";;
+	output) _bu_output="${BASH_REMATCH[2]}";;
 	group):;;
 	*) echo "buexec extendion parameter error: '$opt'"; return 1;
 	esac
