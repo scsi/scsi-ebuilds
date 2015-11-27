@@ -18,3 +18,4 @@
 =sys-apps/util-linux-2.27.1
 =app-arch/lz4-0_p131
 =sys-apps/portage-2.2.25
+=dev-libs/nspr-4.10.10-r1
