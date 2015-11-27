@@ -129,6 +129,7 @@ _buexec(){
   local _stime=`nowtime`; 
   local desc="$1";shift
   local cmd="$1";shift
+  unset output mode
   for opt in "$@";do
     [[ $opt =~ ^(^[A-Za-z][A-Za-z0-9_]*)=(.*)$ ]] || { echo "buexec extendion parameter error: '$opt'"; return 1; }
 	eval local ${BASH_REMATCH[1]}=\"${BASH_REMATCH[2]}\"
