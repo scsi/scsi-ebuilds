@@ -158,6 +158,7 @@ _buexec(){
   always) : ;;
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
+  raw) rst="$msg"; msg="";;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
