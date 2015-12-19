@@ -101,8 +101,9 @@ printtitle() {
 nowtime() { date +%s%3N; }
 usedsec() {
   local msec=$((${2:-`nowtime`}-${1:-$_sris_stime}))
-  local n=${msec:(-3)}
-  [ "$n" -eq 0 ] && echo ${msec:0:(-3)} || echo ${msec:0:(-3)}.${n}
+  #local n=${msec:(-3)}
+  #[ "$n" -eq 0 ] && echo ${msec:0:(-3)} || echo ${msec:0:(-3)}.${n}
+  printf "%d.%03d" "$((msec/1000))" "$((msec%1000))"
 }
 usedmsec() { echo $((${2:-`nowtime`}-${1:-$_sris_stime})); }
 usedtime() {
