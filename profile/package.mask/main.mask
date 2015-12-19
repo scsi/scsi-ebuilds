@@ -1,4 +1,2 @@
-~sys-apps/systemd-217
 ~app-i18n/ibus-1.5.9
-=app-misc/screen-4.3.1
-#=app-misc/screen-4.3.1-r1
+=dev-util/perf-4.1.5-r1
