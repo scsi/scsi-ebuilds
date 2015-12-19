@@ -98,18 +98,18 @@ printtitle() {
   done
   echo "<|"; echo "$line"
 }
-nowtime() { date +%s; }
+nowtime() { date +%s%3N; }
+usedmsec() { echo $((${2:-`nowtime`}-${1:-$_sris_stime})); }
 usedtime() {
-  [ -n "$1" ] && local stime=$1 || local stime=$_sris_stime
-  [ -n "$2" ] && local now=$2 || local now=$(date +%s)
-  local usesec=$(($now - $stime))
-  local day=$(($usesec / 86400))
-  local hur=$(($usesec  % 86400 / 3600))
-  local min=$(($usesec % 3600 / 60))
-  local sec=$(($usesec % 60))
+  local usesec=$((${2:-`nowtime`}-${1:-$_sris_stime}))
+  local day=$(($usesec/86400000))
+  local hur=$(($usesec%86400000/3600000))
+  local min=$(($usesec%3600000/60000))
+  local sec=$(($usesec%60000/1000))
+  local msec=$(($usesec%1000))
   [ "$day" -ne 0 ] && printf "%dday," $day
   [ "$hur" -ne 0 ] && printf "%02d:" $hur
-  printf "%02d:%02d" "$min" "$sec"
+  printf "%02d:%02d.%03d" "$min" "$sec" "$msec"
 }
 _sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }

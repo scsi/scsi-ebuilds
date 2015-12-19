@@ -8,11 +8,11 @@
 #_killchild(){ kill `jobs -p`; }
 
 printtitle SLEEP 
-multiexec "sleep" "sleep 2" output=always group=SLEEP
-multiexec "sleep" "sleep 2" output=onsuccess group=SLEEP
-multiexec "sleep1" "sleep 3" output=onfail group=SLEEP1
-multiexec "sleep1" "sleep 5"  group=SLEEP1
-multiexec "sleep1" "sleep 4;return 1"  group=SLEEP1
+multiexec "sleep 2" "sleep 2" output=always group=SLEEP
+multiexec "sleep 2" "sleep 2" output=onsuccess group=SLEEP
+multiexec "sleep 3" "sleep 3" output=onfail group=SLEEP1
+multiexec "sleep 5" "sleep 5"  group=SLEEP1
+multiexec "sleep 4" "sleep 4;return 1"  group=SLEEP1
 echo $SLEEP
 waitchild SLEEP
 
