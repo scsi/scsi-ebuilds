@@ -99,6 +99,11 @@ printtitle() {
   echo "<|"; echo "$line"
 }
 nowtime() { date +%s%3N; }
+usedsec() {
+  local msec=$((${2:-`nowtime`}-${1:-$_sris_stime}))
+  local n=${msec:(-3)}
+  [ "$n" -eq 0 ] && echo ${msec:0:(-3)} || echo ${msec:0:(-3)}.${n}
+}
 usedmsec() { echo $((${2:-`nowtime`}-${1:-$_sris_stime})); }
 usedtime() {
   local usesec=$((${2:-`nowtime`}-${1:-$_sris_stime}))

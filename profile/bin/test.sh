@@ -28,3 +28,5 @@ echo success
 list_result success
 echo fail
 list_result fail
+usedsec
+usedmsec
