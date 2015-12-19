@@ -145,8 +145,7 @@ for aa in compiler surefire clean install source jar javadoc antrun site jarsign
 	add_data "maven-$aa-plugin" "http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-$aa-plugin" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'"
 done
 
-
-
+add_data "redis" "http://redis.io" "grep 'is the latest stable version.'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
