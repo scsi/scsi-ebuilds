@@ -16,3 +16,4 @@
 =app-arch/lz4-0_p131
 =sys-apps/portage-2.2.25
 =dev-libs/nspr-4.10.10-r1
+=kde-frameworks/extra-cmake-modules-5.17.0 ~amd64
