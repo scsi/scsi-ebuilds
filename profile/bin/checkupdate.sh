@@ -114,7 +114,7 @@ checkit()
 add_data "XR-3008" "http://conqueror.gpscamera.org/" "grep '台灣目前最新版本'"
 add_data "Redmine" "http://www.redmine.org/projects/redmine/wiki/Download" "awk '/Latest releases/,/Resources/'|grep -v -e : -e '^$'"
 add_data "Eclipse" "https://eclipse.org/downloads/" "grep 'Release for'"
-add_data "Jenkins" "https://jenkins-ci.org/" "grep 'Latest and greatest'"
+add_data "Jenkins" "https://jenkins-ci.org/" "grep 'Latest: '"
 #add_data "Docker" "https://docs.docker.com/release-notes/" "grep 'Release Notes Version'"
 
 add_data "docker-registry" "https://github.com/docker/distribution/releases" "grep '• v'"
