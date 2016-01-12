@@ -111,6 +111,11 @@ checkit()
 	fi
 }
 
+add_data_mvnrepo(){
+  #add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|awk '{print \$(NF-4),\$(NF-2),\$(NF-1),\$(NF);}'"
+  add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|sed 's/[0-9][A-Za-z0-9\.]*\.x *//'|awk '{print \$(NF-4),\$(NF-2),\$(NF-1),\$(NF);}'"
+}
+
 add_data "XR-3008" "http://conqueror.gpscamera.org/" "grep '台灣目前最新版本'"
 add_data "Redmine" "http://www.redmine.org/projects/redmine/wiki/Download" "awk '/Latest releases/,/Resources/'|grep -v -e : -e '^$'"
 add_data "Eclipse" "https://eclipse.org/downloads/" "grep 'Release for'"
@@ -133,7 +138,7 @@ add_data "kryo-serializers" "https://github.com/magro/kryo-serializers/releases"
 add_data "kryo" "https://github.com/EsotericSoftware/kryo/releases" "grep -e … -e .zip"
 add_data "minlog" "https://github.com/EsotericSoftware/minlog/releases" "grep -e … -e .zip"
 add_data "reflectasm" "https://github.com/EsotericSoftware/reflectasm/releases" "grep -e … -e .zip"
-add_data "asm" "http://mvnrepository.com/artifact/org.ow2.asm/asm" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'"
+add_data_mvnrepo "asm" "org.ow2.asm/asm"
 add_data "asd" "https://github.com/graysky2/anything-sync-daemon/releases" "grep 'v'"
 add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 'v'"
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
@@ -142,7 +147,7 @@ add_data "logstash" "https://www.elastic.co/downloads/logstash" " grep '^Logstas
 add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" " grep '^Elasticsearch '"
 add_data "kibana" "https://www.elastic.co/downloads/kibana" " grep '^Kibana '"
 for aa in compiler surefire clean install source jar javadoc antrun site jarsigner dependency;do
-	add_data "maven-$aa-plugin" "http://mvnrepository.com/artifact/org.apache.maven.plugins/maven-$aa-plugin" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'"
+	add_data_mvnrepo "maven-$aa-plugin" "org.apache.maven.plugins/maven-$aa-plugin"
 done
 
 add_data "redis" "http://redis.io" "grep 'is the latest stable version.'"
