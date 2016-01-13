@@ -7,13 +7,10 @@
 =media-libs/phonon-gstreamer-4.8.2 ~amd64
 =media-libs/phonon-4.8.3 ~amd64
 =media-libs/phonon-vlc-0.8.2 ~amd64
-=dev-libs/libgudev-230 ~amd64
 =kde-misc/systemd-kcm-0.7.0 ~amd64
-=sys-apps/hwids-20150421 ~amd64
 =www-client/lynx-2.8.9_pre6
 =media-video/ffmpeg-2.8.1
 =sys-apps/util-linux-2.27.1
 =app-arch/lz4-0_p131
-=sys-apps/portage-2.2.25
 =dev-libs/nspr-4.10.10-r1
 =kde-frameworks/extra-cmake-modules-5.17.0 ~amd64
