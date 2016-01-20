@@ -1,0 +1,7 @@
+#!/bin/bash
+
+#https://wiki.gentoo.org/wiki/CFLAGS
+
+cpuinfo2cpuflags-x86
+
+gcc -march=native -E -v - </dev/null 2>&1 | grep cc1
