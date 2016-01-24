@@ -5,3 +5,6 @@
 cpuinfo2cpuflags-x86
 
 gcc -march=native -E -v - </dev/null 2>&1 | grep cc1
+
+#https://wiki.gentoo.org/wiki/GCC_optimization
+#gcc -c -Q -march=native --help=target
