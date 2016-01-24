@@ -2,4 +2,7 @@ x11-drivers/xf86-video-intel
 x11-base/xorg-server
 x11-base/xorg-drivers
 x11-base/xorg-x11
+x11-drivers/xf86-input-evdev
 x11-drivers/xf86-video-vesa
+x11-drivers/xf86-video-fbdev
+x11-drivers/xf86-video-intel
