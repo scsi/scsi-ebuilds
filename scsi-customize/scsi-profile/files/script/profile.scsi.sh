@@ -17,7 +17,8 @@ if [ "`id -u`" = 0 ]; then
 		alias poweroff='systemctl poweroff'
 		alias reboot='systemctl reboot'
 	fi
-	alias gentooupdate='time (layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild;emerge --depclean -pq)'
+	#alias gentooupdate='time (layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild;emerge --depclean -pq)'
+	alias gentooupdate='time (layman -S;eix-sync ;emerge -uDNv world;emerge @preserved-rebuild;emerge --depclean -pq)'
 fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
 export NMON="dc-"
