@@ -14,6 +14,8 @@ net-misc/networkmanager-pptp
 net-misc/netctl
 dev-java/oracle-jdk-bin:1.7
 dev-java/oracle-jdk-bin:1.8
+virtual/jdk:1.8
+virtual/jre:1.8
 app-i18n/ibus-table
 app-i18n/ibus
 app-i18n/ibus-chewing
