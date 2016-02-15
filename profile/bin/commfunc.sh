@@ -11,7 +11,7 @@ die() { echo "$*"; type $FUNC_AFTER_DIE >/dev/null 2>&1 && $FUNC_AFTER_DIE 1>/de
 #die() { echo "$@" >&2; exit 1; }
 trap "_killchild;_clear_temp" 0 1 2 9 15
 TEMP_DIR=`mktemp -d`|| die "can not create temp dir."
-_clear_temp(){ echo "clear temp dir";rm -rf $TEMP_DIR >/dev/null 2>&1; }
+_clear_temp(){ [ -d $TEMP_DIR ] && rm -rf $TEMP_DIR >/dev/null 2>&1 || die "can not file temp directory."; }
 case `uname` in
   AIX)
     export PATH=/SRIS/bin:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java6_64/jre/bin:/usr/vac/bin:/usr/vacpp/bin:/usr/local/mysql/bin:/opt/freeware/bin
