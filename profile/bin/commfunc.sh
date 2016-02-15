@@ -294,26 +294,28 @@ _WARN=2
 _INFO=3
 _DEBUG=4
 _MAX_USED_LOGLEVEL=0
-MAX_USED_LOGLEVEL=NONE
 LOGLEVEL=$_INFO
 DEFAULT_LOGLEVEL=$_INFO
 
-reset_max_used_loglevel(){ _MAX_USED_LEVEL=$_NONE; }
+_MAX_USED_LOGLEVEL_FILE=$TEMP_DIR/max_used_loglevel.txt
+reset_max_used_loglevel(){ >$_MAX_USED_LOGLEVEL_FILE; }
+get_max_used_loglevel(){ [ -s $_MAX_USED_LOGLEVEL_FILE ] && cat $_MAX_USED_LOGLEVEL_FILE || echo $_DEBUG; }
+is_max_used_loglevel_over(){
+  local max_level=`get_max_used_loglevel`
+  case "$1" in
+  debug|DEBUG) [ $max_level -ge $_DEBUG ] && return 0;;
+  info|INFO)   [ $max_level -ge $_INFO  ] && return 0;;
+  warn|WARN)   [ $max_level -ge $_WARN  ] && return 0;;
+  error|ERROR) [ $max_level -ge $_ERROR ] && return 0;;
+  *) return 1
+  esac
+}
 _rawlog() { SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
 _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local logfile=$1; shift
   local loglevel=$1; shift
-  if [[ $loglevel > $_MAX_USED_LOGLEVEL ]];then
-    _MAX_USED_LOGLEVEL=$loglevel
-    case "$loglevel" in
-      $_ERROR) MAX_USED_LOGLEVEL=ERROR;;
-      $_WARN ) MAX_USED_LOGLEVEL=WARN;;
-      $_INFO ) MAX_USED_LOGLEVEL=INFO;;
-      $_DEBUG) MAX_USED_LOGLEVEL=DEBUG;;
-      *)       MAX_USED_LOGLEVEL=NONE
-    esac
-  fi
+  [[ $loglevel < `get_max_used_loglevel` ]]&& echo $loglevel>$_MAX_USED_LOGLEVEL_FILE
   [[ $loglevel > $LOGLEVEL ]] && return 0
   local logldesc syslogdesc
   case "$loglevel" in
