@@ -288,12 +288,11 @@ _check_rolling(){
 #_log() { sed -e "1 s/^/`date '+%Y-%m-%d_%H:%M:%S'`|$$|/" -e "2,$ s/^/  |/" >>$1; check_rolling $1; }
 #log() { local logfile=$1; shift; [ -n "$1" ] && echo "$@"| _log $logfile || _log $logfile; }
 
-_NONE=0
-_ERROR=1
-_WARN=2
-_INFO=3
 _DEBUG=4
-_MAX_USED_LOGLEVEL=0
+_INFO=5
+_WARN=6
+_ERROR=7
+_NONE=8
 LOGLEVEL=$_INFO
 DEFAULT_LOGLEVEL=$_INFO
 
@@ -315,8 +314,8 @@ _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local logfile=$1; shift
   local loglevel=$1; shift
-  [[ $loglevel < `get_max_used_loglevel` ]]&& echo $loglevel>$_MAX_USED_LOGLEVEL_FILE
-  [[ $loglevel > $LOGLEVEL ]] && return 0
+  [[ $loglevel > `get_max_used_loglevel` ]]&& echo $loglevel>$_MAX_USED_LOGLEVEL_FILE
+  [[ $loglevel < $LOGLEVEL ]] && return 0
   local logldesc syslogdesc
   case "$loglevel" in
     $_ERROR) logldesc=E;syslogdesc=daemon.err;;
