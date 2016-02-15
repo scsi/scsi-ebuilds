@@ -9,8 +9,9 @@ LIFS="
 FUNC_AFTER_DIE=_after_die
 die() { echo "$*"; type $FUNC_AFTER_DIE >/dev/null 2>&1 && $FUNC_AFTER_DIE 1>/dev/null 2>&1; exit 1; }
 #die() { echo "$@" >&2; exit 1; }
-trap "_killchild;_clear_result" 0 1 2 9 15
-
+trap "_killchild;_clear_temp" 0 1 2 9 15
+TEMP_DIR=`mktemp -d`|| die "can not create temp dir."
+_clear_temp(){ rm -rf $TEMP_DIR >/dev/null 2>&1; }
 case `uname` in
   AIX)
     export PATH=/SRIS/bin:/usr/bin:/etc:/usr/sbin:/usr/ucb:/usr/bin/X11:/sbin:/usr/java6_64/jre/bin:/usr/vac/bin:/usr/vacpp/bin:/usr/local/mysql/bin:/opt/freeware/bin
@@ -120,7 +121,7 @@ usedtime() {
 _sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }
 _tab(){ [ -z "$1" ] && return 0; echo "$1"|SED "s/^/  |/"; echo; }
-_result_file=`mktemp -u`
+_result_file=$TEMP_DIR/exec_result.lst
 _exec_result_list=
 list_result(){
 	case "$1" in
@@ -129,7 +130,6 @@ list_result(){
 	*)cat $_result_file 2>/dev/null
 	esac
 }
-_clear_result(){ rm -f $_result_file 2>/dev/null; }
 _buexec(){
   [ $# -lt 2 ] && { echo wrong param. ;return 1; }
   local _stime=`nowtime`; 
