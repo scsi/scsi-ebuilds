@@ -3,14 +3,14 @@ if [ -z "$COMMFUNC_LOAD" ]; then
 [ -z "$BASH" ] && die "Plz use bash for shell execute."
 COMMFUNC_LOAD=LOAD
 #PROGRAM=`basename $(which $0)`
-readonly OIFS="$IFS"
-readonly LIFS="
+OIFS="$IFS"
+LIFS="
 "
 FUNC_AFTER_DIE=_after_die
 die() { echo "$*"; type $FUNC_AFTER_DIE >/dev/null 2>&1 && $FUNC_AFTER_DIE 1>/dev/null 2>&1; exit 1; }
 #die() { echo "$@" >&2; exit 1; }
 trap "_killchild;_clear_temp" 0 1 2 9 15
-readonly TEMP_DIR=`mktemp -d`|| die "can not create temp dir."
+TEMP_DIR=`mktemp -d`|| die "can not create temp dir."
 _clear_temp(){ [ -d $TEMP_DIR ] && rm -rf $TEMP_DIR >/dev/null 2>&1 || die "can not file temp directory."; }
 case `uname` in
   AIX)
@@ -118,10 +118,10 @@ usedtime() {
   [ "$hur" -ne 0 ] && printf "%02d:" $hur
   printf "%02d:%02d.%03d" "$min" "$sec" "$msec"
 }
-readonly _sris_stime=`nowtime`
+_sris_stime=`nowtime`
 isalive() { ping -c 1 -w 3 $1>/dev/null 2>&1||ping -c 1 -w 3 $1>/dev/null 2>&1; }
 _tab(){ [ -z "$1" ] && return 0; echo "$1"|SED "s/^/  |/"; echo; }
-readonly _result_file=$TEMP_DIR/exec_result.lst
+_result_file=$TEMP_DIR/exec_result.lst
 _exec_result_list=
 list_result(){
 	case "$1" in
@@ -288,15 +288,15 @@ _check_rolling(){
 #_log() { sed -e "1 s/^/`date '+%Y-%m-%d_%H:%M:%S'`|$$|/" -e "2,$ s/^/  |/" >>$1; check_rolling $1; }
 #log() { local logfile=$1; shift; [ -n "$1" ] && echo "$@"| _log $logfile || _log $logfile; }
 
-readonly _DEBUG=4
-readonly _INFO=5
-readonly _WARN=6
-readonly _ERROR=7
-readonly _NONE=8
+_DEBUG=4
+_INFO=5
+_WARN=6
+_ERROR=7
+_NONE=8
 LOGLEVEL=$_INFO
 DEFAULT_LOGLEVEL=$_INFO
 
-readonly _MAX_USED_LOGLEVEL_FILE=$TEMP_DIR/max_used_loglevel.txt
+_MAX_USED_LOGLEVEL_FILE=$TEMP_DIR/max_used_loglevel.txt
 reset_max_used_loglevel(){ >$_MAX_USED_LOGLEVEL_FILE; }
 get_max_used_loglevel(){ [ -s $_MAX_USED_LOGLEVEL_FILE ] && cat $_MAX_USED_LOGLEVEL_FILE || echo $_DEBUG; }
 is_max_used_loglevel_over(){
