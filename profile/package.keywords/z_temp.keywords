@@ -9,7 +9,6 @@
 =media-libs/phonon-vlc-0.8.2 ~amd64
 =kde-misc/systemd-kcm-0.7.0 ~amd64
 =www-client/lynx-2.8.9_pre6
-=media-video/ffmpeg-2.8.1
 =sys-apps/util-linux-2.27.1
 =app-arch/lz4-0_p131
 =dev-libs/nspr-4.10.10-r1

@@ -1,2 +1,2 @@
-~app-i18n/ibus-1.5.9
 =dev-util/perf-4.1.5-r1
+=kde-base/systemsettings-4.11.22-r1
