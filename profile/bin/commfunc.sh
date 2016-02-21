@@ -169,7 +169,7 @@ _buexec(){
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
-  format) [ $rtn = 0 ] || rst="$RETURN_TITLE ($rtnstr)";msg="$RETURN_MESSAGE";;
+  format) [ $rtn = 0 ] && rst="$RETURN_TITLE" || rst="$RETURN_TITLE ($rtnstr)";msg="$RETURN_MESSAGE";;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
