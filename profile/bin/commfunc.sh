@@ -148,7 +148,7 @@ _buexec(){
   done
   local tmpfile=$TEMP_DIR/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
-  local rtn msg rst
+  local rtn rtnstr msg rst
   #local titlestr=`printf "$_bu_mode|$_bu_output(%s)%-45s: " "$busdate" "$desc"`
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
   [ "$_bu_mode" = multi ] || printf "$titlestr"
@@ -157,8 +157,9 @@ _buexec(){
   local RETURN_MESSAGE=
   eval $cmd >$tmpfile 2>&1
   rtn=$?
+  [ "$rtn" = 0 ] && rtnstr=success || rtnstr=fail
   msg=`cat $tmpfile`
-  [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.    [`usedtime $_stime`]"
+  rst="${rtnstr}."
   #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
 
   #msg=`cat $tmpfile`;rm -f $tmpfile
@@ -168,10 +169,11 @@ _buexec(){
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
-  format) rst="$RETURN_TITLE";msg="$RETURN_MESSAGE";;
+  format) rst="$RETURN_TITLE ($rtnstr)";msg="$RETURN_MESSAGE";;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
+  rst="$rst [`usedtime $_stime`]"
   msg=`_tab "$msg"`
   [ -n "$_result_file" ] && printf "%s%s\n" "$titlestr" "$rst">>$_result_file
   if [ "$_bu_mode" = multi ]; then
