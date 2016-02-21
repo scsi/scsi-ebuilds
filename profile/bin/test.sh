@@ -7,6 +7,18 @@
 #maxchild(){ while [ `local cols=(jobs -p);echo ${#cols[@]}` -gt $1 ];do usleep 500; done; }
 #_killchild(){ kill `jobs -p`; }
 
+testap1(){
+  RETURN_TITLE="test title"
+  RETURN_MESSAGE="test message"
+}
+
+testap2(){
+  RETURN_TITLE="test title"
+}
+
+singlexec "test1" "testap1" output=format
+singlexec "test1" "testap2" output=format
+
 printtitle SLEEP 
 multiexec "sleep 2" "sleep 2" output=always group=SLEEP
 multiexec "sleep 2" "sleep 2" output=onsuccess group=SLEEP

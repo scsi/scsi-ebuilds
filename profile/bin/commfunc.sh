@@ -146,15 +146,18 @@ _buexec(){
 	*) echo "buexec extendion parameter error: '$opt'"; return 1;
 	esac
   done
-  local tmpfile=/tmp/insris.$$.log
+  local tmpfile=$TEMP_DIR/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn msg rst
   #local titlestr=`printf "$_bu_mode|$_bu_output(%s)%-45s: " "$busdate" "$desc"`
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
   [ "$_bu_mode" = multi ] || printf "$titlestr"
-  msg=`eval $cmd 2>&1`
-  #eval $cmd >$tmpfile 2>&1
+  #msg=`eval $cmd 2>&1`
+  local RETURN_TITLE=
+  local RETURN_MESSAGE=
+  eval $cmd >$tmpfile 2>&1
   rtn=$?
+  msg=`cat $tmpfile`
   [ $rtn = 0 ] &&  rst="success. [`usedtime $_stime`]" || rst="fail.    [`usedtime $_stime`]"
   #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
 
@@ -165,6 +168,7 @@ _buexec(){
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
+  format) rst="$RETURN_TITLE";msg="$RETURN_MESSAGE";;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
