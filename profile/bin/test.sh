@@ -10,14 +10,24 @@
 testap1(){
   RETURN_TITLE="test title"
   RETURN_MESSAGE="test message"
+  echo this is testap1
 }
 
 testap2(){
   RETURN_TITLE="test title"
+  echo this is testap2
+}
+
+testap3(){
+  RETURN_TITLE="test title"
+  RETURN_MESSAGE="test message"
+  echo this is testap3
+  return 1
 }
 
 singlexec "test1" "testap1" output=format
-singlexec "test1" "testap2" output=format
+singlexec "test2" "testap2" output=format
+singlexec "test3" "testap3" output=format
 
 printtitle SLEEP 
 multiexec "sleep 2" "sleep 2" output=always group=SLEEP

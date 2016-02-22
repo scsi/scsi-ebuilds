@@ -14,3 +14,4 @@
 =dev-libs/nspr-4.10.10-r1
 =kde-frameworks/extra-cmake-modules-5.17.0 ~amd64
 =kde-apps/kde-wallpapers-15.08.3
+=sys-boot/unetbootin-619

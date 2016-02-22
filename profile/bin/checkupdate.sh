@@ -121,7 +121,7 @@ add_data "Redmine" "http://www.redmine.org/projects/redmine/wiki/Download" "awk 
 add_data "Eclipse" "https://eclipse.org/downloads/" "grep 'Release for'"
 add_data "Jenkins" "https://jenkins-ci.org/" "grep 'Latest: '"
 #add_data "Docker" "https://docs.docker.com/release-notes/" "grep 'Release Notes Version'"
-
+add_data "docker" "https://github.com/docker/docker/releases" "grep '^v'"
 add_data "docker-registry" "https://github.com/docker/distribution/releases" "grep '• v'"
 add_data "Slf4j" "http://www.slf4j.org/download.html" "grep '.zip$'"
 add_data "Logback" "http://logback.qos.ch/download.html" "grep '.zip$'"

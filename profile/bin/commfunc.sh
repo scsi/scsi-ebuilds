@@ -162,14 +162,23 @@ _buexec(){
   rst="${rtnstr}."
   #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
 
-  #msg=`cat $tmpfile`;rm -f $tmpfile
   #echo "output=$_bu_output"
   case "$_bu_output" in
   always) : ;;
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
-  format) [ $rtn = 0 ] && rst="$RETURN_TITLE" || rst="$RETURN_TITLE ($rtnstr)";msg="$RETURN_MESSAGE";;
+  format)
+    if [ $rtn = 0 ];then
+      rst="$RETURN_TITLE"
+      msg="$RETURN_MESSAGE"
+    else
+      rst="$RETURN_TITLE ($rtnstr)"
+      msg="$RETURN_MESSAGE
+==
+$msg
+"
+    fi;;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac
