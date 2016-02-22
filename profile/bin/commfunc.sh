@@ -168,17 +168,19 @@ _buexec(){
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
-  format)
-    if [ $rtn = 0 ];then
-      rst="$RETURN_TITLE"
-      msg="$RETURN_MESSAGE"
-    else
-      rst="$RETURN_TITLE ($rtnstr)"
-      msg="$RETURN_MESSAGE
+  format*)
+    local fullmsg="$RETURN_MESSAGE
 ==
 $msg
 "
-    fi;;
+    [ $rtn = 0 ] && rst="$RETURN_TITLE" || rst="$RETURN_TITLE ($rtnstr)"
+    case "$_bu_output" in
+	  format-always) msg="$fullmsg" ;;
+	  format-never) msg="$RETURN_MESSAGE" ;;
+	  format-onsuccess) [ $rtn = 0 ] && msg="$fullmsg" || msg="$RETURN_MESSAGE" ;;
+	  *)  [ $rtn = 0 ] && msg="$RETURN_MESSAGE" || msg="$fullmsg"
+	esac
+    ;;
   #onfail(default)
   *) [ $rtn = 0 ] && msg=""
   esac

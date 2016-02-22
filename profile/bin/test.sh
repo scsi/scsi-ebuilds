@@ -26,8 +26,14 @@ testap3(){
 }
 
 singlexec "test1" "testap1" output=format
+singlexec "test1 always" "testap1" output=format-always
+singlexec "test1 onsuccess" "testap1" output=format-onsuccess
+singlexec "test1 onfail" "testap1" output=format-onfail
 singlexec "test2" "testap2" output=format
 singlexec "test3" "testap3" output=format
+singlexec "test3 always" "testap3" output=format-always
+singlexec "test3 onsuccess" "testap3" output=format-onsuccess
+singlexec "test3 onfail" "testap3" output=format-onfail
 
 printtitle SLEEP 
 multiexec "sleep 2" "sleep 2" output=always group=SLEEP
