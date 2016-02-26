@@ -15,3 +15,4 @@
 =kde-frameworks/extra-cmake-modules-5.17.0 ~amd64
 =kde-apps/kde-wallpapers-15.08.3
 =sys-boot/unetbootin-619
+=dev-libs/liborcus-0.9.2-r1 ~amd64
