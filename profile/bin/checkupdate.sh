@@ -151,6 +151,7 @@ for aa in compiler surefire clean install source jar javadoc antrun site jarsign
 done
 
 add_data "redis" "http://redis.io" "grep 'is the latest stable version.'"
+add_data "directory_studio" "http://directory.apache.org/studio/download/download-linux.html" "grep 'tar.gz '|awk -F / '{print \$(NF)}'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"
