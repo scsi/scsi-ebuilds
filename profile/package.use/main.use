@@ -45,3 +45,4 @@ kde-frameworks/plasma -opengl
 >=media-video/ffmpeg-2.8.1 vpx
 sys-kernel/gentoo-sources kdbus experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
+>=dev-qt/qtgui-5.5.1-r1 egl
