@@ -12,3 +12,4 @@
 =dev-libs/nspr-4.10.10-r1
 =sys-boot/unetbootin-619
 =dev-libs/liborcus-0.9.2-r1 ~amd64
+=sys-kernel/linux-headers-4.4 ~amd64
