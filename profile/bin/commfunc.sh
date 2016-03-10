@@ -146,6 +146,7 @@ _buexec(){
 	*) echo "buexec extendion parameter error: '$opt'"; return 1;
 	esac
   done
+  [ "$_bu_output" = realtime ] && _bu_mode=single
   local tmpfile=$TEMP_DIR/insris.$$.log
   local busdate="`usedtime $_sris_stime`"
   local rtn rtnstr msg rst
@@ -155,7 +156,11 @@ _buexec(){
   #msg=`eval $cmd 2>&1`
   local RETURN_TITLE=
   local RETURN_MESSAGE=
-  eval $cmd >$tmpfile 2>&1
+  if [ "$_bu_output" = realtime ]; then
+    eval $cmd
+  else
+    eval $cmd >$tmpfile 2>&1
+  fi
   rtn=$?
   [ "$rtn" = 0 ] && rtnstr=success || rtnstr=fail
   msg=`cat $tmpfile`
@@ -164,6 +169,7 @@ _buexec(){
 
   #echo "output=$_bu_output"
   case "$_bu_output" in
+  realtime) msg="";;
   always) : ;;
   never) msg="";;
   onsuccess) [ $rtn = 0 ] || msg="";;

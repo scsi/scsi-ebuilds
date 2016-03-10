@@ -1,12 +1,19 @@
-=lxqt-base/lxqt-qtplugin-0.7.0 ~amd64
-=lxqt-base/lxqt-powermanagement-0.7.0 ~amd64
-=lxqt-base/liblxqt-mount-0.7.0 ~amd64
-=lxqt-base/lxqt-policykit-0.7.0-r1 ~amd64
-=lxqt-base/lxqt-runner-0.7.0-r1 ~amd64
-=lxqt-base/lxqt-globalkeys-0.7.0 ~amd64
-=lxqt-base/lxqt-config-0.7.0-r1 ~amd64
-=lxqt-base/lxqt-about-0.7.0 ~amd64
-=lxqt-base/lxqt-notificationd-0.7.0 ~amd64
-=lxqt-base/liblxqt-0.7.0 ~amd64
-=lxqt-base/lxqt-common-0.7.0 ~amd64
-=lxqt-base/lxqt-session-0.7.0-r1 ~amd64
+lxqt-base/liblxqt
+lxqt-base/liblxqt-mount
+lxqt-base/libsysstat
+lxqt-base/lxqt-about
+lxqt-base/lxqt-admin
+lxqt-base/lxqt-common
+lxqt-base/lxqt-config
+lxqt-base/lxqt-config-randr
+lxqt-base/lxqt-globalkeys
+lxqt-base/lxqt-meta
+lxqt-base/lxqt-notificationd
+lxqt-base/lxqt-openssh-askpass
+lxqt-base/lxqt-panel
+lxqt-base/lxqt-policykit
+lxqt-base/lxqt-powermanagement
+lxqt-base/lxqt-qtplugin
+lxqt-base/lxqt-runner
+lxqt-base/lxqt-session
+lxqt-base/lxqt-sudo
