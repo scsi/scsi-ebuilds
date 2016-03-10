@@ -157,7 +157,7 @@ _buexec(){
   local RETURN_TITLE=
   local RETURN_MESSAGE=
   if [ "$_bu_output" = realtime ]; then
-    eval $cmd 2>&1|_tab
+    eval $cmd 2>&1|SED "s/^/  |/"
     rtn=${PIPESTATUS[0]}
   else
     eval $cmd >$tmpfile 2>&1
