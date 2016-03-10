@@ -153,6 +153,7 @@ _buexec(){
   #local titlestr=`printf "$_bu_mode|$_bu_output(%s)%-45s: " "$busdate" "$desc"`
   local titlestr=`printf "(%s)%-45s: " "$busdate" "$desc"`
   [ "$_bu_mode" = multi ] || printf "$titlestr"
+  [ "$_bu_output" = realtime ] && echo
   #msg=`eval $cmd 2>&1`
   local RETURN_TITLE=
   local RETURN_MESSAGE=
