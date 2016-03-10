@@ -157,11 +157,12 @@ _buexec(){
   local RETURN_TITLE=
   local RETURN_MESSAGE=
   if [ "$_bu_output" = realtime ]; then
-    eval $cmd
+    eval $cmd 2>&1|_tab
+    rtn=${PIPESTATUS[0]}
   else
     eval $cmd >$tmpfile 2>&1
+    rtn=$?
   fi
-  rtn=$?
   [ "$rtn" = 0 ] && rtnstr=success || rtnstr=fail
   [ -f $tmpfile ] && msg=`cat $tmpfile`
   rst="${rtnstr}."
