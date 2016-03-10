@@ -163,7 +163,7 @@ _buexec(){
   fi
   rtn=$?
   [ "$rtn" = 0 ] && rtnstr=success || rtnstr=fail
-  msg=`cat $tmpfile`
+  [ -f $tmpfile ] && msg=`cat $tmpfile`
   rst="${rtnstr}."
   #[ -n "$_result_file" ] && echo "$rtn:$desc" >>$_result_file
 
