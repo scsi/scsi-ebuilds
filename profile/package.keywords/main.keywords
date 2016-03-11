@@ -107,3 +107,5 @@ media-video/openshot
 media-video/kdenlive
 app-text/teseq
 dev-util/perf
+app-i18n/fcitx-qt5
+kde-plasma/kcm-fcitx

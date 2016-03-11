@@ -46,3 +46,8 @@ kde-frameworks/plasma -opengl
 sys-kernel/gentoo-sources kdbus experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
 >=dev-qt/qtgui-5.5.1-r1 egl
+>=kde-apps/solid-runtime-15.08.3 -bluetooth
+>=kde-plasma/plasma-desktop-5.5.5:5 -gtk3
+>=app-crypt/qca-2.1.1 qt5
+>=media-libs/mesa-11.0.6 wayland
+>=media-libs/mlt-0.9.8-r2 -kde melt kdenlive

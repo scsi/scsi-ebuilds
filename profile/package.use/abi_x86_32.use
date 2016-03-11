@@ -112,3 +112,5 @@
 >=media-libs/freeglut-3.0.0 abi_x86_32
 >=dev-libs/elfutils-0.163 abi_x86_32
 >=media-libs/libjpeg-turbo-1.4.2 abi_x86_32
+>=dev-libs/wayland-1.9.0 abi_x86_32
+
