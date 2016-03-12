@@ -14,3 +14,4 @@ kde-misc/homerun
 kde-misc/baloo-kcmadv
 kde-misc/kcmsystemd
 x11-misc/sddm
+kde-base/kdelibs
