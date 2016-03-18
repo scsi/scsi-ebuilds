@@ -119,6 +119,7 @@ export PS1
 #export LS_COLORS
 export ECHANGELOG_USER="scsi <scsichen@gmail.com>"
 export MAILTO="scsi <scsichen@gmail.com>"
+unset set|grep SSH_ASKPASS
 
 #if ping -c 1 192.168.2.14 -W 1 >/dev/null 2>&1
 #then
