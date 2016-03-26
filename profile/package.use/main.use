@@ -51,3 +51,4 @@ sys-kernel/gentoo-sources kdbus experimental
 >=app-crypt/qca-2.1.1 qt5
 >=media-libs/mesa-11.0.6 wayland
 >=media-libs/mlt-0.9.8-r2 -kde melt kdenlive
+>=dev-qt/qtscript-5.5.1-r1 scripttools

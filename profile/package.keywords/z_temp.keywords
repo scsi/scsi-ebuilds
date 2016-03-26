@@ -16,3 +16,4 @@
 =media-libs/mlt-0.9.8-r2
 =media-libs/freetype-2.6.3
 =x11-misc/sddm-0.13.0-r3 ~amd64
+=dev-libs/grantlee-5.0.0 ~amd64
