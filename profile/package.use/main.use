@@ -46,3 +46,4 @@ sys-kernel/gentoo-sources kdbus experimental
 >=media-libs/mlt-0.9.8-r2 -kde melt kdenlive
 >=dev-qt/qtscript-5.5.1-r1 scripttools
 >=app-text/poppler-0.20 qt4
+app-emulation/virtualbox qt4
