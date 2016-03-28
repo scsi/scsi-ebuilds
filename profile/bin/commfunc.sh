@@ -55,7 +55,7 @@ readcfg(){
     fi
   done
 }
- 
+is_function(){ [[ $(type -t $1) == function ]]; } 
 show_env(){
   for var in $@; do
     eval value=\"\$$var\"; echo $var="$value"
