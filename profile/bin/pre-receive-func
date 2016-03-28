@@ -49,7 +49,7 @@ validate_ref()
     [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
     FILES_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
-    hook_branch_prefix
+    hook_branch_prefix || die
     
     [ $BRANCH_ACTION = DELETE ] && return
     
@@ -60,7 +60,7 @@ validate_ref()
       MESSAGE=`git show -s --format="%s" $REVISION`
       AUTHOR=`git show -s --format="%an" $REVISION`
       TYPE=`git cat-file -t $REVISION`
-      hook_branch_log
+      hook_branch_log || die
       #git cat-file -t $rev
     done
     
@@ -82,7 +82,7 @@ validate_ref()
       128,128) STATUS=X;;
       *) die "file $FILE stats $ostat,$nstat unknow!"
       esac
-      hook_branch_file
+      hook_branch_file || die
             
       # Search for the file name in the list of all objects
       #object=`echo -e "${objects}" | egrep "(\s)${file}\$" | awk '{ print $3 }'`
@@ -97,15 +97,15 @@ validate_ref()
     done
     
     [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
-    hook_branch_postfix
+    hook_branch_postfix || die
     ;;
     refs/tags/*)
       TAG=$(expr "$refname" : "refs/tags/\(.*\)")
       topictag=$(expr "$TAG" : "\(.*/.*\)")
       topicuser=$(expr "$TAG" : "\(.*\)/.*")
       [ 0 -ne $(expr "$newrev" : "0*$") ] && TAG_ACTION=DELETE ||TAG_ACTION=CREATE
-      hook_tag_prefix
-      hook_tag_postfix
+      hook_tag_prefix || die
+      hook_tag_postfix || die
       ;;
     *)
       die "*** pre-receive hook does not understand ref $refname in this repository. ***"
@@ -115,7 +115,7 @@ validate_ref()
 
 [ -n "$USER" ] && GITUSER=$USER
 [ -n "$AUTHENTICATE_UID" ] && GITUSER=$AUTHENTICATE_UID
-hook_prefix
+hook_prefix || die
 
 # Allow dual mode: run from the command line just like the update hook, or
 # if no arguments are given then run as a hook script
@@ -129,5 +129,5 @@ else
     validate_ref $oldrev $newrev $refname
   done
 fi
-hook_postfix
+hook_postfix || die
 exit 1
