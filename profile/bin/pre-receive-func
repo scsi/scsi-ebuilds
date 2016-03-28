@@ -1,0 +1,133 @@
+#!/bin/bash
+export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
+. commfunc.sh
+
+hook_prefix(){ figlet  "Git Server"; }
+hook_postfix(){ :; }
+hook_branch_prefix() { show_env BRANCH BRANCH_ACTION; }
+hook_branch_postfix(){ :; }
+hook_branch_log() { show_env REVISION MESSAGE AUTHOR TYPE; }
+hook_branch_file() { show_env STATUS FILE;cat_file; }
+cat_file(){ git show $newrev:"$FILE"; }
+hook_tag_prefix() { show_env STATUS FILE; }
+hook_tag_postfix(){ :; }
+
+z40=0000000000000000000000000000000000000000
+validate_ref()
+{
+  # --- Arguments
+  oldrev=$(git rev-parse $1)
+  newrev=$(git rev-parse $2)
+  refname="$3"
+  #echo $refname $oldrev $newrev
+  
+  # oldrev could be 0s which means creating refname
+  # newrev could be 0s which means deleting refname
+
+  case "$refname" in
+  refs/heads/*)
+    BRANCH=$(expr "$refname" : "refs/heads/\(.*\)")
+    topicbranch=$(expr "$BRANCH" : "\(.*/.*\)")
+    topicuser=$(expr "$BRANCH" : "\(.*\)/.*")
+    if [ 0 -ne $(expr "$newrev" : "0*$") ]; then # deleting
+      BRANCH_ACTION=DELETE
+    elif [ 0 -ne $(expr "$oldrev" : "0*$") ]; then # pushing a new branch
+      BRANCH_ACTION=CREATE
+      #return # it's not a FF merge
+      #files=`git ls-tree -r ${newrev}|cut -d$'\t' -f2-`
+      #http://stackoverflow.com/questions/3511057/git-receive-update-hooks-and-new-branches
+      # list everything reachable from newrev but not any heads
+      revlists=(`git rev-list $(git for-each-ref --format='%(refname)' refs/heads/* | sed 's/^/\^/') "$newrev"`)
+    else
+      BRANCH_ACTION=UPDATE
+      #files=`git diff --name-only ${oldrev} ${newrev}`
+      revlists=($(git rev-list ${oldrev}..${newrev}))
+    fi
+
+    # Get the file names, without directory, of the files that have been modified
+    # between the new revision and the old revision
+    [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
+    FILES_COUNT=${#files[@]}
+    REVISION_COUNT=${#revlists[@]}
+    hook_branch_prefix
+    
+    [ $BRANCH_ACTION = DELETE ] && return
+    
+    echo
+    echo -
+    echo
+    for REVISION in ${revlists[@]};do
+      MESSAGE=`git show -s --format="%s" $REVISION`
+      AUTHOR=`git show -s --format="%an" $REVISION`
+      TYPE=`git cat-file -t $REVISION`
+      hook_branch_log
+      #git cat-file -t $rev
+    done
+    
+    # Get a list of all objects in the new revision
+    #oldobjects=`git ls-tree --full-name -r ${oldrev}`
+    #objects=`git ls-tree --full-name -r ${newrev}`
+    #diff -Nu <(echo "$oldobjects") <(echo "$objects")
+                          
+    IFS="$LIFS"
+    for FILE in ${files}; do
+      git show $newrev:"$FILE" >/dev/null 2>&1
+      nstat=$? 
+      git show ${revlists[-1]}^:"$FILE" >/dev/null 2>&1
+      ostat=$?
+      case $ostat,$nstat in
+      0,128) STATUS=D;;
+      128,0) STATUS=A;;
+      0,0) STATUS=M;;
+      128,128) STATUS=X;;
+      *) die "file $FILE stats $ostat,$nstat unknow!"
+      esac
+      hook_branch_file
+            
+      # Search for the file name in the list of all objects
+      #object=`echo -e "${objects}" | egrep "(\s)${file}\$" | awk '{ print $3 }'`
+
+      # If it's not present, then continue to the the next itteration
+      #[ -z ${object} ] && continue
+
+      # Otherwise, create all the necessary sub directories in the new temp directory
+      #mkdir -p "${TEMPDIR}/`dirname ${file}`" &>/dev/null
+      # and output the object content into it's original file name
+      #git cat-file blob ${object}|md5sum
+    done
+    
+    [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
+    hook_branch_postfix
+    ;;
+    refs/tags/*)
+      TAG=$(expr "$refname" : "refs/tags/\(.*\)")
+      topictag=$(expr "$TAG" : "\(.*/.*\)")
+      topicuser=$(expr "$TAG" : "\(.*\)/.*")
+      [ 0 -ne $(expr "$newrev" : "0*$") ] && TAG_ACTION=DELETE ||TAG_ACTION=CREATE
+      hook_tag_prefix
+      hook_tag_postfix
+      ;;
+    *)
+      die "*** pre-receive hook does not understand ref $refname in this repository. ***"
+      ;;
+    esac
+}
+
+[ -n "$USER" ] && GITUSER=$USER
+[ -n "$AUTHENTICATE_UID" ] && GITUSER=$AUTHENTICATE_UID
+hook_prefix
+
+# Allow dual mode: run from the command line just like the update hook, or
+# if no arguments are given then run as a hook script
+if [ -n "$1" -a -n "$2" -a -n "$3" ]; then
+  # Output to the terminal in command line mode - if someone wanted to
+  # resend an email; they could redirect the output to sendmail
+  # themselves
+  PAGER= validate_ref $2 $3 $1
+else
+  while read oldrev newrev refname; do
+    validate_ref $oldrev $newrev $refname
+  done
+fi
+hook_postfix
+exit 1
