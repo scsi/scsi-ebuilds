@@ -122,7 +122,8 @@ if [ -n "$1" -a -n "$2" -a -n "$3" ]; then
   # themselves
   PAGER= validate_ref $2 $3 $1
 else
-  while read oldrev newrev refname; do
+  while true; do
+    read oldrev newrev refname || brak
     validate_ref $oldrev $newrev $refname
   done
 fi
