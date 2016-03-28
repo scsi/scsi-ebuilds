@@ -53,9 +53,6 @@ validate_ref()
     
     [ $BRANCH_ACTION = DELETE ] && return
     
-    echo
-    echo -
-    echo
     for REVISION in ${revlists[@]};do
       MESSAGE=`git show -s --format="%s" $REVISION`
       AUTHOR=`git show -s --format="%an" $REVISION`
