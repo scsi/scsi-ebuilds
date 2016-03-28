@@ -127,4 +127,3 @@ else
   done
 fi
 hook_postfix || die
-exit 1
