@@ -6,8 +6,12 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #hook_postfix(){ :; }
 #hook_branch_prefix() { show_env BRANCH BRANCH_ACTION; }
 #hook_branch_postfix(){ :; }
+#hook_branch_log_prefix() { echo $REVISION_COUNT; }
 #hook_branch_log() { show_env REVISION MESSAGE AUTHOR TYPE; }
+#hook_branch_log_postfix() { show_env REVISION MESSAGE AUTHOR TYPE; }
+#hook_branch_file_prefix() { echo $FILE_COUNT }
 #hook_branch_file() { show_env STATUS FILE;cat_file; }
+#hook_branch_file_postfix() { show_env STATUS FILE;cat_file; }
 #hook_tag_prefix() { show_env STATUS FILE; }
 #hook_tag_postfix(){ :; }
 
@@ -48,12 +52,12 @@ validate_ref()
     # Get the file names, without directory, of the files that have been modified
     # between the new revision and the old revision
     [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
-    FILES_COUNT=${#files[@]}
+    FILE_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
     exec_hook hook_branch_prefix || die
     
     [ $BRANCH_ACTION = DELETE ] && return
-    
+    exec_hook hook_branch_log_prefix
     for REVISION in ${revlists[@]};do
       MESSAGE=`git show -s --format="%s" $REVISION`
       AUTHOR=`git show -s --format="%an" $REVISION`
@@ -61,12 +65,14 @@ validate_ref()
       exec_hook hook_branch_log || die
       #git cat-file -t $rev
     done
+    exec_hook hook_branch_log_postfix
     
     # Get a list of all objects in the new revision
     #oldobjects=`git ls-tree --full-name -r ${oldrev}`
     #objects=`git ls-tree --full-name -r ${newrev}`
     #diff -Nu <(echo "$oldobjects") <(echo "$objects")
                           
+    exec_hook hook_branch_file_prefix
     IFS="$LIFS"
     for FILE in ${files}; do
       git show $newrev:"$FILE" >/dev/null 2>&1
@@ -93,6 +99,7 @@ validate_ref()
       # and output the object content into it's original file name
       #git cat-file blob ${object}|md5sum
     done
+    exec_hook hook_branch_file_postfix
     
     [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
     exec_hook hook_branch_postfix || die
