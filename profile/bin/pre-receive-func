@@ -16,6 +16,7 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #hook_tag_postfix(){ :; }
 
 cat_file(){ git show $newrev:"$FILE"; }
+git_die(){ die "$@"; }
 exec_hook(){ is_function $1 || return 0; $1; }
 z40=0000000000000000000000000000000000000000
 validate_ref()
@@ -54,7 +55,7 @@ validate_ref()
     [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
     FILE_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
-    exec_hook hook_branch_prefix || die
+    exec_hook hook_branch_prefix || git_die
     
     [ $BRANCH_ACTION = DELETE ] && return
     exec_hook hook_branch_log_prefix
@@ -62,7 +63,7 @@ validate_ref()
       MESSAGE=`git show -s --format="%s" $REVISION`
       AUTHOR=`git show -s --format="%an" $REVISION`
       TYPE=`git cat-file -t $REVISION`
-      exec_hook hook_branch_log || die
+      exec_hook hook_branch_log || git_die
       #git cat-file -t $rev
     done
     exec_hook hook_branch_log_postfix
@@ -84,9 +85,9 @@ validate_ref()
       128,0) STATUS=A;;
       0,0) STATUS=M;;
       128,128) STATUS=X;;
-      *) die "file $FILE stats $ostat,$nstat unknow!"
+      *) git_die "file $FILE stats $ostat,$nstat unknow!"
       esac
-      exec_hook hook_branch_file || die
+      exec_hook hook_branch_file || git_die
             
       # Search for the file name in the list of all objects
       #object=`echo -e "${objects}" | egrep "(\s)${file}\$" | awk '{ print $3 }'`
@@ -101,26 +102,26 @@ validate_ref()
     done
     exec_hook hook_branch_file_postfix
     
-    [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
-    exec_hook hook_branch_postfix || die
+    [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && git_die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
+    exec_hook hook_branch_postfix || git_die
     ;;
     refs/tags/*)
       TAG=$(expr "$refname" : "refs/tags/\(.*\)")
       topictag=$(expr "$TAG" : "\(.*/.*\)")
       topicuser=$(expr "$TAG" : "\(.*\)/.*")
       [ 0 -ne $(expr "$newrev" : "0*$") ] && TAG_ACTION=DELETE ||TAG_ACTION=CREATE
-      exec_hook hook_tag_prefix || die
-      exec_hook hook_tag_postfix || die
+      exec_hook hook_tag_prefix || git_die
+      exec_hook hook_tag_postfix || git_die
       ;;
     *)
-      die "*** pre-receive hook does not understand ref $refname in this repository. ***"
+      git_die "*** pre-receive hook does not understand ref $refname in this repository. ***"
       ;;
     esac
 }
 
 [ -n "$USER" ] && GITUSER=$USER
 [ -n "$AUTHENTICATE_UID" ] && GITUSER=$AUTHENTICATE_UID
-exec_hook hook_prefix || die
+exec_hook hook_prefix || git_die
 
 # Allow dual mode: run from the command line just like the update hook, or
 # if no arguments are given then run as a hook script
@@ -132,7 +133,7 @@ if [ -n "$1" -a -n "$2" -a -n "$3" ]; then
 else
   while true; do
     read oldrev newrev refname || break
-    validate_ref $oldrev $newrev $refname || die
+    validate_ref $oldrev $newrev $refname || git_die
   done
 fi
-exec_hook hook_postfix || die
+exec_hook hook_postfix || git_die
