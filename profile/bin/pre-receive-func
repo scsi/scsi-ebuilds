@@ -1,7 +1,7 @@
 #!/bin/bash
 export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 . commfunc.sh
-
+[ $? -ne 0 ] && { echo "load common function error."; exit 1; }
 #hook_prefix(){ figlet  "Git Server"; }
 #hook_postfix(){ :; }
 #hook_branch_prefix() { show_env BRANCH BRANCH_ACTION; }
