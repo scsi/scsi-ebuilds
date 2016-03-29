@@ -52,7 +52,7 @@ validate_ref()
 
     # Get the file names, without directory, of the files that have been modified
     # between the new revision and the old revision
-    [ -n "${revlists[*]}" ] && files=`git diff --name-only -- ${revlists[-1]}^ ${newrev}` || files=""
+    [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
     FILE_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
     exec_hook hook_branch_prefix || git_die
