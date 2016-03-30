@@ -51,3 +51,4 @@ media-libs/phonon qt4
 media-libs/phonon-vlc qt4
 media-libs/phonon-gstreamer qt4
 >=dev-libs/libdbusmenu-qt-0.3.2 qt4
+net-fs/samba gnutls client
