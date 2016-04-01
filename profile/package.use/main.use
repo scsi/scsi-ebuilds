@@ -53,3 +53,4 @@ media-libs/phonon-gstreamer qt4
 >=dev-libs/libdbusmenu-qt-0.3.2 qt4
 net-fs/samba gnutls client
 app-crypt/qca qt4
+>=sys-auth/polkit-qt qt4
