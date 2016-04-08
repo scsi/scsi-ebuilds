@@ -70,6 +70,7 @@ net-im/pidgin
 x11-themes/smplayer-themes
 www-client/chromium
 www-plugins/chrome-binary-plugins:beta
+www-client/google-chrome
 www-client/firefox
 www-client/firefox-bin
 media-fonts/wqy-zenhei

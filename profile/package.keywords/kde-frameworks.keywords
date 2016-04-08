@@ -153,6 +153,7 @@
 >=kde-apps/kdesdk-kioslaves-5
 >=kde-apps/kdesdk-meta-5
 >=kde-apps/kdesdk-strigi-analyzer-5
+>=kde-apps/kdesdk-thumbnailers-5
 >=kde-apps/kdesu-5
 >=kde-apps/kdetoys-meta-5
 >=kde-apps/kdeutils-meta-5
