@@ -17,3 +17,4 @@
 =media-libs/freetype-2.6.3
 =x11-misc/sddm-0.13.0-r3 ~amd64
 =dev-libs/grantlee-5.0.0 ~amd64
+=x11-misc/obconf-qt-0.9.0_p20150729 ~amd64
