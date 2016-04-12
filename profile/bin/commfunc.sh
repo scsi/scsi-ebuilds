@@ -99,6 +99,10 @@ printtitle() {
   done
   echo "<|"; echo "$line"
 }
+simpletitle(){
+  echo
+  echo "== $* =="
+}
 nowtime() { date +%s%3N; }
 usedsec() {
   local msec=$((${2:-`nowtime`}-${1:-$_sris_stime}))
@@ -177,10 +181,17 @@ _buexec(){
   onsuccess) [ $rtn = 0 ] || msg="";;
   raw) rst="$msg"; msg="";;
   format*)
-    local fullmsg="$RETURN_MESSAGE
+    local fullmsg
+    if [ -n "$RETURN_MESSAGE" -a -n "$msg" ]; then
+      fullmsg="$RETURN_MESSAGE
 ==
 $msg
 "
+    elif [ -z "$RETURN_MESSAGE" -a -n "$msg" ]; then
+	  fullmsg="$msg"
+    elif [ -n "$RETURN_MESSAGE" -a -z "$msg" ]; then
+	  fullmsg="$RETURN_MESSAGE"
+	fi
     [ $rtn = 0 ] && rst="$RETURN_TITLE" || rst="$RETURN_TITLE ($rtnstr)"
     case "$_bu_output" in
 	  format-always) msg="$fullmsg" ;;
