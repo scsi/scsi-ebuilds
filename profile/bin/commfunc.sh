@@ -57,22 +57,33 @@ readcfg(){
 }
 is_function(){ [[ $(type -t $1) == function ]]; } 
 show_env(){
+  local var value
   for var in $@; do
     eval value=\"\$$var\"; echo $var="$value"
   done
 }
 check_env_show(){
+  local var value
   for var in $@; do
     eval value=\"\$$var\"; echo $var="$value"
     [ -z "$value" ] && die "$var is not set. Pls check environment."
   done
 }
 is_define_env(){
+  local var value
   for var in $@; do
     eval value=\"\$$var\"
     [ -z "$value" ] && return 1
   done
   return 0
+}
+append_env(){
+  local var value tmpvalue
+  var="$1"
+  eval value=\"\$$var\"
+  [ -z "$value" ] && tmpvalue="$2" || tmpvalue="$value
+$2"
+  eval $var=\""$tmpvalue"\"
 }
 check_env(){ is_define_env "$@" || die "$var is not set. Pls check environment."; }
 replace_env() {
