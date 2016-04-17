@@ -178,6 +178,7 @@
 >=kde-apps/kgoldrunner-5
 >=kde-apps/kgpg-5
 >=kde-apps/khangman-5
+>=kde-apps/khelpcenter-5
 >=kde-apps/kiconfinder-5
 >=kde-apps/kig-5
 >=kde-apps/kigo-5
@@ -396,7 +397,6 @@
 >=kde-plasma/kde-gtk-config-5
 >=kde-plasma/kdeplasma-addons-5
 >=kde-plasma/kgamma-5
->=kde-plasma/khelpcenter-5
 >=kde-plasma/khotkeys-5
 >=kde-plasma/kinfocenter-5
 >=kde-plasma/kmenuedit-5
