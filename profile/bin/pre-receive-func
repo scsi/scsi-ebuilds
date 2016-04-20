@@ -16,6 +16,7 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #hook_tag_postfix(){ :; }
 
 cat_file(){ git show $newrev:"$FILE"; }
+diff_file(){ git diff ${revlists[-1]}^ ${newrev} "$FILE"; }
 git_die(){ is_function failmsg || die "$@"; failmsg "$@"; exit 1; }
 exec_hook(){ is_function $1 || return 0; $1; }
 z40=0000000000000000000000000000000000000000
