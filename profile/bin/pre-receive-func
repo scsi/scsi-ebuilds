@@ -56,25 +56,25 @@ validate_ref()
     [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
     FILE_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
-    exec_hook hook_branch_prefix || git_die
+    exec_hook hook_branch_prefix || git_die "hook_branch_prefix error."
     
     [ $BRANCH_ACTION = DELETE ] && return
-    exec_hook hook_branch_log_prefix
+    exec_hook hook_branch_log_prefix || git_die "hook_branch_log_prefix_error."
     for REVISION in ${revlists[@]};do
       MESSAGE=`git show -s --format="%s" $REVISION`
       AUTHOR=`git show -s --format="%an" $REVISION`
       TYPE=`git cat-file -t $REVISION`
-      exec_hook hook_branch_log || git_die
+      exec_hook hook_branch_log || git_die "hook_branch_log error."
       #git cat-file -t $rev
     done
-    exec_hook hook_branch_log_postfix
+    exec_hook hook_branch_log_postfix || git_die "hook_branch_log_postfix error."
     
     # Get a list of all objects in the new revision
     #oldobjects=`git ls-tree --full-name -r ${oldrev}`
     #objects=`git ls-tree --full-name -r ${newrev}`
     #diff -Nu <(echo "$oldobjects") <(echo "$objects")
                           
-    exec_hook hook_branch_file_prefix
+    exec_hook hook_branch_file_prefix || git_die "hook_branch_file_prefix error."
     IFS="$LIFS"
     for FILE in ${files}; do
       git show $newrev:"$FILE" >/dev/null 2>&1
@@ -88,7 +88,7 @@ validate_ref()
       128,128) STATUS=X;;
       *) git_die "file $FILE stats $ostat,$nstat unknow!"
       esac
-      exec_hook hook_branch_file || git_die
+      exec_hook hook_branch_file || git_die "hook_branch_file $FILE error."
             
       # Search for the file name in the list of all objects
       #object=`echo -e "${objects}" | egrep "(\s)${file}\$" | awk '{ print $3 }'`
@@ -101,18 +101,18 @@ validate_ref()
       # and output the object content into it's original file name
       #git cat-file blob ${object}|md5sum
     done
-    exec_hook hook_branch_file_postfix
+    exec_hook hook_branch_file_postfix || git_die "hook_branch_file_postfix error."
     
     [ ! $oldrev = $z40 ] && [ $oldrev != $(git merge-base $oldrev $newrev) ] && git_die "*** Non fast-forward of branch $BRANCH is not permitted. ***"
-    exec_hook hook_branch_postfix || git_die
+    exec_hook hook_branch_postfix || git_die "hook_branch_postfix error." 
     ;;
     refs/tags/*)
       TAG=$(expr "$refname" : "refs/tags/\(.*\)")
       topictag=$(expr "$TAG" : "\(.*/.*\)")
       topicuser=$(expr "$TAG" : "\(.*\)/.*")
       [ 0 -ne $(expr "$newrev" : "0*$") ] && TAG_ACTION=DELETE ||TAG_ACTION=CREATE
-      exec_hook hook_tag_prefix || git_die
-      exec_hook hook_tag_postfix || git_die
+      exec_hook hook_tag_prefix || git_die "hook_tag_prefix error."
+      exec_hook hook_tag_postfix || git_die "hook_tag_postfix error."
       ;;
     *)
       git_die "*** pre-receive hook does not understand ref $refname in this repository. ***"
@@ -123,7 +123,7 @@ validate_ref()
 [ -n "$USER" ] && GITUSER=$USER
 [ -n "$AUTHENTICATE_UID" ] && GITUSER=$AUTHENTICATE_UID
 GITNAME=`basename "$PWD" .git`
-exec_hook hook_prefix || git_die
+exec_hook hook_prefix || git_die "hook_prefix error."
 
 # Allow dual mode: run from the command line just like the update hook, or
 # if no arguments are given then run as a hook script
@@ -138,4 +138,4 @@ else
     validate_ref $oldrev $newrev $refname || git_die
   done
 fi
-exec_hook hook_postfix || git_die
+exec_hook hook_postfix || git_die "hook_postfix error."
