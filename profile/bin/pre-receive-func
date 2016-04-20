@@ -121,6 +121,7 @@ validate_ref()
 
 [ -n "$USER" ] && GITUSER=$USER
 [ -n "$AUTHENTICATE_UID" ] && GITUSER=$AUTHENTICATE_UID
+GITNAME=`basename "$PWD" .git`
 exec_hook hook_prefix || git_die
 
 # Allow dual mode: run from the command line just like the update hook, or
