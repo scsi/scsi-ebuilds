@@ -16,3 +16,12 @@
 ~media-libs/freetype-2.6.3
 =dev-libs/grantlee-5.0.0 ~amd64
 =x11-misc/obconf-qt-0.9.0_p20150729 ~amd64
+=net-libs/signon-oauth2-0.21 ~amd64
+=net-libs/libaccounts-glib-1.21-r2 ~amd64
+=net-libs/signon-ui-0.15 ~amd64
+=net-libs/telepathy-accounts-signon-1.0 ~amd64
+=net-libs/telepathy-logger-qt-15.04.0 ~amd64
+=net-libs/libsignon-glib-1.13 ~amd64
+=net-libs/signond-8.58 ~amd64
+=net-libs/accounts-qt-1.13 ~amd64
+
