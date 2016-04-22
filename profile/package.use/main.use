@@ -54,3 +54,4 @@ media-libs/phonon-gstreamer qt4
 net-fs/samba gnutls client
 app-crypt/qca qt4
 sys-auth/polkit-qt qt4
+>=net-libs/libproxy-0.4.11-r2 -kde
