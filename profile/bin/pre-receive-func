@@ -108,7 +108,7 @@ validate_ref()
 		#[[ "$fileinfo" =~ CRLF.*LF || "$fileinfo" =~ LF.*CRLF ]] && FILE_LINE=CRLF+LF
         #[[ "$fileinfo" =~ ISO-8859 ]] && FILE_ENCODE=NA || FILE_ENCODE=UTF8
 		is_lf_file && FILE_LINE=LF || FILE_LINE=CRLF
-		is_utf8_file FILE_ENCODE=UTF8 || FILE_ENCODE=NA
+		is_utf8_file && FILE_ENCODE=UTF8 || FILE_ENCODE=NA
 	  ;;
 	  *)
 	    FILE_TYPE="";FILE_LINE="";FILE_ENCODE=""
