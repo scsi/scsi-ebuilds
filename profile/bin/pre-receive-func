@@ -97,7 +97,7 @@ validate_ref()
       esac
 	  case $FILE_STATUS in
 	  A|M)
-        savefile || git_die "internal error: can not write file."
+        save_file || git_die "internal error: can not write file."
         fileinfo=`file -b $FILES_DIR/$FILE` || git_dit "internal error: can not detect file."
 		[[ "$fileinfo" =~ text ]] && FILE_TYPE=TEXT || FILE_TYPE=BINARY
 		[[ "$fileinfo" =~ CRLF ]] && FILE_LINE=CRLF || FILE_LINE=LF
