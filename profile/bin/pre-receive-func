@@ -15,7 +15,13 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #hook_tag_prefix() { show_env STATUS FILE; }
 #hook_tag_postfix(){ :; }
 
+#ext=${file##*.}
+#basename=${filepath##*/}
+#dirname=${filepath%/*}
+
 cat_file(){ git show $newrev:"$FILE"; }
+FILES_DIR=$TEMP_DIR/files
+save_file(){ local file=$FILES_DIR/$FILE;local dir=${file%/*}; [ -d $dir ] || mkdir -p $dir; cat_file >$file; }
 diff_file(){ git diff ${revlists[-1]}^ ${newrev} -- "$FILE"|sed -n 5,\$p; }
 git_die(){ is_function failmsg || die "$@"; failmsg "$@"; exit 1; }
 exec_hook(){ is_function $1 || return 0; $1; }
@@ -75,6 +81,7 @@ validate_ref()
     #diff -Nu <(echo "$oldobjects") <(echo "$objects")
                           
     exec_hook hook_branch_file_prefix || git_die "hook_branch_file_prefix error."
+	local fileinfo FILE_STATUS FILE_TYPE FILE_LINE FILE_ENCODE
     IFS="$LIFS"
     for FILE in ${files}; do
       git show $newrev:"$FILE" >/dev/null 2>&1
@@ -82,11 +89,23 @@ validate_ref()
       git show ${revlists[-1]}^:"$FILE" >/dev/null 2>&1
       ostat=$?
       case $ostat,$nstat in
-      0,128) STATUS=D;;
-      128,0) STATUS=A;;
-      0,0) STATUS=M;;
-      128,128) STATUS=X;;
+      0,128) FILE_STATUS=D;;
+      128,0) FILE_STATUS=A;;
+      0,0) FILE_STATUS=M;;
+      128,128) FILE_STATUS=X;;
       *) git_die "file $FILE stats $ostat,$nstat unknow!"
+      esac
+	  case $FILE_STATUS in
+	  A|M)
+        savefile || git_die "internal error: can not write file."
+        fileinfo=`file -b $FILES_DIR/$FILE` || git_dit "internal error: can not detect file."
+		[[ "$fileinfo" =~ text ]] && FILE_TYPE=TEXT || FILE_TYPE=BINARY
+		[[ "$fileinfo" =~ CRLF ]] && FILE_LINE=CRLF || FILE_LINE=LF
+		[[ "$fileinfo" =~ CRLF.*LF || "$fileinfo" =~ LF.*CRLF ]] && FILE_LINE=CRLF+LF
+        [[ "$fileinfo" =~ ISO-8859 ]] && FILE_ENCODE=NA || FILE_ENCODE=UTF8
+	  ;;
+	  *)
+	    FILE_TYPE="";FILE_LINE="";FILE_ENCODE=""
       esac
       exec_hook hook_branch_file || git_die "hook_branch_file $FILE error."
             
