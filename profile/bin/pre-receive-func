@@ -59,7 +59,9 @@ validate_ref()
 
     # Get the file names, without directory, of the files that have been modified
     # between the new revision and the old revision
-    [ -n "${revlists[*]}" ] && files=`git diff --name-only ${revlists[-1]}^ ${newrev}` || files=""
+	IFS="$LIFS"
+    [ -n "${revlists[*]}" ] && files=(`git diff --name-only ${revlists[-1]}^ ${newrev}`) || files=
+	IFS="$OIFS"
     FILE_COUNT=${#files[@]}
     REVISION_COUNT=${#revlists[@]}
     exec_hook hook_branch_prefix || git_die "hook_branch_prefix error."
@@ -83,7 +85,7 @@ validate_ref()
     exec_hook hook_branch_file_prefix || git_die "hook_branch_file_prefix error."
 	local fileinfo FILE_STATUS FILE_TYPE FILE_LINE FILE_ENCODE
     IFS="$LIFS"
-    for FILE in ${files}; do
+    for FILE in "${files[@]}"; do
       git show $newrev:"$FILE" >/dev/null 2>&1
       nstat=$? 
       git show ${revlists[-1]}^:"$FILE" >/dev/null 2>&1
