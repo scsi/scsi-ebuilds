@@ -20,6 +20,8 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #dirname=${filepath%/*}
 
 cat_file(){ git show $newrev:"$FILE"; }
+is_lf_file(){ dos2unix < $FILE | cmp -s - $FILE; }
+is_utf8_file(){ iconv -f utf8 -t utf8 $FILE >/dev/null 2>&1; }
 FILES_DIR=$TEMP_DIR/files
 save_file(){ local file=$FILES_DIR/$FILE;local dir=${file%/*}; [ -d $dir ] || mkdir -p $dir; cat_file >$file; }
 diff_file(){ git diff ${revlists[-1]}^ ${newrev} -- "$FILE"|sed -n 5,\$p; }
@@ -102,9 +104,11 @@ validate_ref()
         save_file || git_die "internal error: can not write file."
         fileinfo=`file -b $FILES_DIR/$FILE` || git_dit "internal error: can not detect file."
 		[[ "$fileinfo" =~ text ]] && FILE_TYPE=TEXT || FILE_TYPE=BINARY
-		[[ "$fileinfo" =~ CRLF ]] && FILE_LINE=CRLF || FILE_LINE=LF
-		[[ "$fileinfo" =~ CRLF.*LF || "$fileinfo" =~ LF.*CRLF ]] && FILE_LINE=CRLF+LF
-        [[ "$fileinfo" =~ ISO-8859 ]] && FILE_ENCODE=NA || FILE_ENCODE=UTF8
+		#[[ "$fileinfo" =~ CRLF ]] && FILE_LINE=CRLF || FILE_LINE=LF
+		#[[ "$fileinfo" =~ CRLF.*LF || "$fileinfo" =~ LF.*CRLF ]] && FILE_LINE=CRLF+LF
+        #[[ "$fileinfo" =~ ISO-8859 ]] && FILE_ENCODE=NA || FILE_ENCODE=UTF8
+		is_lf_file && FILE_LINE=LF || FILE_LINE=CRLF
+		is_utf8_file FILE_ENCODE=UTF8 || FILE_ENCODE=NA
 	  ;;
 	  *)
 	    FILE_TYPE="";FILE_LINE="";FILE_ENCODE=""
