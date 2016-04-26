@@ -20,9 +20,9 @@ export PATH=$PATH:/var/lib/layman/scsi-ebuilds/profile/bin
 #dirname=${filepath%/*}
 
 cat_file(){ git show $newrev:"$FILE"; }
-is_lf_file(){ dos2unix < $FILE | cmp -s - $FILE; }
-is_utf8_file(){ iconv -f utf8 -t utf8 $FILE >/dev/null 2>&1; }
 FILES_DIR=$TEMP_DIR/files
+is_lf_file(){ dos2unix < $FILES_DIR/$FILE | cmp -s - $FILES_DIR/$FILE; }
+is_utf8_file(){ iconv -f utf8 -t utf8 $FILES_DIR/$FILE >/dev/null 2>&1; }
 save_file(){ local file=$FILES_DIR/$FILE;local dir=${file%/*}; [ -d $dir ] || mkdir -p $dir; cat_file >$file; }
 diff_file(){ git diff ${revlists[-1]}^ ${newrev} -- "$FILE"|sed -n 5,\$p; }
 git_die(){ is_function failmsg || die "$@"; failmsg "$@"; exit 1; }
