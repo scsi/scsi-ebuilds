@@ -24,4 +24,4 @@
 =net-libs/libsignon-glib-1.13 ~amd64
 =net-libs/signond-8.58 ~amd64
 =net-libs/accounts-qt-1.13 ~amd64
-
+=dev-libs/nss-3.23 ~amd64
