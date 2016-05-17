@@ -8,7 +8,6 @@
 =sys-apps/util-linux-2.27.1
 =app-arch/lz4-0_p131
 =sys-boot/unetbootin-619
-=dev-libs/liborcus-0.9.2-r1 ~amd64
 =sys-kernel/linux-headers-4.4 ~amd64
 =media-video/movit-1.2.0
 =dev-cpp/eigen-3.2.7
@@ -26,4 +25,3 @@
 =net-libs/accounts-qt-1.13 ~amd64
 =dev-libs/nss-3.23 ~amd64
 =dev-python/ssl-fetch-0.4 ~amd64
-
