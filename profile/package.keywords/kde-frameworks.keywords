@@ -22,6 +22,7 @@
 >=dev-qt/qtgui-5
 >=dev-qt/qthelp-5
 >=dev-qt/qtimageformats-5
+>=dev-qt/qtlocation-5
 >=dev-qt/qtlockedfile-5
 >=dev-qt/qt-meta-5
 >=dev-qt/qt-mobility-5
@@ -31,6 +32,7 @@
 >=dev-qt/qtopenvg-5
 >=dev-qt/qtpaths-5
 >=dev-qt/qtphonon-5
+>=dev-qt/qtplugininfo-5
 >=dev-qt/qtpositioning-5
 >=dev-qt/qtprintsupport-5
 >=dev-qt/qtquick1-5
@@ -45,6 +47,7 @@
 >=dev-qt/qttranslations-5
 >=dev-qt/qtwayland-5
 >=dev-qt/qtwebchannel-5
+>=dev-qt/qtwebengine-5
 >=dev-qt/qtwebkit-5
 >=dev-qt/qtwebsockets-5
 >=dev-qt/qtwidgets-5
@@ -259,6 +262,7 @@
 >=kde-apps/ktp-accounts-kcm-5
 >=kde-apps/ktp-approver-5
 >=kde-apps/ktp-auth-handler-5
+>=kde-apps/ktp-call-ui-5
 >=kde-apps/ktp-common-internals-5
 >=kde-apps/ktp-contact-list-5
 >=kde-apps/ktp-contact-runner-5
@@ -388,6 +392,7 @@
 >=kde-frameworks/ktextwidgets-5
 >=kde-frameworks/kunitconversion-5
 >=kde-frameworks/kwallet-5
+>=kde-frameworks/kwayland-5
 >=kde-frameworks/kwidgetsaddons-5
 >=kde-frameworks/kwindowsystem-5
 >=kde-frameworks/kxmlgui-5
@@ -419,7 +424,6 @@
 >=kde-plasma/ksshaskpass-5
 >=kde-plasma/ksysguard-5
 >=kde-plasma/kwallet-pam-5
->=kde-plasma/kwayland-5
 >=kde-plasma/kwayland-integration-5
 >=kde-plasma/kwin-5
 >=kde-plasma/kwrited-5
