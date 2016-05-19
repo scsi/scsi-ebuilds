@@ -55,3 +55,4 @@ net-fs/samba gnutls client
 app-crypt/qca qt4
 sys-auth/polkit-qt qt4
 >=net-libs/libproxy-0.4.11-r2 -kde
+>=net-libs/telepathy-qt-0.9.6.1 farstream

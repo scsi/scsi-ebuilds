@@ -129,6 +129,7 @@
 >=kde-apps/kdebase-menu-icons-5
 >=kde-apps/kdebase-meta-5
 >=kde-apps/kdebase-runtime-meta-5
+>=kde-apps/kdebindings-meta-5
 >=kde-apps/kdebugdialog-5
 >=kde-apps/kdebugsettings-5
 >=kde-apps/kdecore-meta-5
@@ -240,6 +241,7 @@
 >=kde-apps/kremotecontrol-5
 >=kde-apps/kreversi-5
 >=kde-apps/krfb-5
+>=kde-apps/kross-interpreters-5
 >=kde-apps/kruler-5
 >=kde-apps/ksaneplugin-5
 >=kde-apps/kscd-5
@@ -305,6 +307,7 @@
 >=kde-apps/lokalize-5
 >=kde-apps/lskat-5
 >=kde-apps/marble-5
+>=kde-apps/minuet-5
 >=kde-apps/mplayerthumbs-5
 >=kde-apps/nsplugins-5
 >=kde-apps/okteta-5
