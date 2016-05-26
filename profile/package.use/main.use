@@ -56,3 +56,4 @@ app-crypt/qca qt4
 sys-auth/polkit-qt qt4
 >=net-libs/libproxy-0.4.11-r2 -kde
 >=net-libs/telepathy-qt-0.9.6.1 farstream
+>=sys-libs/libseccomp-2.3.0 static-libs

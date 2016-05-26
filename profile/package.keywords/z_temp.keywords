@@ -26,3 +26,10 @@
 =dev-libs/nss-3.23 ~amd64
 =dev-python/ssl-fetch-0.4 ~amd64
 =media-sound/drumstick-1.0.2 ~amd64
+=dev-go/go-tools-0_pre20160220 ~amd64
+=dev-go/go-text-0_pre20160211 ~amd64
+=dev-go/go-net-0_pre20160216 ~amd64
+=dev-go/go-crypto-0_pre20160126 ~amd64
+=app-admin/consul-0.6.4 ~amd64
+=dev-go/go-sys-0_pre20160204 ~amd64
+
