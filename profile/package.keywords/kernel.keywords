@@ -2,5 +2,6 @@ sys-fs/zfs-kmod
 sys-fs/zfs
 sys-kernel/spl
 sys-kernel/gentoo-sources
+sys-kernel/aufs-sources
 sys-fs/btrfs-progs
 sys-fs/duperemove
