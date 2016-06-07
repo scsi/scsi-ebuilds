@@ -115,3 +115,4 @@
 >=dev-libs/wayland-1.9.0 abi_x86_32
 >=dev-libs/libffi-3.2.1 abi_x86_32
 >=app-arch/bzip2-1.0.6-r7 abi_x86_32
+>=sys-libs/binutils-libs-2.25.1-r2 abi_x86_32
