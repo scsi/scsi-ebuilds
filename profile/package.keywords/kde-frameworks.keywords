@@ -56,7 +56,6 @@
 >=dev-qt/qtxmlpatterns-5
 >=kde-apps/akonadiconsole-5
 >=kde-apps/akregator-5
->=kde-apps/amor-5
 >=kde-apps/analitza-5
 >=kde-apps/ark-5
 >=kde-apps/artikulate-5
@@ -157,10 +156,8 @@
 >=kde-apps/kdepim-wizards-5
 >=kde-apps/kdesdk-kioslaves-5
 >=kde-apps/kdesdk-meta-5
->=kde-apps/kdesdk-strigi-analyzer-5
 >=kde-apps/kdesdk-thumbnailers-5
 >=kde-apps/kdesu-5
->=kde-apps/kdetoys-meta-5
 >=kde-apps/kdeutils-meta-5
 >=kde-apps/kde-wallpapers-5
 >=kde-apps/kdewebdev-meta-5
@@ -184,6 +181,7 @@
 >=kde-apps/kgpg-5
 >=kde-apps/khangman-5
 >=kde-apps/khelpcenter-5
+>=kde-apps/kholidays-5
 >=kde-apps/kiconfinder-5
 >=kde-apps/kig-5
 >=kde-apps/kigo-5
@@ -277,7 +275,6 @@
 >=kde-apps/ktraderclient-5
 >=kde-apps/ktuberling-5
 >=kde-apps/kturtle-5
->=kde-apps/ktux-5
 >=kde-apps/kubrick-5
 >=kde-apps/kuiserver-5
 >=kde-apps/kurifilter-plugins-5
@@ -312,7 +309,6 @@
 >=kde-apps/nsplugins-5
 >=kde-apps/okteta-5
 >=kde-apps/okular-5
->=kde-apps/pairs-5
 >=kde-apps/palapeli-5
 >=kde-apps/parley-5
 >=kde-apps/phonon-kde-5
@@ -328,7 +324,6 @@
 >=kde-apps/solid-runtime-5
 >=kde-apps/spectacle-5
 >=kde-apps/step-5
->=kde-apps/superkaramba-5
 >=kde-apps/svgpart-5
 >=kde-apps/sweeper-5
 >=kde-apps/thumbnailers-5
