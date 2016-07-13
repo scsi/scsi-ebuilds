@@ -32,4 +32,4 @@
 =dev-go/go-crypto-0_pre20160126 ~amd64
 =app-admin/consul-0.6.4 ~amd64
 =dev-go/go-sys-0_pre20160204 ~amd64
-
+=dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
