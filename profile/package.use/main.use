@@ -58,3 +58,4 @@ sys-auth/polkit-qt qt4
 >=net-libs/telepathy-qt-0.9.6.1 farstream
 >=sys-libs/libseccomp-2.3.0 static-libs
 app-emulation/docker aufs overlay
+>=dev-qt/qtwayland-5.6.1 egl
