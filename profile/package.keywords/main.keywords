@@ -111,4 +111,3 @@ dev-util/perf
 app-i18n/fcitx-qt5
 kde-plasma/kcm-fcitx
 kde-misc/systemd-kcm:5
-app-text/catdoc
