@@ -33,3 +33,4 @@
 =app-admin/consul-0.6.4 ~amd64
 =dev-go/go-sys-0_pre20160204 ~amd64
 =dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
+=app-arch/gzip-1.8 ~amd64
