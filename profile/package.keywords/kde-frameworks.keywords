@@ -128,7 +128,6 @@
 >=kde-apps/kdebase-menu-icons-5
 >=kde-apps/kdebase-meta-5
 >=kde-apps/kdebase-runtime-meta-5
->=kde-apps/kdebindings-meta-5
 >=kde-apps/kdebugdialog-5
 >=kde-apps/kdebugsettings-5
 >=kde-apps/kdecore-meta-5
