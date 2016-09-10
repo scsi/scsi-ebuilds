@@ -25,6 +25,7 @@ src_install()
 {
 	exeinto /etc/profile.d
 	doexe ${FILESDIR}/script/profile.scsi.sh
+	doexe ${FILESDIR}/script/profile.ps1.sh
 
 	dodir /etc/env.d
 	insinto /etc/env.d
