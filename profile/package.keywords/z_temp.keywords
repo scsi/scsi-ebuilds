@@ -22,3 +22,4 @@
 =app-arch/gzip-1.8 ~amd64
 =dev-libs/nss-3.25-r1
 =app-portage/gentoolkit-0.3.2-r1 ~amd64
+=dev-libs/re2-0.2016.05.01 ~amd64
