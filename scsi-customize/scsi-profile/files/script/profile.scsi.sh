@@ -50,14 +50,14 @@ fi
 #export LS_COLORS
 export ECHANGELOG_USER="scsi <scsichen@gmail.com>"
 export MAILTO="scsi <scsichen@gmail.com>"
-unset set|grep SSH_ASKPASS
+unset SSH_ASKPASS
 
 #if ping -c 1 192.168.2.14 -W 1 >/dev/null 2>&1
 #then
-#	export all_proxy=http://192.168.2.14:3128
-#	export ftp_proxy=http://192.168.2.14:3128
-#	export http_proxy=http://192.168.2.14:3128
-#	export https_proxy=http://192.168.2.14:3128
+#	export all_proxy=http://bqproxy.iet:3128
+#	export ftp_proxy=http://bqproxy.iet:3128
+#	export http_proxy=http://bqproxy.iet:3128
+#	export https_proxy=http://bqproxy.iet:3128
 #	export no_proxy="localhost,127.0.0.0/8,192.168.9.80/16,140.92.86.147/24,140.92.86.147,*.ris"
 #fi
 
