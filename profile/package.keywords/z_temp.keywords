@@ -23,3 +23,6 @@
 =dev-libs/nss-3.25-r1
 =app-portage/gentoolkit-0.3.2-r1 ~amd64
 =dev-libs/re2-0.2016.05.01 ~amd64
+=dev-util/mdds-1.2.2 ~amd64
+=dev-libs/libixion-0.11.1 ~amd64
+=dev-libs/liborcus-0.11.2 ~amd64
