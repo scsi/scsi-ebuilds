@@ -26,3 +26,4 @@
 =dev-util/mdds-1.2.2 ~amd64
 =dev-libs/libixion-0.11.1 ~amd64
 =dev-libs/liborcus-0.11.2 ~amd64
+=net-firewall/nftables-0.6-r3 ~amd
