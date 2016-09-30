@@ -7,10 +7,6 @@
 =sys-kernel/linux-headers-4.4 ~amd64
 ~media-libs/freetype-2.6.3
 =x11-misc/obconf-qt-0.9.0_p20150729 ~amd64
-=net-libs/signon-ui-0.15 ~amd64
-=net-libs/telepathy-accounts-signon-1.0 ~amd64
-=net-libs/telepathy-logger-qt-15.04.0 ~amd64
-=net-libs/libsignon-glib-1.13 ~amd64
 =dev-python/ssl-fetch-0.4 ~amd64
 =dev-go/go-tools-0_pre20160220 ~amd64
 =dev-go/go-text-0_pre20160211 ~amd64
@@ -19,7 +15,6 @@
 =app-admin/consul-0.6.4 ~amd64
 =dev-go/go-sys-0_pre20160204 ~amd64
 =dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
-=app-arch/gzip-1.8 ~amd64
 =dev-libs/nss-3.25-r1
 =app-portage/gentoolkit-0.3.2-r1 ~amd64
 =dev-libs/re2-0.2016.05.01 ~amd64
