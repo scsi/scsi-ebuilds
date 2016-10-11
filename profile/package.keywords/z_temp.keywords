@@ -23,3 +23,4 @@
 =dev-libs/liborcus-0.11.2 ~amd64
 =net-firewall/nftables-0.6-r3
 =media-fonts/hack-2.020 ~amd64
+=net-misc/sstp-client-1.0.10-r1
