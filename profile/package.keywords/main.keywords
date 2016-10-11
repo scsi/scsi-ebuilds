@@ -12,6 +12,8 @@ virtual/libgudev
 sys-apps/dbus
 net-misc/networkmanager
 net-misc/networkmanager-pptp
+net-misc/openfortivpn
+net-misc/networkmanager-fortisslvpn
 net-misc/netctl
 dev-java/oracle-jdk-bin:1.7
 dev-java/oracle-jdk-bin:1.8
