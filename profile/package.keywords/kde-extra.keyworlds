@@ -15,3 +15,5 @@ kde-misc/baloo-kcmadv
 kde-misc/kcmsystemd
 x11-misc/sddm
 kde-base/kdelibs
+x11-themes/faenza-icon-theme
+x11-themes/kfaenza
