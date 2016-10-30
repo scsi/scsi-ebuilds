@@ -25,3 +25,6 @@
 =media-fonts/hack-2.020 ~amd64
 =net-misc/sstp-client-1.0.10-r1
 =media-gfx/inkscape-0.91-r3
+=dev-util/cmake-3.6.2 ~amd64
+=dev-libs/libqtxdg-2.0.0 ~amd64
+=x11-libs/libfm-qt-0.11.1 ~amd64
