@@ -119,4 +119,9 @@
 >=sys-devel/llvm-3.7.1-r2 abi_x86_32
 >=virtual/libelf-1 abi_x86_32
 >=dev-libs/libpcre-8.38-r1 abi_x86_32
+>=sys-devel/flex-2.5.39-r1 abi_x86_32
+>=virtual/pam-0-r1 abi_x86_32
+>=sys-libs/cracklib-2.9.6-r1 abi_x86_32
+>=sys-libs/db-4.8.30-r2 abi_x86_32
+>=sys-libs/pam-1.2.1 abi_x86_32
 

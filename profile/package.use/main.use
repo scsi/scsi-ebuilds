@@ -41,9 +41,9 @@ sys-kernel/gentoo-sources kdbus experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
 >=dev-qt/qtgui-5.5.1-r1 egl
 >=kde-apps/solid-runtime-15.08.3 -bluetooth
->=kde-plasma/plasma-desktop-5.5.5:5 -gtk3
+kde-plasma/plasma-desktop -gtk3
 >=media-libs/mesa-11.0.6 wayland
->=media-libs/mlt-0.9.8-r2 -kde melt kdenlive
+>=media-libs/mlt-0.9.8-r2 melt kdenlive
 >=dev-qt/qtscript-5.5.1-r1 scripttools
 >=app-text/poppler-0.20 qt4
 app-emulation/virtualbox qt4
@@ -54,10 +54,9 @@ media-libs/phonon-gstreamer qt4
 net-fs/samba gnutls client
 app-crypt/qca qt4
 sys-auth/polkit-qt qt4
->=net-libs/libproxy-0.4.11-r2 -kde
 >=net-libs/telepathy-qt-0.9.6.1 farstream
 >=sys-libs/libseccomp-2.3.0 static-libs
-app-emulation/docker aufs overlay
+app-emulation/docker -device-mapper overlay
 >=dev-qt/qtwayland-5.6.1 egl
 <dev-qt/qtwebkit-4.10.4:4 -gstreamer
 >=media-libs/libvpx-1.5.0 svc
