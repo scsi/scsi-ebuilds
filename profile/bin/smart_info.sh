@@ -27,4 +27,4 @@ Power_On_Hours=`echo "$SMART_CONTENT"|grep "Power_On_Hours"|awk '{print $8}'`
 [ -f $HFILE ] || touch $HFILE
 LASTG=`tail -1 $HFILE|awk '{print $5}'|sed "s/[,G]//g"`
 ADDG=`echo "scale=2;$wg - ${LASTG:-0}"|bc`
-printf "%s %d%% %s %s %'0.2fG +%'0.2fG\n" `date "+%Y-%m-%d_%H:%M:%S.%3N"` "${Percentage_Used_Endurance_Indicator}" "$Pstat" $((Power_On_Hours/24))D$((Power_On_Hours%24))H $wg ${ADDG}|tee -a $HFILE
+printf "%s %d%% %s %dD%02dH %'0.2fG +%'0.2fG\n" `date "+%Y-%m-%d_%H:%M:%S.%3N"` "${Percentage_Used_Endurance_Indicator}" "$Pstat" $((Power_On_Hours/24)) $((Power_On_Hours%24)) $wg ${ADDG}|tee -a $HFILE

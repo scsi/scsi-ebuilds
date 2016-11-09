@@ -17,14 +17,10 @@
 =dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
 =dev-libs/nss-3.25-r1
 =app-portage/gentoolkit-0.3.2-r1 ~amd64
-=dev-libs/re2-0.2016.05.01 ~amd64
 =dev-util/mdds-1.2.2 ~amd64
 =dev-libs/libixion-0.11.1 ~amd64
 =dev-libs/liborcus-0.11.2 ~amd64
-=net-firewall/nftables-0.6-r3
-=media-fonts/hack-2.020 ~amd64
 =net-misc/sstp-client-1.0.10-r1
-=media-gfx/inkscape-0.91-r3
 =dev-util/cmake-3.6.2 ~amd64
 =dev-libs/libqtxdg-2.0.0 ~amd64
 =x11-libs/libfm-qt-0.11.1 ~amd64

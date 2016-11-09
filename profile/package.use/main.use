@@ -61,3 +61,5 @@ app-emulation/docker -device-mapper overlay
 <dev-qt/qtwebkit-4.10.4:4 -gstreamer
 >=media-libs/libvpx-1.5.0 svc
 >=dev-libs/nss-3.25-r1 utils
+sys-apps/smartmontools update_drivedb
+>=x11-base/xorg-server-1.18.4 xvfb

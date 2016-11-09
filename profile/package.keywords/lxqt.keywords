@@ -16,4 +16,3 @@ lxqt-base/lxqt-admin
 lxqt-base/lxqt-openssh-askpass
 lxqt-base/lxqt-sudo
 x11-misc/pcmanfm-qt
-=dev-libs/libqtxdg-1.3.0 ~amd64
