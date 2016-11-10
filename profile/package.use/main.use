@@ -63,3 +63,4 @@ app-emulation/docker -device-mapper overlay
 >=dev-libs/nss-3.25-r1 utils
 sys-apps/smartmontools update_drivedb
 >=x11-base/xorg-server-1.18.4 xvfb
+x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme qtcurve-theme sddm-theme smplayer-theme
