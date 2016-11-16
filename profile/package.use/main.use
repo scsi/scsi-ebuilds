@@ -26,7 +26,6 @@ lxqt-base/lxqt-meta  powermanagement
 dev-java/oracle-jdk-bin source
 dev-java/sun-jdk source
 >=net-dns/avahi-0.6.31-r6 mdnsresponder-compat
-media-libs/gst-plugins-bad -opengl
 media-libs/clutter egl
 >=dev-libs/libpcre-8.36 pcre16
 >=media-libs/phonon-4.8.3 designer
@@ -63,4 +62,6 @@ app-emulation/docker -device-mapper overlay
 >=dev-libs/nss-3.25-r1 utils
 sys-apps/smartmontools update_drivedb
 >=x11-base/xorg-server-1.18.4 xvfb
-x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme qtcurve-theme sddm-theme smplayer-theme
+x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme -qtcurve-theme sddm-theme -smplayer-theme
+>=sys-process/tini-0.13.0 static
+media-libs/gst-plugins-bad -gles2 opengl

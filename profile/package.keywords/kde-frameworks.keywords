@@ -132,7 +132,6 @@
 >=kde-apps/kdeaccessibility-meta-5
 >=kde-apps/kdeadmin-meta-5
 >=kde-apps/kde-apps-meta-5
->=kde-apps/kdeartwork-emoticons-5
 >=kde-apps/kdebase-data-5
 >=kde-apps/kdebase-desktoptheme-5
 >=kde-apps/kdebase-kioslaves-5
@@ -300,6 +299,7 @@
 >=kde-apps/kuser-5
 >=kde-apps/kwalletd-5
 >=kde-apps/kwalletmanager-5
+>=kde-apps/kwave-5
 >=kde-apps/kwordquiz-5
 >=kde-apps/kwrite-5
 >=kde-apps/libgravatar-5
@@ -361,6 +361,7 @@
 >=kde-frameworks/baloo-5
 >=kde-frameworks/bluez-qt-5
 >=kde-frameworks/breeze-icons-5
+>=kde-frameworks/breeze-icons-rcc-5
 >=kde-frameworks/extra-cmake-modules-5
 >=kde-frameworks/frameworkintegration-5
 >=kde-frameworks/kactivities-5
@@ -459,7 +460,6 @@
 >=kde-plasma/oxygen-fonts-5
 >=kde-plasma/plasma-desktop-5
 >=kde-plasma/plasma-integration-5
->=kde-plasma/plasma-mediacenter-5
 >=kde-plasma/plasma-meta-5
 >=kde-plasma/plasma-nm-5
 >=kde-plasma/plasma-pa-5

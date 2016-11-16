@@ -1,5 +1,6 @@
 app-emulation/docker
 app-emulation/runc
 app-emulation/containerd
+app-emulation/docker-proxy
 dev-lang/go
 dev-lang/go-bootstrap
