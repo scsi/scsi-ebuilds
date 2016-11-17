@@ -2,7 +2,7 @@
 if [ -z "$COMMFUNC_LOAD" ]; then
 [ -z "$BASH" ] && die "Plz use bash for shell execute."
 COMMFUNC_LOAD=LOAD
-#PROGRAM=`basename $(which $0)`
+PROGRAM=`basename $(which $0)`
 OIFS="$IFS"
 LIFS="
 "
@@ -36,7 +36,7 @@ SED(){ $_SED "$@"; }
 FIND(){ $_FIND "$@"; }
 STAT(){ $_STAT "$@"; }
 SLEEP(){ $_SLEEP "$@"; }
-ask(){ [ -z "$noask" ] && return 0;local _x _y;printf "$* [y/N] "; read _x _y; echo "$_x"|grep -iq -e "y" -e "yes"; }
+ask(){ [ -n "$noask" ] && return 0;local _x _y;printf "$* [y/N] "; read _x _y; echo "$_x"|grep -iq -e "y" -e "yes"; }
 readprop(){ SED -n "0,/^[[:space:]]*$2[[:space:]]*=/{s/^[[:space:]]*$2[[:space:]]*=[[:space:]]*\([^[:space:]]*.*[^[:space:]*]\)[[:space:]]*$/\1/p}" $1; }
 readcfg(){
   local cfile=$1; local qca=$2; local qparam=$3
@@ -85,15 +85,18 @@ append_env(){
 $2"
   eval $var=\""$tmpvalue"\"
 }
-check_env(){ is_define_env "$@" || die "$var is not set. Pls check environment."; }
+check_env(){ local var;for var in  "$@"; do is_define_env "$@" || die "$var is not set. Pls check environment."; done; }
 replace_env() {
-   local var=$2; local sfile=$1
-   local value; eval value=\$$var
-   eval export $var
-   #[ -n "$value" ] && printf "%-11s = %s\n" $var  $value || die "$var not set"
-   #printf "%-12s = %s\n" $var  "$value"
-   value=`echo "$value"|SED -e "s/\//\\\\\\\\\\\\//g"`
-   SED -i "s/\${$var}/$value/g" $sfile
+   local var
+   local sfile=$1;shift
+   for var in "$@";do
+     local value; eval value=\$$var
+     eval export $var
+     #[ -n "$value" ] && printf "%-11s = %s\n" $var  $value || die "$var not set"
+     #printf "%-12s = %s\n" $var  "$value"
+     value=`echo "$value"|SED -e "s/\//\\\\\\\\\\\\//g"`
+     SED -i "s/\${$var}/$value/g" $sfile
+   done
 }
 testclient(){ testclient $@; }
 printtitle() {
@@ -162,7 +165,7 @@ _buexec(){
 	esac
   done
   [ "$_bu_output" = realtime ] && _bu_mode=single
-  local tmpfile=$TEMP_DIR/insris.$$.log
+  local tmpfile=$TEMP_DIR/insris.$RANDOM.log
   local busdate="`usedtime $_sris_stime`"
   local rtn rtnstr msg rst
   #local titlestr=`printf "$_bu_mode|$_bu_output(%s)%-45s: " "$busdate" "$desc"`
@@ -356,7 +359,13 @@ is_max_used_loglevel_over(){
   *) return 1
   esac
 }
-_rawlog() { SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /" ; }
+_rawlog() {
+  if [ -n "$LOGUSER" ]; then
+    SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s|%15' $$ $LOGUSER`|$1|/" -e "2,$ s/^/  /"
+  else
+    SED -e "1 s/^/`date '+%Y\/%m\/%d_%H:%M:%S.%3N'`|`printf '%5s' $$`|$1|/" -e "2,$ s/^/  /"
+  fi
+}
 _writelog() { cat >>$1; _check_rolling $1; }
 _log() {
   local logfile=$1; shift
@@ -391,4 +400,37 @@ log_info2file() { local LOGFILE="$1";shift;log_info  "$@"; }
 log_warn2file() { local LOGFILE="$1";shift;log_warn  "$@"; }
 log_error2file(){ local LOGFILE="$1";shift;log_error "$@"; }
 
+lockfile(){
+  eval set -- "`getopt -o nu --long nonblock,unlock -- "$@"`"
+  local opt
+  while true ; do
+    case "$1" in
+      -n|--nonblock) opt="-n";shift 1;;
+      -u|--unlock) opt="-u";shift 1;;
+      --) shift; break ;;
+      *) echo "error paramter $1"; return 1
+    esac
+  done
+  if [[ $opt = "-u" ]]; then
+    flock $opt 201
+  else
+    exec 201>"$1"
+    flock $opt 201
+  fi
+}
+comm_lock(){ exec 201>$1; flock 201; }
+comm_unlock(){ flock -u 201; }
+
+# http://superuser.com/questions/621870/test-if-a-port-on-a-remote-system-is-reachable-without-telnet
+islisten(){ local host=$1; local port=$2; </dev/tcp/$host/$port; }
+
+is_same_time(){ [ -f "$1" -a -f "$2" ] && [ `stat -c "%Y" $1` = `stat -c "%Y" $2` ]; }
+is_same_hash(){ [ -f "$1" -a -f "$2" ] && [ `md5sum $1|awk '{print $1}'` = `md5sum $2|awk '{print $1}'` ]; }
+
+if [ -n "$LOCKEXEC" ]; then
+  mkdir -p /tmp/common/lock
+  echo "$$">/tmp/common/lock/$PROGRAM.lock
+  exec 211>/tmp/common/lock/$PROGRAM.lock
+  flock -n 211 || die "process $(</tmp/common/lock/$PROGRAM.lock) is running."
+fi
 fi
