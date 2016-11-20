@@ -28,3 +28,5 @@
 =sys-process/tini-0.13.0
 =x11-proto/xproto-7.0.31
 =media-plugins/kipi-plugins-5.3.0
+=dev-libs/nss-3.27.1 ~amd64
+=media-libs/libpng-1.6.26 ~amd64
