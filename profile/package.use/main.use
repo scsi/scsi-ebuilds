@@ -65,3 +65,4 @@ sys-apps/smartmontools update_drivedb
 x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme -qtcurve-theme sddm-theme -smplayer-theme
 >=sys-process/tini-0.13.0 static
 media-libs/gst-plugins-bad -gles2 opengl
+dev-libs/DirectFB -egl
