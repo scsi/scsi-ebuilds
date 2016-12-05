@@ -22,3 +22,4 @@
 =media-plugins/kipi-plugins-5.3.0
 =dev-libs/nss-3.27.1 ~amd64
 =media-libs/libpng-1.6.26 ~amd64
+=app-i18n/zhcon-0.2.6-r2 ~amd64
