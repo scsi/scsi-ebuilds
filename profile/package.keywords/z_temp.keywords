@@ -10,11 +10,7 @@
 =dev-python/ssl-fetch-0.4 ~amd64
 =dev-util/kbuild-0.1.9998_pre20131130-r1 ~amd64
 =app-portage/gentoolkit-0.3.2-r1 ~amd64
-=dev-util/mdds-1.2.2 ~amd64
-=dev-libs/libixion-0.11.1 ~amd64
-=dev-libs/liborcus-0.11.2 ~amd64
 =net-misc/sstp-client-1.0.10-r1
-=dev-util/cmake-3.6.2 ~amd64
 =dev-libs/libqtxdg-2.0.0 ~amd64
 =x11-libs/libfm-qt-0.11.1 ~amd64
 =sys-libs/libseccomp-2.3.1 ~amd64
