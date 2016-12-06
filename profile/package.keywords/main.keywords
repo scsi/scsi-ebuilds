@@ -95,8 +95,6 @@ app-portage/portpeek
 dev-util/android-sdk-update-manager
 app-text/convmv
 net-nds/jxplorer
-media-video/mplayer2
-media-video/mplayer
 dev-util/visualvm
 www-apps/redmine
 dev-ruby/rails:3.2
