@@ -1,0 +1,11 @@
+--- a/third_party/webrtc/modules/desktop_capture/screen_capturer_x11.cc	2016-11-19 20:45:52.199617350 +0900
++++ b/third_party/webrtc/modules/desktop_capture/screen_capturer_x11.cc	2016-11-19 20:45:23.837617353 +0900
+@@ -431,7 +431,7 @@
+     return nullptr;
+   }
+ 
+-  return capturer;
++  return std::unique_ptr<DesktopCapturer>(static_cast<DesktopCapturer*>(capturer.release()));
+ }
+ 
+ }  // namespace webrtc
