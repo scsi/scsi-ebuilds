@@ -14,7 +14,6 @@ media-video/mplayer bl bs2b cddb cdparanoia cpudetection dga dvb ftp ladspa libc
 sys-apps/pciutils -zlib
 sys-libs/zlib minizip
 dev-java/swing-layout source
-sys-libs/zlib minizip
 media-plugins/alsa-plugins pulseaudio
 sys-auth/pambase systemd
 >=dev-libs/elfutils-0.158 static-libs
@@ -42,7 +41,7 @@ sys-kernel/gentoo-sources kdbus experimental
 >=kde-apps/solid-runtime-15.08.3 -bluetooth
 kde-plasma/plasma-desktop -gtk3
 >=media-libs/mesa-11.0.6 wayland
->=media-libs/mlt-0.9.8-r2 melt kdenlive
+>=media-libs/mlt-0.9.8-r2 melt kdenlive -vdpau
 >=dev-qt/qtscript-5.5.1-r1 scripttools
 >=app-text/poppler-0.20 qt4
 app-emulation/virtualbox qt4
