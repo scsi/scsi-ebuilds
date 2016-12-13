@@ -18,7 +18,9 @@ RDEPEND="media-sound/lame
 			app-cdr/cdrtools
 			media-sound/timidity++
 			media-libs/id3lib
-			media-libs/mutagen"
+			media-libs/mutagen
+			app-admin/ranpwd
+			"
 
 src_unpack(){
 	mkdir "${S}"
