@@ -21,7 +21,7 @@
 
 #每個物理CPU中邏輯CPU(可能是core, threads或both)的個數：
 #cat /proc/cpuinfo | grep "siblings"
-
+export LANG=zh_TW.UTF-8
 C=10000000000
 stime=`date +%s%3N`
 echo 'scale=5000; 4*a(1)' | bc -l -q >/dev/null
