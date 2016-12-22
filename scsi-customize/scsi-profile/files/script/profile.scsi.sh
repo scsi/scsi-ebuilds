@@ -19,6 +19,7 @@ if [ "`id -u`" = 0 ]; then
 	fi
 	#alias gentooupdate='time (layman -S;eix-sync ;emerge -uDNv --with-bdeps=y world;emerge @preserved-rebuild;emerge --depclean -pq)'
 	alias gentooupdate='time (date;layman -S;eix-sync ;date;hostname;emerge -uDNv world;emerge @preserved-rebuild;emerge --depclean -pq)'
+	alias gentooupdate_no_distcc="FEATURES=-distcc MAKEOPTS=-j`nproc` emerge -uDNv world;emerge @preserved-rebuild;emerge --depclean -pq"
 fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
 export NMON="dc-"
