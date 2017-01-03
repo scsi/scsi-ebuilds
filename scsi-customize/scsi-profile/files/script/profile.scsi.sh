@@ -9,7 +9,6 @@ alias iftopn="iftop -PBn"
 alias df='df -h'
 alias du='du -h'
 alias free='free -h'
-alias cflags='eval export `grep "^CFLAGS=" /etc/make.conf`'
 alias uncolor='sed -e "s/^[\[[0-7;]*m//g"'
 alias cpubenchmark='time echo "scale=5000; 4*a(1)" | bc -l -q'
 if [ "`id -u`" = 0 ]; then
@@ -24,29 +23,11 @@ fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
 export NMON="dc-"
 
-if [ ! -z "$DISPLAY" -o "$TERM" =  "xterm" -o "$TERM" = screen ]
-then
-	if [ $USER = euc ]
-	then
-		lenv=euc
-	else
-        	lenv=utf8
-	fi
+#export LANGUAGE=zh_TW
+export LANG=zh_TW.UTF-8
 
-	export LANGUAGE=zh_TW
-        case $lenv in
-        utf8)
-                export LANG=zh_TW.UTF-8
-		;;
-        big5)
-                export LANG=zh_TW.Big5
-		export G_FILENAME_ENCODING=Big5
-		;;
-	euc)
-		export LANG=zh_TW.EUC-TW
-		;;
-        esac
-fi
+[ ! -z "$DISPLAY" -o "$TERM" =  "xterm" -o "$TERM" = screen ] && export LC_MESSAGES=C
+
 #eval `dircolors -b /etc/DIR_COLORS`
 #export LS_COLORS
 export ECHANGELOG_USER="scsi <scsichen@gmail.com>"
