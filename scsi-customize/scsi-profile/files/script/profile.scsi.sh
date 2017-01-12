@@ -28,7 +28,7 @@ if [[ $TERM =~ xterm ]]; then
   export LANG=zh_TW.UTF-8
   [ -n "$DISPLAY" ] || export LC_MESSAGES=C LC_TIME=C
 else
-  export LANG=C
+  export LANG=zh_TW.UTF-8 LC_MESSAGES=C LC_TIME=C
 fi
 
 #eval `dircolors -b /etc/DIR_COLORS`
