@@ -21,12 +21,15 @@ if [ "`id -u`" = 0 ]; then
 	alias gentooupdate_no_distcc="FEATURES=-distcc MAKEOPTS=-j`nproc` emerge -uDNv world;emerge @preserved-rebuild;emerge --depclean -pq"
 fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
-export NMON="dc-"
+[ `nproc` -gt 8 ] && export NMON="dC-" || export NMON="dc-"
 
-#export LANGUAGE=zh_TW
-export LANG=zh_TW.UTF-8
-
-[ ! -z "$DISPLAY" -o "$TERM" =  "xterm" -o "$TERM" = screen ] && export LC_MESSAGES=C
+if [[ $TERM =~ xterm ]]; then
+  #export LANGUAGE=zh_TW
+  export LANG=zh_TW.UTF-8
+  [ -n "$DISPLAY" ] || export LC_MESSAGES=C LC_TIME=C
+else
+  export LANG=C
+fi
 
 #eval `dircolors -b /etc/DIR_COLORS`
 #export LS_COLORS
