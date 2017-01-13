@@ -23,14 +23,6 @@ fi
 export EMERGE_DEFAULT_OPTS="--with-bdeps y"
 [ `nproc` -gt 8 ] && export NMON="dC-" || export NMON="dc-"
 
-if [[ $TERM =~ xterm ]]; then
-  #export LANGUAGE=zh_TW
-  export LANG=zh_TW.UTF-8
-  [ -n "$DISPLAY" ] || export LC_MESSAGES=C LC_TIME=C
-else
-  export LANG=zh_TW.UTF-8 LC_MESSAGES=C LC_TIME=C
-fi
-
 #eval `dircolors -b /etc/DIR_COLORS`
 #export LS_COLORS
 export ECHANGELOG_USER="scsi <scsichen@gmail.com>"

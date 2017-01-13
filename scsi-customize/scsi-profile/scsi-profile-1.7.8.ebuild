@@ -30,6 +30,10 @@ src_install()
 	dodir /etc/env.d
 	insinto /etc/env.d
 	doins ${FILESDIR}/script/99scsiextend
+	
+	dodir /etc/X11/xinit/xinitrc.d
+	insinto /etc/X11/xinit/xinitrc.d
+	doins ${FILESDIR}/script/00-x11-locale
 
 	dodir /etc/vim
 	insinto /etc/vim
