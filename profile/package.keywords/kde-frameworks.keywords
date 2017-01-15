@@ -32,7 +32,6 @@
 >=dev-qt/qtmultimedia-5
 >=dev-qt/qtnetwork-5
 >=dev-qt/qtopengl-5
->=dev-qt/qtopenvg-5
 >=dev-qt/qtpaths-5
 >=dev-qt/qtphonon-5
 >=dev-qt/qtplugininfo-5
@@ -111,6 +110,7 @@
 >=kde-apps/kapman-5
 >=kde-apps/kapptemplate-5
 >=kde-apps/kate-5
+>=kde-apps/katepart-5
 >=kde-apps/katomic-5
 >=kde-apps/kblackbox-5
 >=kde-apps/kblocks-5
@@ -172,7 +172,6 @@
 >=kde-apps/kdeutils-meta-5
 >=kde-apps/kdewebdev-meta-5
 >=kde-apps/kdf-5
->=kde-apps/kdgantt2-5
 >=kde-apps/kdialog-5
 >=kde-apps/kdiamond-5
 >=kde-apps/kdontchangethehostname-5
@@ -287,7 +286,6 @@
 >=kde-apps/ktp-desktop-applets-5
 >=kde-apps/ktp-filetransfer-handler-5
 >=kde-apps/ktp-kded-module-5
->=kde-apps/ktp-l10n-5
 >=kde-apps/ktp-send-file-5
 >=kde-apps/ktp-text-ui-5
 >=kde-apps/ktraderclient-5
@@ -344,6 +342,7 @@
 >=kde-apps/plasma-telepathy-meta-5
 >=kde-apps/poxml-5
 >=kde-apps/print-manager-5
+>=kde-apps/pykde4-5
 >=kde-apps/renamedlg-plugins-5
 >=kde-apps/rocs-5
 >=kde-apps/signon-kwallet-extension-5
@@ -380,6 +379,8 @@
 >=kde-frameworks/kdeclarative-5
 >=kde-frameworks/kded-5
 >=kde-frameworks/kdelibs4support-5
+>=kde-frameworks/kdelibs-5
+>=kde-frameworks/kdelibs-env-5
 >=kde-frameworks/kdesignerplugin-5
 >=kde-frameworks/kdesu-5
 >=kde-frameworks/kdewebkit-5
