@@ -1,3 +1,3 @@
 #=x11-base/xorg-server-1.19.0
 #=x11-base/xorg-drivers-1.19
-=www-client/chromium-56.0.2924.59
+>=www-client/chromium-57

@@ -125,3 +125,4 @@
 >=sys-libs/db-4.8.30-r2 abi_x86_32
 >=sys-libs/pam-1.2.1 abi_x86_32
 >=net-nds/openldap-2.4.43 abi_x86_32
+>=sys-devel/gettext-0.19.7 abi_x86_32
