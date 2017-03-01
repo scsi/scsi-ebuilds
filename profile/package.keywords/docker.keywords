@@ -1,5 +1,5 @@
 app-emulation/docker
-app-emulation/runc
+app-emulation/docker-runc
 app-emulation/containerd
 app-emulation/docker-proxy
 dev-lang/go
