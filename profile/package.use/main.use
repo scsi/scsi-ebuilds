@@ -43,15 +43,7 @@ kde-plasma/plasma-desktop -gtk3
 >=media-libs/mesa-11.0.6 wayland
 >=media-libs/mlt-0.9.8-r2 melt kdenlive -vdpau
 >=dev-qt/qtscript-5.5.1-r1 scripttools
->=app-text/poppler-0.20 qt4
-app-emulation/virtualbox qt4
-media-libs/phonon qt4
-media-libs/phonon-vlc qt4
-media-libs/phonon-gstreamer qt4
->=dev-libs/libdbusmenu-qt-0.3.2 qt4
 net-fs/samba gnutls client
-app-crypt/qca qt4
-sys-auth/polkit-qt qt4
 >=net-libs/telepathy-qt-0.9.6.1 farstream
 >=sys-libs/libseccomp-2.3.0 static-libs
 app-emulation/docker -device-mapper overlay
@@ -65,3 +57,4 @@ x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme -qtcurve-
 >=sys-process/tini-0.13.0 static
 media-libs/gst-plugins-bad -gles2 opengl
 dev-libs/DirectFB -egl
+app-crypt/gpgme -qt5

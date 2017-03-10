@@ -95,6 +95,7 @@
 >=kde-apps/incidenceeditor-5
 >=kde-apps/jovie-5
 >=kde-apps/juk-5
+>=kde-apps/k3b-5
 >=kde-apps/kabcclient-5
 >=kde-apps/kaccessible-5
 >=kde-apps/kaccounts-integration-5
