@@ -9,5 +9,6 @@ x11-drivers/xf86-input-keyboard
 x11-drivers/xf86-video-nouveau
 x11-drivers/xf86-input-mouse
 x11-drivers/xf86-input-evdev
+x11-drivers/xf86-video-amdgpu
 dev-libs/wayland-protocols
 dev-libs/wayland
