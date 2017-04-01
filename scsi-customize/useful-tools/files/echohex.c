@@ -29,7 +29,9 @@
 #define RVERSION "$Revision: 1.2 $"
 
 FILE *infile = NULL, *outfile = NULL, *errfile = NULL;
-
+int io_buffered = 1;
+int infile_no;
+int infile_eof = 0;
 void exit_f(int code) {
   if (infile != stdin && infile != NULL) fclose(infile);
   if (outfile != stdout && outfile != NULL) fclose(outfile);
@@ -47,9 +49,29 @@ void showversion() {
 }
 
 void showhelp(char *mainpgm) {
-  fprintf(stderr, "Usage: %s [-v] [-r] [-u] [-e error_log] [-E end_char] [-o outfile] [infile]\n",mainpgm);
+  fprintf(stderr, "Usage: %s [-v] [-r] [-u] [-e error_log] [-E end_char_in_hex] [-o outfile] [infile]\n",mainpgm);
 }
 
+int ingetc(){
+  if (io_buffered){
+    return getc(infile);
+  }else{
+    int rtn;
+    int code = 0;
+    rtn = read(infile_no,&code , 1);
+    if(rtn == 0 || rtn == -1) {
+      infile_eof = 1;
+      return EOF;
+    } else {
+      return code;
+    }
+  }
+}
+
+int ineof(){
+  if (io_buffered) return feof(infile);
+  else return infile_eof;
+}
 int main(int argc, char *argv[]) {
   extern char *optarg;
   extern int optind, opterr, optopt;
@@ -167,7 +189,12 @@ int main(int argc, char *argv[]) {
   if (infile == NULL) infile = stdin;
   if (outfile == NULL) outfile = stdout;
   if (errfile == NULL) errfile = stderr;
-
+  infile_no=fileno(infile);
+  if ( infile_no == -1){
+    perror("strtol");
+    exit_f(EXIT_FAILURE);
+  }
+  if( end_char >=0 && infile == stdin ) io_buffered = 0;
   if (upcase == 1) {
     strcpy(formatstr, "%02X");
   } else {
@@ -180,10 +207,10 @@ int main(int argc, char *argv[]) {
 
     str[2] = 0;
     while (1) {
-      str[0] = getc(infile);
-      if (feof(infile) != 0) break;
-      str[1] = getc(infile);
-      if (feof(infile) != 0) {
+      str[0] = ingetc();
+      if (ineof() != 0) break;
+      str[1] = ingetc();
+      if (ineof() != 0) {
         fprintf(errfile, "lost last byte for '%c'\n", str[0]);
         break;
       }
@@ -194,7 +221,7 @@ int main(int argc, char *argv[]) {
   } else {
     unsigned char ch;
 
-    for (ch = getc(infile); feof(infile) == 0; ch = getc(infile)) {
+    for (ch = ingetc(); ineof() == 0; ch = ingetc()) {
       fprintf(outfile, formatstr, ch);
       if(ch == end_char) break;
     }
