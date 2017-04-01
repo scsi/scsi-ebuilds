@@ -58,3 +58,4 @@ x11-themes/papirus-pack-kde-meta bomi-skin gtk-theme libreoffice-theme -qtcurve-
 media-libs/gst-plugins-bad -gles2 opengl
 dev-libs/DirectFB -egl
 app-crypt/gpgme -qt5
+>=dev-libs/libdbusmenu-qt-0.9.3_pre20160218 qt4
