@@ -26,7 +26,7 @@
 #ifdef Linux
 #include <getopt.h>
 #endif
-#define RVERSION "$Revision: 1.2 $"
+#define RVERSION "$Revision: 1.3 $"
 
 FILE *infile = NULL, *outfile = NULL, *errfile = NULL;
 int io_buffered = 1;
