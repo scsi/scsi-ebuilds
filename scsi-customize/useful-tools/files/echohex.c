@@ -26,7 +26,7 @@
 #ifdef Linux
 #include <getopt.h>
 #endif
-#define RVERSION "$Revision: 1.1 $"
+#define RVERSION "$Revision: 1.2 $"
 
 FILE *infile = NULL, *outfile = NULL, *errfile = NULL;
 
@@ -47,7 +47,7 @@ void showversion() {
 }
 
 void showhelp(char *mainpgm) {
-  fprintf(stderr, "Usage: %s [-v] [-r] [-u] [-e error_log] [-o outfile] [infile]\n",mainpgm);
+  fprintf(stderr, "Usage: %s [-v] [-r] [-u] [-e error_log] [-E end_char] [-o outfile] [infile]\n",mainpgm);
 }
 
 int main(int argc, char *argv[]) {
