@@ -11,3 +11,4 @@
 =dev-libs/double-conversion-2.0.1 ~amd64
 =dev-libs/nss-3.29.3 ~amd64
 =dev-libs/kirigami-2.0.0 ~amd64
+=sys-apps/portage-2.3.5 ~amd64

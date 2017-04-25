@@ -1,0 +1,5 @@
+#https://wiki.gentoo.org/wiki//etc/portage/profile/package.provided
+
+kde-apps/kajongg-17.04.0
+kde-apps/analitza-17.04.0
+kde-apps/kalgebra-17.04.0
