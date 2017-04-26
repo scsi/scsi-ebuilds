@@ -12,3 +12,4 @@
 =dev-libs/nss-3.29.3 ~amd64
 =dev-libs/kirigami-2.0.0 ~amd64
 =sys-apps/portage-2.3.5 ~amd64
+=dev-libs/xapian-1.4.3 ~amd64
