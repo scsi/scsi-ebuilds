@@ -105237,6 +105237,11 @@ CHARMAP
 <U000FF3FA> /x8e/xa9/xfe/xa6 <CJK>
 <U000FF3FB> /x8e/xa9/xfe/xa7 <CJK>
 <U000FF3FC> /x8e/xa9/xfe/xa8 <CJK>
+<U000FFB70> /x8e/xae/xad/xd3 <CJK>
+<U000FFB71> /x8e/xad/xd2/xef <CJK>
+<U000FFB72> /x8e/xb1/xa1/xb7 <CJK>
+<U000FFB73> /x8e/xb1/xa1/xb6 <CJK>
+<U000FFB74> /x8e/xad/xa3/xb4 <CJK>
 <U000FFB76> /x8e/xb1/xa1/xb5 <CJK>
 <U000FFB77> /x8e/xb1/xa1/xb4 <CJK>
 <U000FFB78> /x8e/xb1/xa1/xb3 <CJK>
@@ -105279,6 +105284,7 @@ CHARMAP
 <U000FFBAB> /x8e/xac/xab/xc9 <CJK>
 <U000FFBAD> /x8e/xad/xde/xcc <CJK>
 <U000FFBAE> /x8e/xac/xa1/xe6 <CJK>
+<U000FFBAF> /x8e/xac/xc3/xaa <CJK>
 <U000FFBB0> /x8e/xad/xe1/xa9 <CJK>
 <U000FFBB1> /x8e/xac/xc3/xda <CJK>
 <U000FFBB4> /x8e/xac/xaa/xdc <CJK>
