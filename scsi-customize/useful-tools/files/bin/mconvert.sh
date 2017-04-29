@@ -1,8 +1,8 @@
 #!/bin/bash
 ##############################################
 #  Program Name: mconvert.sh
-#  Purpose: Án­µÂà´«
-#  Author: ³¯«i¬w (Chen Yung Chou)
+#  Purpose: ?n???à´«
+#  Author: ???i?w (Chen Yung Chou)
 #  Created Date: 2003/09/04
 #  Modified:
 #  Last Modify Date: 2003/09/23
@@ -153,7 +153,7 @@ wav_to_mp3()
 	ofilename=$2
 	#nice /usr/bin/lame -h -m s -b 160 --tn "$trcknr" --tt "$title" --tl "$album" --ta "$artist" "$ifilename" "$ofilename"
 	#nice /usr/bin/lame -h -m s -b 128 --resample 44.1 --scale 5  --tt "$title" --ta "$artist" --tl "$album" --ty "$date" --tc "$comment" --tn "$trcknr" --tg "$genre" "$ifilename" "$ofilename"
-	nice /usr/bin/lame -h -m s -b 128 --scale 5  --tt "$title" --ta "$artist" --tl "$album" --ty "$date" --tc "$comment" --tn "$trcknr" --tg "$genre" "$ifilename" "$ofilename"
+	nice /usr/bin/lame -h -m s -b 320 --scale 5  --tt "$title" --ta "$artist" --tl "$album" --ty "$date" --tc "$comment" --tn "$trcknr" --tg "$genre" "$ifilename" "$ofilename"
 	#nice /usr/bin/lame -h -m s -b 128 --resample 44.1 --tt "$title" --ta "$artist" --tl "$album" --ty "$date" --tc "$comment" --tn "$trcknr" --tg "$genre" "$ifilename" "$ofilename"
 	return $?
 }
