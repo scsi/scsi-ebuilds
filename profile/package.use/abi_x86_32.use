@@ -128,3 +128,5 @@
 >=sys-devel/gettext-0.19.7 abi_x86_32
 >=dev-libs/lzo-2.09 abi_x86_32
 >=x11-libs/libXmu-1.1.2 abi_x86_32
+>=net-dns/libidn2-0.16-r1 abi_x86_32
+>=dev-libs/libunistring-0.9.7 abi_x86_32
