@@ -10,3 +10,7 @@
 =dev-libs/xapian-1.4.3 ~amd64
 =media-libs/libpng-1.6.29 ~amd6
 =dev-libs/kirigami-2.1.0 ~amd64
+=media-libs/libzmf-0.0.1 ~amd64
+=app-text/libstaroffice-0.0.3 ~amd64
+=dev-libs/liborcus-0.12.1 ~amd64
+=dev-libs/libixion-0.12.2 ~amd64
