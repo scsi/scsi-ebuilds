@@ -118,3 +118,4 @@ app-i18n/fcitx-qt5
 kde-plasma/kcm-fcitx
 kde-misc/systemd-kcm:5
 sys-apps/smartmontools
+app-editors/atom
