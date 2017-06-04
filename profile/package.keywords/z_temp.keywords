@@ -14,3 +14,4 @@
 =app-text/libstaroffice-0.0.3 ~amd64
 =dev-libs/liborcus-0.12.1 ~amd64
 =dev-libs/libixion-0.12.2 ~amd64
+=www-client/phantomjs-2.0.0-r1
