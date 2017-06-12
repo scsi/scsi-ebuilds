@@ -16,4 +16,5 @@
 =dev-libs/libixion-0.12.2 ~amd64
 =www-client/phantomjs-2.0.0-r1
 =dev-libs/kirigami-2.1.0 ~amd64
+=media-libs/openh264-1.6.0 ~amd64
 
