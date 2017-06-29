@@ -13,7 +13,11 @@ setps1(){
     fcolor="\[\033[01;30m\]"
     rfcolor="\[\033[01;31m\]"
   elif [[ $CONN =~ su ]]; then
-    MODE=su:
+    local ppid1=`ps -ho ppid $PPID`
+    local ppid2=`ps -ho ppid $ppid1`
+    local ppid3=`ps -ho ppid $ppid2`
+    readonly SUUSER=`ps -ho user $ppid3`
+    MODE=[$SUUSER]su:
     fcolor="\[\033[01;33m\]"
     rfcolor="\[\033[01;31m\]"
   else
