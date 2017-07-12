@@ -76,8 +76,6 @@ net-print/cups-pdf
 net-misc/pcmanx-gtk2
 net-im/pidgin
 x11-themes/smplayer-themes
-www-client/chromium
-www-plugins/chrome-binary-plugins:beta
 www-client/google-chrome
 www-client/google-chrome-unstable
 www-client/firefox
