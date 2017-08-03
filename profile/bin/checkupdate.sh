@@ -159,7 +159,7 @@ add_data "selenium" "http://www.seleniumhq.org/download/" "grep 'Download versio
 add_data "forticlient" "https://support.zen.co.uk/kb/Knowledgebase/Fortinet-SSL-VPN-Client" "grep 'linux'"
 add_data "Gitblit" "http://gitblit.com/" "grep 'Current Release'"
 add_data "Nexus" "https://support.sonatype.com/hc/en-us/categories/202673428-Nexus-Repository-Manager-3" "grep 'Release Notes'"
-add_data "redmine_work_time" "https://bitbucket.org/tkusukawa/redmine_work_time/downloads/" "grep '.zip'"
+add_data "redmine_work_time" "https://bitbucket.org/tkusukawa/redmine_work_time/downloads/" "grep '.zip'|awk '{print \$1}'"
 add_data "liteide" "https://github.com/visualfc/liteide/releases" "grep 'Ver'"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
