@@ -22,4 +22,5 @@
 =dev-libs/nss-3.31 ~amd64
 =dev-libs/nspr-4.15 ~amd64
 =dev-lang/rust-1.16.0 ~amd64
-
+=app-i18n/unicode-cldr-31.0.1 ~amd64
+=app-i18n/unicode-emoji-5.0 ~amd64
