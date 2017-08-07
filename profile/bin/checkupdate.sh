@@ -113,7 +113,8 @@ checkit()
 
 add_data_mvnrepo(){
   #add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|awk '{print \$(NF-4),\$(NF-2),\$(NF-1),\$(NF);}'"
-  add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|sed 's/[0-9][A-Za-z0-9\.]*\.x *//'|awk '{print \$(NF-4),\$(NF-2),\$(NF-1),\$(NF);}'"
+  #add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|sed 's/[0-9][A-Za-z0-9\.]*\.x *//'|awk '{print \$(NF-4),\$(NF-2),\$(NF-1),\$(NF);}'"
+  add_data "$1" "http://mvnrepository.com/artifact/$2" " grep '^[[:blank:]]*[0-9].*[[:blank:]][0-9][0-9]*[[:blank:]]'|sed 's/[0-9][A-Za-z0-9\.]*\.x *//'|awk '{print \$(NF-4);}'"
 }
 
 add_data "XR-3008" "http://conqueror.gpscamera.org/" "grep '台灣目前最新版本'"
