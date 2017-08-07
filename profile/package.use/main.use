@@ -63,4 +63,4 @@ app-crypt/gpgme -qt5
 >=media-libs/phonon-gstreamer-4.9.0-r1 qt4
 >=media-libs/phonon-vlc-0.9.1-r1 qt4
 >=media-libs/phonon-4.9.1-r1 qt4
-#kde-apps/k3b taglib
+>=dev-libs/xmlsec-1.2.24 nss

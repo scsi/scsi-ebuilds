@@ -24,3 +24,5 @@
 =dev-lang/rust-1.16.0 ~amd64
 =app-i18n/unicode-cldr-31.0.1 ~amd64
 =app-i18n/unicode-emoji-5.0 ~amd64
+=dev-libs/xmlsec-1.2.24 ~amd64
+=dev-util/cppunit-1.14.0 ~amd64
