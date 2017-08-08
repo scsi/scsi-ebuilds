@@ -26,3 +26,8 @@
 =app-i18n/unicode-emoji-5.0 ~amd64
 =dev-libs/xmlsec-1.2.24 ~amd64
 =dev-util/cppunit-1.14.0 ~amd64
+=dev-util/cargo-0.20.0 ~amd64
+=dev-libs/nspr-4.16 ~amd64
+=dev-libs/nss-3.32 ~amd64
+=virtual/rust-1.19.0 ~amd64
+=dev-lang/rust-1.19.0 ~amd64
