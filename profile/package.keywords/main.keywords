@@ -95,7 +95,7 @@ net-nds/jxplorer
 net-print/cups-pdf
 net-wireless/broadcom-sta
 sys-apps/anything-sync-daemon
-sys-apps/dbus
+#sys-apps/dbus
 sys-apps/hdparm
 sys-apps/smartmontools
 sys-apps/systemd
@@ -114,6 +114,8 @@ www-apps/redmine
 www-client/firefox
 www-client/firefox-bin
 www-client/google-chrome
+www-client/google-chrome-beta
+app-text/evince
 www-client/google-chrome-unstable
 www-misc/profile-sync-daemon
 x11-drivers/xf86-video-ati

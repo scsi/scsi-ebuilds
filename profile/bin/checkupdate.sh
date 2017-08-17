@@ -147,9 +147,9 @@ add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
 add_data "geckodriver" "https://github.com/mozilla/geckodriver/releases" "grep 'v'"
 add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep '^ [0-9][0-9\.]*[0-9]$'"
-add_data "logstash" "https://www.elastic.co/downloads/logstash" " grep '^Logstash '"
-add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" " grep '^Elasticsearch '"
-add_data "kibana" "https://www.elastic.co/downloads/kibana" " grep '^Kibana '"
+add_data "logstash" "https://www.elastic.co/downloads/logstash" "grep -A1 '^Version'"
+add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" "grep -A1 '^Version'"
+add_data "kibana" "https://www.elastic.co/downloads/kibana" "grep -A1 '^Version'"
 for aa in compiler surefire clean install source jar javadoc antrun site jarsigner dependency;do
 	add_data_mvnrepo "maven-$aa-plugin" "org.apache.maven.plugins/maven-$aa-plugin"
 done
