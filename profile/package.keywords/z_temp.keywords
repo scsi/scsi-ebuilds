@@ -31,3 +31,4 @@
 =dev-libs/nss-3.32 ~amd64
 =virtual/rust-1.19.0 ~amd64
 =dev-lang/rust-1.19.0 ~amd64
+=sys-process/tini-0.15.0 ~amd64
