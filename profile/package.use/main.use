@@ -38,6 +38,7 @@ kde-frameworks/plasma -opengl
 sys-kernel/gentoo-sources kdbus experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
 #>=dev-qt/qtgui-5.5.1-r1 egl -gles2
+>=dev-qt/qtgui-5.5.1-r1 -gles2
 >=kde-apps/solid-runtime-15.08.3 -bluetooth
 kde-plasma/plasma-desktop -gtk3
 >=media-libs/mesa-11.0.6 wayland
