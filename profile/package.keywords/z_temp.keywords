@@ -33,3 +33,4 @@
 =dev-lang/rust-1.19.0 ~amd64
 =sys-process/tini-0.15.0 ~amd64
 =net-libs/telepathy-logger-qt-17.08.0
+=dev-libs/libgudev-232 ~amd64
