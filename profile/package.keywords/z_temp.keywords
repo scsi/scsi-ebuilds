@@ -24,3 +24,4 @@
 =net-libs/telepathy-logger-qt-17.08.0
 =dev-libs/libgudev-232 ~amd64
 =app-portage/gentoolkit-0.4.0 ~amd64
+=sys-process/tini-0.16.1 ~amd64
