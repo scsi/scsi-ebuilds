@@ -26,3 +26,4 @@
 =app-portage/gentoolkit-0.4.0 ~amd64
 =sys-process/tini-0.16.1 ~amd64
 =media-libs/libpng-1.6.32 ~amd64
+=dev-libs/nss-3.33
