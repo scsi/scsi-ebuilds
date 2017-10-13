@@ -26,3 +26,4 @@
 =dev-util/electron-1.6.11-r1 ~amd64
 =app-eselect/eselect-electron-2.0 ~amd64
 =sys-apps/util-linux-2.30.2
+=sys-apps/dbus-1.10.24 ~amd6

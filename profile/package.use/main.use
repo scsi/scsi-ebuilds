@@ -65,3 +65,5 @@ app-crypt/gpgme -qt5
 >=media-libs/phonon-4.9.1-r1 qt4
 >=dev-libs/xmlsec-1.2.24 nss
 >=dev-libs/libpcre2-10.30 pcre16
+>=sys-apps/dbus-1.10.18 user-session
+net-wireless/bluez user-session
