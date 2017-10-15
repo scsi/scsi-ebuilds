@@ -1,1 +1,2 @@
 =app-i18n/ibus-1.5.15
+=kde-misc/yakuake-3.0.4-r1
