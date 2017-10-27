@@ -68,3 +68,4 @@ app-crypt/gpgme -qt5
 >=sys-apps/dbus-1.10.18 user-session
 net-wireless/bluez user-session
 sys-auth/polkit-qt qt4
+>=dev-libs/libgit2-0.24.6 ssh
