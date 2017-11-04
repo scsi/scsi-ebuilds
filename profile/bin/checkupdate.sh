@@ -3,9 +3,9 @@
 
 trap "stopprogress;exit 0" 15 1 2 9
 
-export http_proxy=http://bqproxy.iet:3128
-export https_proxy=http://bqproxy.iet:3128
-export ftp_proxy=http://bqproxy.iet:3128
+#export http_proxy=http://bqproxy.iet:3128
+#export https_proxy=http://bqproxy.iet:3128
+#export ftp_proxy=http://bqproxy.iet:3128
 
 
 TIMEOUT=30s
