@@ -36,3 +36,5 @@
 =sys-libs/compiler-rt-sanitizers-5.0.0 ~amd64
 =sys-devel/llvm-5.0.0 ~amd64
 =media-libs/gst-plugins-bad-1.12.3
+=media-libs/gst-plugins-base-1.12.3 ~amd64
+=media-libs/gstreamer-1.12.3 ~amd64
