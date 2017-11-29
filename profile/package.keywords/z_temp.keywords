@@ -38,3 +38,8 @@
 =media-libs/gst-plugins-bad-1.12.3
 =media-libs/gst-plugins-base-1.12.3 ~amd64
 =media-libs/gstreamer-1.12.3 ~amd64
+=net-vpn/openfortivpn-1.5.0 ~amd64
+=net-firewall/nftables-0.8-r3 ~amd64
+=app-eselect/eselect-electron-2.1 ~amd64
+=games-misc/cowsay-3.03-r2 ~amd64
+=net-libs/libnftnl-1.0.8-r1 ~amd64
