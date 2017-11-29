@@ -34,6 +34,7 @@ src_install()
 	dodir /etc/X11/xinit/xinitrc.d
 	exeinto /etc/X11/xinit/xinitrc.d
 	doexe ${FILESDIR}/script/00-x11-locale
+	doexe ${FILESDIR}/script/01-x11-fix-KDE
 
 	dodir /etc/vim
 	insinto /etc/vim
