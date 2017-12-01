@@ -22,3 +22,4 @@
 =net-libs/libnftnl-1.0.8-r1 ~amd64
 =dev-libs/tinyxml2-3.0.0 ~amd64
 =sys-fs/encfs-1.9.2 ~amd64
+=media-sound/wavsplit-1.2.1-r1 ~amd64
