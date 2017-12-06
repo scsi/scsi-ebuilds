@@ -23,3 +23,14 @@
 =dev-libs/tinyxml2-3.0.0 ~amd64
 =sys-fs/encfs-1.9.2 ~amd64
 =media-sound/wavsplit-1.2.1-r1 ~amd64
+=dev-libs/nss-3.34.1 ~amd64
+=sys-devel/llvm-common-5.0.0 ~amd64
+=sys-devel/clang-5.0.0 ~amd64
+=sys-libs/libomp-5.0.0 ~amd64
+=sys-devel/clang-runtime-5.0.0 ~amd64
+=sys-libs/compiler-rt-5.0.0 ~amd64
+=virtual/rust-1.19.0 ~amd64
+=dev-util/cargo-0.21.0 ~amd64
+=dev-lang/rust-1.19.0 ~amd64
+=sys-libs/compiler-rt-sanitizers-5.0.0 ~amd64
+=sys-devel/llvm-5.0.0 ~amd64
