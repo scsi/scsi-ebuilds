@@ -34,3 +34,4 @@
 =dev-lang/rust-1.19.0 ~amd64
 =sys-libs/compiler-rt-sanitizers-5.0.0 ~amd64
 =sys-devel/llvm-5.0.0 ~amd64
+=media-libs/mesa-17.2.6
