@@ -39,3 +39,4 @@
 =dev-python/sip-4.19.6 ~amd64
 =app-accessibility/speech-dispatcher-0.8.7 ~amd64
 =kde-apps/ksmtp-17.12.0 ~amd64
+=media-libs/xine-lib-1.2.8
