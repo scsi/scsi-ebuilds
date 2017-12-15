@@ -69,3 +69,4 @@ app-crypt/gpgme -qt5
 net-wireless/bluez user-session
 sys-auth/polkit-qt qt4
 >=dev-libs/libgit2-0.24.6 ssh
+>=dev-qt/qtwebkit-5.9.1 printsupport

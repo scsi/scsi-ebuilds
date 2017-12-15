@@ -35,3 +35,7 @@
 =sys-libs/compiler-rt-sanitizers-5.0.0 ~amd64
 =sys-devel/llvm-5.0.0 ~amd64
 =media-libs/mesa-17.2.6
+=dev-python/PyQt5-5.9.2
+=dev-python/sip-4.19.6 ~amd64
+=app-accessibility/speech-dispatcher-0.8.7 ~amd64
+=kde-apps/ksmtp-17.12.0 ~amd64
