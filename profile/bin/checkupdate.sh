@@ -146,7 +146,7 @@ add_data "asd" "https://github.com/graysky2/anything-sync-daemon/releases" "grep
 add_data "psd" "https://github.com/graysky2/profile-sync-daemon/releases" "grep 'v'"
 add_data "profile_cleaner" "https://github.com/graysky2/profile-cleaner/releases" "grep 'v'"
 add_data "geckodriver" "https://github.com/mozilla/geckodriver/releases" "grep 'v'"
-add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep 'Folders'|awk '{print \$1}'"
+#add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823" " grep 'Folders'|awk '{print \$1}'"
 #add_data "smimui7" "https://www.androidfilehost.com/?w=files&flid=18823"
 add_data "logstash" "https://www.elastic.co/downloads/logstash" "grep -A1 '^Version'"
 add_data "elasticsearch" "https://www.elastic.co/downloads/elasticsearch" "grep -A1 '^Version'"
