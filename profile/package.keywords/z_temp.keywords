@@ -40,3 +40,4 @@
 =app-accessibility/speech-dispatcher-0.8.7 ~amd64
 =kde-apps/ksmtp-17.12.0 ~amd64
 =media-libs/xine-lib-1.2.8
+=dev-util/kbuild-0.1.9998.3127 ~amd64
