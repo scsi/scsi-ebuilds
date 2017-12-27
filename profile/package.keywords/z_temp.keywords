@@ -1,23 +1,12 @@
 #eix -cTt
-=x11-misc/obconf-qt-0.9.0_p20150729 ~amd64
-=dev-libs/libqtxdg-2.0.0 ~amd64
-=x11-libs/libfm-qt-0.11.1 ~amd64
-=app-i18n/zhcon-0.2.6-r2 ~amd64
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
 =sys-kernel/linux-headers-4.10 ~amd64
 =app-i18n/unicode-cldr-31.0.1 ~amd64
 =app-i18n/unicode-emoji-5.0 ~amd64
-=net-libs/telepathy-logger-qt-17.08.0
-=dev-libs/libgudev-232 ~amd64
 =media-libs/libpng-1.6.32 ~amd64
-=dev-util/electron-1.6.11-r1 ~amd64
 =dev-libs/nspr-4.17 ~amd64
-=media-libs/gst-plugins-bad-1.12.3
-=media-libs/gst-plugins-base-1.12.3 ~amd64
-=media-libs/gstreamer-1.12.3 ~amd64
 =net-vpn/openfortivpn-1.5.0 ~amd64
 =net-firewall/nftables-0.8-r3 ~amd64
-=app-eselect/eselect-electron-2.1 ~amd64
 =games-misc/cowsay-3.03-r2 ~amd64
 =net-libs/libnftnl-1.0.8-r1 ~amd64
 =dev-libs/tinyxml2-3.0.0 ~amd64
@@ -34,10 +23,7 @@
 =dev-lang/rust-1.19.0 ~amd64
 =sys-libs/compiler-rt-sanitizers-5.0.0 ~amd64
 =sys-devel/llvm-5.0.0 ~amd64
-=media-libs/mesa-17.2.6
 =dev-python/PyQt5-5.9.2
 =dev-python/sip-4.19.6 ~amd64
 =app-accessibility/speech-dispatcher-0.8.7 ~amd64
-=kde-apps/ksmtp-17.12.0 ~amd64
-=media-libs/xine-lib-1.2.8
 =dev-util/kbuild-0.1.9998.3127 ~amd64
