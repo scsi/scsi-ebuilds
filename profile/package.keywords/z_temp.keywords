@@ -14,7 +14,7 @@
 =dev-python/PyQt5-5.9.2
 =dev-python/sip-4.19.6 ~amd64
 =dev-util/kbuild-0.1.9998.3127 ~amd64
-=dev-lang/rust-1.23.0-r1 ~amd64
+=dev-lang/rust-1.23.0 ~amd64
 =dev-util/cargo-0.24.0 ~amd64
 =media-libs/libpng-1.6.34 ~amd64
 =virtual/rust-1.23.0 ~amd64
