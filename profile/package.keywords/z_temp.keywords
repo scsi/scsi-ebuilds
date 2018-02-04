@@ -21,4 +21,4 @@
 =dev-libs/liborcus-0.13.2 ~amd64
 =dev-libs/libixion-0.13.0 ~amd64
 =app-text/libqxp-0.0.1 ~amd64
-=app-text/libepubgen-0.1.0 ~amd6
+=app-text/libepubgen-0.1.0 ~amd64
