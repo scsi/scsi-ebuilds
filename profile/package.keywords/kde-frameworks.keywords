@@ -107,7 +107,6 @@ kde-apps/kanagram
 kde-apps/kapman
 kde-apps/kapptemplate
 kde-apps/kate
-kde-apps/katepart
 kde-apps/katomic
 kde-apps/kblackbox
 kde-apps/kblocks
@@ -128,7 +127,6 @@ kde-apps/kde4-l10n
 kde-apps/kdeaccessibility-meta
 kde-apps/kdeadmin-meta
 kde-apps/kde-apps-meta
-kde-apps/kdebase-data
 kde-apps/kdebase-meta
 kde-apps/kdebugsettings
 kde-apps/kdecore-meta
@@ -205,7 +203,6 @@ kde-apps/konqueror
 kde-apps/konquest
 kde-apps/konsole
 kde-apps/konsolekalendar
-kde-apps/konsolepart
 kde-apps/kontact
 kde-apps/kontactinterface
 kde-apps/kopete
@@ -332,6 +329,7 @@ kde-frameworks/kf-env
 kde-frameworks/kfilemetadata
 kde-frameworks/kglobalaccel
 kde-frameworks/kguiaddons
+kde-frameworks/kholidays
 kde-frameworks/khtml
 kde-frameworks/ki18n
 kde-frameworks/kiconthemes
@@ -371,6 +369,7 @@ kde-frameworks/networkmanager-qt
 kde-frameworks/oxygen-icons
 kde-frameworks/plasma
 kde-frameworks/prison
+kde-frameworks/purpose
 kde-frameworks/qqc2-desktop-style
 kde-frameworks/solid
 kde-frameworks/sonnet
