@@ -44,4 +44,5 @@
 =x11-proto/damageproto-1.2.1-r2
 =x11-proto/xcmiscproto-1.2.2-r1
 =sys-libs/libseccomp-2.3.3 ~amd64
+=app-emulation/runc-1.0.0_rc5 ~amd64
 
