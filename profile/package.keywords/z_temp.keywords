@@ -13,4 +13,4 @@
 =app-text/libepubgen-0.1.0 ~amd64
 =sys-libs/libseccomp-2.3.3 ~amd64
 =app-emulation/runc-1.0.0_rc5 ~amd64
-
+=dev-libs/liborcus-0.13.4
