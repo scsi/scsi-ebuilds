@@ -103,11 +103,13 @@ kde-apps/kalarmcal
 kde-apps/kalgebra
 kde-apps/kalzium
 kde-apps/kamera
+kde-apps/kamoso
 kde-apps/kanagram
 kde-apps/kapman
 kde-apps/kapptemplate
 kde-apps/kate
 kde-apps/katomic
+kde-apps/kbackup
 kde-apps/kblackbox
 kde-apps/kblocks
 kde-apps/kblog
@@ -222,7 +224,6 @@ kde-apps/ksmtp
 kde-apps/ksnakeduel
 kde-apps/kspaceduel
 kde-apps/ksquares
-kde-apps/kstars
 kde-apps/ksudoku
 kde-apps/ksystemlog
 kde-apps/kteatime
