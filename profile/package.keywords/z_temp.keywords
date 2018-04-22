@@ -15,3 +15,4 @@
 =app-emulation/runc-1.0.0_rc5 ~amd64
 =dev-libs/liborcus-0.13.4
 =media-libs/mlt-6.6.0 ~amd64
+=x11-drivers/xf86-input-libinput-0.27.1
