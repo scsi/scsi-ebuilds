@@ -166,6 +166,7 @@ add_data "Nexus" "https://support.sonatype.com/hc/en-us/categories/202673428-Nex
 add_data "redmine_work_time" "https://bitbucket.org/tkusukawa/redmine_work_time/downloads/" "grep '.zip'|awk '{print \$1}'"
 add_data "liteide" "https://github.com/visualfc/liteide/releases" "grep 'Ver'"
 add_data "vscode" "https://code.visualstudio.com/download" "grep 'Version'"
+add_data "r8152" "http://www.realtek.com.tw/Downloads/downloadsView.aspx?Langid=1&PNid=13&PFid=56&Level=5&Conn=4&DownTypeID=3&GetDown=false" "grep 'LINUX'"
 
 add_mi_rom_data(){ add_data "$1" "$2" "grep '^Author: MIUI Official TeamVersion:'|awk '{print \$5,\$6}'"; }
 add_mi_rom_data "mi6-rom" "http://en.miui.com/download-326.html"
