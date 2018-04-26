@@ -70,3 +70,4 @@ sys-auth/polkit-qt qt4
 >=dev-libs/libgit2-0.24.6 ssh
 >=dev-qt/qtwebkit-5.9.1 printsupport
 >=media-plugins/gst-plugins-meta-1.12.4 v4l
+app-laptop/tlp tlp_suggests
