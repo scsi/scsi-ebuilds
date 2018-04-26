@@ -1,18 +1,15 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
 =net-vpn/openfortivpn-1.5.0 ~amd64
-=games-misc/cowsay-3.03-r2 ~amd64
 =media-sound/wavsplit-1.2.1-r1 ~amd64
 =dev-util/kbuild-0.1.9998.3127 ~amd64
 =dev-lang/rust-1.23.0 ~amd64
 =dev-util/cargo-0.24.0 ~amd64
-=media-libs/libpng-1.6.34 ~amd64
 =virtual/rust-1.23.0 ~amd64
 =dev-libs/libixion-0.13.0 ~amd64
 =app-text/libqxp-0.0.1 ~amd64
 =app-text/libepubgen-0.1.0 ~amd64
 =sys-libs/libseccomp-2.3.3 ~amd64
-=app-emulation/runc-1.0.0_rc5 ~amd64
 =dev-libs/liborcus-0.13.4
 =media-libs/mlt-6.6.0 ~amd64
 =x11-drivers/xf86-input-libinput-0.27.1
