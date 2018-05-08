@@ -1,6 +1,5 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
-=net-vpn/openfortivpn-1.5.0 ~amd64
 =media-sound/wavsplit-1.2.1-r1 ~amd64
 =dev-util/kbuild-0.1.9998.3127 ~amd64
 =dev-lang/rust-1.23.0 ~amd64
@@ -12,6 +11,5 @@
 =sys-libs/libseccomp-2.3.3 ~amd64
 =dev-libs/liborcus-0.13.4
 =media-libs/mlt-6.6.0 ~amd64
-=x11-drivers/xf86-input-libinput-0.27.1
 =dev-libs/nspr-4.19 ~amd64
 =dev-libs/nss-3.36.1 ~amd64
