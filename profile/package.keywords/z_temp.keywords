@@ -13,3 +13,5 @@
 =media-libs/mlt-6.6.0 ~amd64
 =dev-libs/nspr-4.19 ~amd64
 =dev-libs/nss-3.36.1 ~amd64
+=dev-lang/rust-1.25.0 ~amd64
+=dev-util/cargo-0.26.0 ~amd64
