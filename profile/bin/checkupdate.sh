@@ -156,7 +156,8 @@ for aa in compiler surefire clean install source jar javadoc antrun site jarsign
 done
 
 add_data "redis" "http://redis.io" "grep 'is the latest stable version.'"
-add_data "directory_studio" "http://directory.apache.org/studio/download/download-linux.html" "grep 'tar.gz '|awk -F / '{print \$(NF)}'"
+#add_data "directory_studio" "http://directory.apache.org/studio/download/download-linux.html" "grep 'tar.gz '|awk -F / '{print \$(NF)}'"
+add_data "directory_studio" "http://directory.apache.org/studio/" "grep '^Directory Studio'"
 add_data "selenium" "http://www.seleniumhq.org/download/" "grep 'Download version'"
 #add_data "forticlient" "https://support.zen.co.uk/kb/Knowledgebase/Fortinet-SSL-VPN-Client" "grep 'linux'"
 add_data "forticlient-1" "http://www.traco.hu/tools/" "grep DIR"
