@@ -4,8 +4,6 @@ app-i18n/fcitx table
 net-nds/openldap syslog -minimal
 app-accessibility/espeak portaudio
 app-portage/layman git subversion
-dev-db/mysql embedded
-virtual/mysql embedded
 dev-python/PyQt4 webkit declarative
 dev-vcs/git cgi cvs subversion
 dev-vcs/subversion -dso
