@@ -8,3 +8,5 @@ DIST visual-studio-code-1.23.1-amd64.tar.gz 68325851 SHA256 f3d1d1bf9de4d4bdd53d
 DIST visual-studio-code-1.23.1-x86.tar.gz 69221155 SHA256 c6263f44433a55265d46d12f2f76d5121a41deebfc48f45fa8ae9a6c9eef0a6f
 DIST visual-studio-code-1.24.0-amd64.tar.gz 70371127 SHA256 32e48dcd500462f2001181d08e49aa5f52f6dbbeafc786c7dad56e081605a586
 DIST visual-studio-code-1.24.0-x86.tar.gz 71307420 SHA256 7f279f1b319f20b1cf1f53af97665e35efec7a46958d6fb4ab22b819c6f5bb9d
+DIST visual-studio-code-1.24.1-amd64.tar.gz 70368270 SHA256 62c5faa37ad5047c450c30e2d4b6da5637cb59b3303b2b65c1d35d7749d984a4
+DIST visual-studio-code-1.24.1-x86.tar.gz 71307539 SHA256 4a5580f9c4472a95916fade5ee77d432ba14a2f7e36ab49aff52c61a1b862ca1
