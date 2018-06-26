@@ -97,7 +97,6 @@ sys-apps/anything-sync-daemon
 #sys-apps/dbus
 sys-apps/hdparm
 sys-apps/smartmontools
-sys-apps/systemd
 sys-firmware/b43-firmware
 sys-firmware/b43legacy-firmware
 sys-fs/reiser4progs
