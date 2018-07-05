@@ -7,3 +7,4 @@
 =media-libs/mesa-18.1.1-r1
 ~sys-apps/systemd-238
 =dev-libs/nss-3.38 ~amd64
+=media-video/smplayer-18.6.0
