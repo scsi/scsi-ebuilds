@@ -70,3 +70,5 @@ sys-auth/polkit-qt qt4
 app-laptop/tlp tlp_suggests
 >=media-libs/freetype-2.9.1-r3 harfbuzz
 dev-libs/libgit2 -curl
+>=media-plugins/gst-plugins-gtk-1.14.1 -gles2
+>=media-libs/gst-plugins-base-1.14.1 -gles2
