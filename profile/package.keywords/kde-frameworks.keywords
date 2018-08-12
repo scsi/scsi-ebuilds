@@ -7,8 +7,6 @@ dev-qt/qdbus
 dev-qt/qdbusviewer
 dev-qt/qdoc
 dev-qt/qt3d
-dev-qt/qt3support
-dev-qt/qtbearer
 dev-qt/qtbluetooth
 dev-qt/qtcharts
 dev-qt/qtchooser
@@ -18,7 +16,6 @@ dev-qt/qt-creator
 dev-qt/qtdatavis3d
 dev-qt/qtdbus
 dev-qt/qtdeclarative
-dev-qt/qtdemo
 dev-qt/qtdiag
 dev-qt/qt-docs
 dev-qt/qtgraphicaleffects
@@ -27,7 +24,6 @@ dev-qt/qthelp
 dev-qt/qtimageformats
 dev-qt/qtlocation
 dev-qt/qtlockedfile
-dev-qt/qt-meta
 dev-qt/qtmultimedia
 dev-qt/qtnetwork
 dev-qt/qtnetworkauth
