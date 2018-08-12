@@ -7,3 +7,9 @@
 =dev-libs/nss-3.38 ~amd64
 =media-video/smplayer-18.6.0
 =sys-process/tini-0.18.0 ~amd64
+=x11-themes/lxqt-themes-0.13.0 ~amd64
+=media-sound/pavucontrol-qt-0.4.0 ~amd64
+=x11-libs/libfm-qt-0.13.1 ~amd64
+=lxqt-base/lxqt-l10n-0.13.0 ~amd64
+=dev-util/lxqt-build-tools-0.5.0 ~amd64
+=dev-libs/libqtxdg-3.2.0 ~amd64
