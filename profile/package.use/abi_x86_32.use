@@ -115,3 +115,4 @@
 >=dev-libs/libunistring-0.9.7 abi_x86_32
 >=dev-util/pkgconfig-0.29.2 abi_x86_32
 >=x11-base/xcb-proto-1.13 abi_x86_32
+>=dev-libs/fribidi-0.19.7 abi_x86_32
