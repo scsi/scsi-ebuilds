@@ -13,3 +13,4 @@
 =lxqt-base/lxqt-l10n-0.13.0 ~amd64
 =dev-util/lxqt-build-tools-0.5.0 ~amd64
 =dev-libs/libqtxdg-3.2.0 ~amd64
+=app-text/libnumbertext-1.0 ~amd64
