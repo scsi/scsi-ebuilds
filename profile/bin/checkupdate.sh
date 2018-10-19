@@ -172,9 +172,10 @@ add_data "r8152" "http://www.realtek.com.tw/Downloads/downloadsView.aspx?Langid=
 
 add_mi_rom_data(){ add_data "$1" "$2" "grep '^Author: MIUI Official TeamVersion:'|awk '{print \$5,\$6}'"; }
 add_mi_rom_data "mi6-rom" "http://en.miui.com/download-326.html"
+add_mi_rom_data "mi8-rom" "http://en.miui.com/download-346.html"
 add_mi_rom_data "mimax2-rom" "http://en.miui.com/download-328.html"
 add_mi_rom_data "rm4x-rom" "http://en.miui.com/download-321.html"
-add_mi_rom_data "mi2-rom" "http://en.miui.com/download-2.html"
+#add_mi_rom_data "mi2-rom" "http://en.miui.com/download-2.html"
 
 #add_data "GPS9900" "http://www.tw-radar.com.tw/tech/file/upfile_list.asp" "GPS.*9900.*?x?W"
 #add_data "GPS9968" "http://www.5685.com.tw/default.php" "?x?W??"

@@ -1,4 +1,5 @@
 #sys-apps/systemd-ui
+app-admin/eclean-kernel
 app-admin/eselect-xim
 app-admin/jailkit
 app-admin/profile-cleaner
@@ -88,6 +89,7 @@ net-misc/networkmanager-sstp
 net-misc/networkmanager-vpnc
 net-misc/openfortivpn
 net-misc/pcmanx-gtk2
+net-misc/rclone
 net-misc/rdesktop
 net-misc/tsclient
 net-nds/jxplorer
