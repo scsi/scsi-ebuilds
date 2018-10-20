@@ -14,3 +14,4 @@
 =dev-util/lxqt-build-tools-0.5.0 ~amd64
 =dev-libs/libqtxdg-3.2.0 ~amd64
 =app-text/libnumbertext-1.0 ~amd64
+=media-fonts/kanjistrokeorders-2.016
