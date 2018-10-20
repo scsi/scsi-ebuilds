@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
-DESCRIPTION="A set of useful tools made by scsi"
+DESCRIPTION="rclone file system"
 HOMEPAGE="https://github.com/ncw/rclone/wiki/rclone-fstab-mount-helper-script"
 SRC_URI=""
 LICENSE="GPL-2"
