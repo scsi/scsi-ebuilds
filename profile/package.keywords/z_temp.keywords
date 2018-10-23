@@ -16,3 +16,4 @@
 =app-text/libnumbertext-1.0 ~amd64
 =media-fonts/kanjistrokeorders-2.016
 =dev-util/cbindgen-0.6.6 ~amd64
+=dev-libs/nss-3.39 ~amd64
