@@ -1,6 +1,5 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
-~sys-apps/systemd-238
 =sys-process/tini-0.18.0 ~amd64
 =app-text/libnumbertext-1.0 ~amd64
 =dev-util/cbindgen-0.6.6 ~amd64

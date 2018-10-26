@@ -26,7 +26,6 @@ media-libs/clutter egl
 >=dev-qt/qtmultimedia-5.4.2-r1 qml
 >=dev-qt/qtquickcontrols-5.4.2 widgets
 >=app-crypt/pinentry-0.9.5 gnome-keyring
-app-text/evince -nsplugin
 >=media-video/ffmpeg-2.8.1 vpx
 sys-kernel/gentoo-sources experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
