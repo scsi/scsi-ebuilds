@@ -21,16 +21,19 @@ net-dns/ddclient )
 #}
 #src_compile() {
 #}
-src_install() 
+src_install()
 {
-	exeinto /etc/profile.d
-	doexe ${FILESDIR}/script/profile.scsi.sh
-	doexe ${FILESDIR}/script/profile.ps1.sh
+	insinto /etc/profile.d
+	doins ${FILESDIR}/script/profile.scsi.sh
+	doins ${FILESDIR}/script/profile.ps1.sh
+
+	insinto /etc/bash/bashrc.d
+	doins ${FILESDIR}/script/profile.ps1.sh
 
 	dodir /etc/env.d
 	insinto /etc/env.d
 	doins ${FILESDIR}/script/99scsiextend
-	
+
 	dodir /etc/X11/xinit/xinitrc.d
 	exeinto /etc/X11/xinit/xinitrc.d
 	doexe ${FILESDIR}/script/00-x11-locale
