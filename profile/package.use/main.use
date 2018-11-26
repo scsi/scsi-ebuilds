@@ -7,7 +7,7 @@ app-portage/layman git subversion
 dev-vcs/git cgi cvs subversion
 dev-vcs/subversion -dso
 media-libs/libpng apng
-media-video/mplayer bl bs2b cddb cdparanoia cpudetection dga dvb ftp ladspa libcaca lirc md5sum nas nut pnm pvr radio tga v4l xvmc
+media-video/mplayer bl bs2b cddb cdparanoia cpudetection dga dvb ftp ladspa libcaca lirc md5sum nas nut pnm pvr radio tga v4l
 sys-apps/pciutils -zlib
 sys-libs/zlib minizip
 media-plugins/alsa-plugins pulseaudio
