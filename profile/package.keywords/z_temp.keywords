@@ -4,3 +4,4 @@
 =app-text/libnumbertext-1.0 ~amd64
 =dev-util/cbindgen-0.6.6 ~amd64
 =dev-libs/nss-3.39 ~amd64
+=media-video/vcdimager-2.0.1
