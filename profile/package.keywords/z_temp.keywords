@@ -3,4 +3,4 @@
 =sys-process/tini-0.18.0 ~amd64
 =app-text/libnumbertext-1.0 ~amd64
 =dev-util/cbindgen-0.6.6 ~amd64
-=dev-libs/nss-3.39 ~amd64
+=dev-libs/nss-3.41 ~amd64
