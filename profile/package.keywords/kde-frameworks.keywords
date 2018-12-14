@@ -79,6 +79,11 @@ kde-apps/cantor
 kde-apps/cervisia
 kde-apps/dolphin
 kde-apps/dolphin-plugins
+kde-apps/dolphin-plugins-bazaar
+kde-apps/dolphin-plugins-dropbox
+kde-apps/dolphin-plugins-git
+kde-apps/dolphin-plugins-mercurial
+kde-apps/dolphin-plugins-subversion
 kde-apps/dragon
 kde-apps/eventviews
 kde-apps/ffmpegthumbs
@@ -191,6 +196,7 @@ kde-apps/kmouth
 kde-apps/kmplot
 kde-apps/knavalbattle
 kde-apps/knetwalk
+kde-apps/knights
 kde-apps/knotes
 kde-apps/kolf
 kde-apps/kollision
