@@ -1,3 +1,4 @@
+sys-apps/portage -rsync-verify
 net-misc/aria2 ssh metalink scripts xmlrpc
 net-ftp/pure-ftpd paranoidmsg
 app-i18n/fcitx table
