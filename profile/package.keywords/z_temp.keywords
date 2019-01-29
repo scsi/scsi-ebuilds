@@ -5,3 +5,4 @@
 =dev-util/cbindgen-0.6.6 ~amd64
 =dev-libs/nss-3.41 ~amd64
 =sys-kernel/linux-headers-4.20 ~amd64
+=net-print/cups-2.2.10
