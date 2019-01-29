@@ -5,3 +5,8 @@
 =dev-util/cbindgen-0.6.6 ~amd64
 =dev-libs/nss-3.41 ~amd64
 =sys-kernel/linux-headers-4.20 ~amd64
+=media-libs/libwebp-1.0.2 ~amd64
+=virtual/rust-1.32.0 ~amd64
+=dev-libs/nss-3.41-r1 ~amd64
+=virtual/cargo-1.32.0 ~amd64
+=dev-lang/rust-1.32.0 ~amd64
