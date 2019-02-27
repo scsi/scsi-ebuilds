@@ -10,3 +10,4 @@
 =dev-lang/rust-1.32.0 ~amd64
 =media-libs/libvpx-1.7.0 ~amd64
 =dev-util/cbindgen-0.7.1 ~amd64
+=sys-apps/xdg-desktop-portal-1.2.0 ~amd64
