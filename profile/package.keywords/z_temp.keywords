@@ -13,3 +13,6 @@
 =x11-libs/libfm-qt-0.14.1 ~amd64
 =x11-themes/lxqt-themes-0.14.0 ~amd64
 =dev-libs/libqtxdg-3.3.1 ~amd64
+=dev-util/mdds-1.4.3 ~amd64
+=dev-libs/libixion-0.14.1 ~amd64
+=dev-libs/liborcus-0.14.1 ~amd64
