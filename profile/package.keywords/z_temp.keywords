@@ -16,3 +16,5 @@
 =dev-util/mdds-1.4.3 ~amd64
 =dev-libs/libixion-0.14.1 ~amd64
 =dev-libs/liborcus-0.14.1 ~amd64
+=dev-db/sqlite-3.27.2 ~amd64
+=dev-libs/nss-3.43 ~amd64
