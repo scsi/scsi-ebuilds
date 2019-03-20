@@ -18,3 +18,5 @@
 =dev-libs/liborcus-0.14.1 ~amd64
 =dev-db/sqlite-3.27.2 ~amd64
 =dev-libs/nss-3.43 ~amd64
+=media-libs/dav1d-0.2.1 ~amd64
+=media-libs/libaom-1.0.0-r1 ~amd64
