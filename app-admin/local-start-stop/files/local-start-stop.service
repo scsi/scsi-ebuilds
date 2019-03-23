@@ -1,0 +1,11 @@
+[Unit] 
+Description=local start/stop script 
+
+[Service] 
+Type=oneshot 
+RemainAfterExit=true 
+ExecStart=/bin/sh /usr/lib/local-start-stop/local-start-stop.sh start 
+ExecStop=/bin/sh /usr/lib/local-start-stop/local-start-stop.sh stop 
+
+[Install] 
+WantedBy=multi-user.target
