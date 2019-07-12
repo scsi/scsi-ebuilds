@@ -26,3 +26,6 @@
 =media-libs/mlt-6.14.0 ~amd64
 =dev-util/cbindgen-0.8.2 ~amd64
 =dev-libs/nspr-4.21 ~amd64
+=dev-libs/nss-3.45 ~amd64
+=dev-util/cbindgen-0.9.0 ~amd64
+=media-libs/harfbuzz-2.5.3 ~amd64
