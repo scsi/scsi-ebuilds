@@ -60,5 +60,6 @@ net-wireless/bluez user-session
 >=dev-qt/qtwebkit-5.9.1 printsupport
 >=media-plugins/gst-plugins-meta-1.12.4 v4l
 >=media-libs/freetype-2.9.1-r3 harfbuzz
-dev-libs/libgit2 -curl
 >=media-libs/gst-plugins-bad-1.14.1-r1 gles2
+>=app-text/gtkspell-3.0.9 vala
+>=dev-libs/libdazzle-3.30.2 vala
