@@ -9,4 +9,4 @@
 =virtual/cargo-1.37.0 ~amd64
 =dev-lang/rust-1.37.0 ~amd64
 =virtual/rust-1.37.0 ~amd64
-=dev-libs/openssl-1.1.0l ~amd64
+=net-vpn/networkmanager-sstp-1.2.0 ~amd64
