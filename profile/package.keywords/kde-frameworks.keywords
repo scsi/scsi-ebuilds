@@ -248,11 +248,13 @@ kde-frameworks/kapidox
 kde-frameworks/karchive
 kde-frameworks/kauth
 kde-frameworks/kbookmarks
+kde-frameworks/kcalendarcore
 kde-frameworks/kcmutils
 kde-frameworks/kcodecs
 kde-frameworks/kcompletion
 kde-frameworks/kconfig
 kde-frameworks/kconfigwidgets
+kde-frameworks/kcontacts
 kde-frameworks/kcoreaddons
 kde-frameworks/kcrash
 kde-frameworks/kdbusaddons
