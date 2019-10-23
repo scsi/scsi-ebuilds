@@ -3,3 +3,4 @@
 =sys-kernel/linux-headers-4.20 ~amd64
 =net-vpn/networkmanager-sstp-1.2.0 ~amd64
 =net-misc/sstp-client-1.0.12 ~amd64
+=dev-libs/nss-3.47 ~amd64
