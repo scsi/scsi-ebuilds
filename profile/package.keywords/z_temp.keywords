@@ -4,3 +4,5 @@
 =net-vpn/networkmanager-sstp-1.2.0 ~amd64
 =net-misc/sstp-client-1.0.12 ~amd64
 =dev-libs/nss-3.47 ~amd64
+=sys-apps/bolt-0.8 ~amd64
+=dev-util/umockdev-0.12.1 ~amd64
