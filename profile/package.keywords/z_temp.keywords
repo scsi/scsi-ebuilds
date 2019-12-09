@@ -7,3 +7,4 @@
 =sys-apps/bolt-0.8 ~amd64
 =dev-util/umockdev-0.12.1 ~amd64
 =dev-libs/nspr-4.24 ~amd64
+=net-libs/accounts-qml-0.7 ~amd64
