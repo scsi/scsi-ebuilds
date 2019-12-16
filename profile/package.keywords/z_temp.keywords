@@ -9,3 +9,4 @@
 =dev-libs/nspr-4.24 ~amd64
 =net-libs/accounts-qml-0.7 ~amd64
 =media-libs/mlt-6.18.0 ~amd64
+=net-libs/accounts-qml-0.7-r1 ~amd64
