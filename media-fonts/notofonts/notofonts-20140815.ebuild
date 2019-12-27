@@ -2,6 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 # $Header: $
 
+EAPI=6
 inherit font
 
 DESCRIPTION="A font family from Google designed to cover all the scripts encoded in Unicode"
