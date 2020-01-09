@@ -3,10 +3,11 @@
 =sys-kernel/linux-headers-4.20 ~amd64
 =net-vpn/networkmanager-sstp-1.2.0 ~amd64
 =net-misc/sstp-client-1.0.12 ~amd64
-=dev-libs/nss-3.47 ~amd64
 =sys-apps/bolt-0.8 ~amd64
 =dev-util/umockdev-0.12.1 ~amd64
 =dev-libs/nspr-4.24 ~amd64
 =net-libs/accounts-qml-0.7 ~amd64
 =media-libs/mlt-6.18.0 ~amd64
 =net-libs/accounts-qml-0.7-r1 ~amd64
+=dev-util/cbindgen-0.12.1 ~amd64
+=dev-libs/nss-3.49 ~amd64
