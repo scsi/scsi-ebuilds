@@ -7,3 +7,5 @@
 =media-libs/mlt-6.18.0 ~amd64
 =dev-util/cbindgen-0.12.1 ~amd64
 =dev-libs/nss-3.49 ~amd64
+=media-sound/elisa-19.12.2 ~amd64
+
