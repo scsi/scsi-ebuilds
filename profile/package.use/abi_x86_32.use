@@ -117,3 +117,4 @@
 >=x11-base/xcb-proto-1.13 abi_x86_32
 >=dev-libs/fribidi-0.19.7 abi_x86_32
 >=sys-apps/lm_sensors-3.4.0_p20180923 abi_x86_32
+>=virtual/libcrypt-1 abi_x86_32
