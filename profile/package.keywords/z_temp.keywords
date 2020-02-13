@@ -8,4 +8,7 @@
 =dev-util/cbindgen-0.12.1 ~amd64
 =dev-libs/nss-3.49 ~amd64
 =media-sound/elisa-19.12.2 ~amd64
-
+=sys-apps/portage-2.3.88 ~amd64
+=dev-libs/nss-3.50 ~amd64
+=dev-libs/nspr-4.25 ~amd64
+=app-portage/gentoolkit-0.4.7 ~amd64
