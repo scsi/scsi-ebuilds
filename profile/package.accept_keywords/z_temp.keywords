@@ -12,3 +12,5 @@
 =dev-libs/nss-3.50 ~amd64
 =dev-libs/nspr-4.25 ~amd64
 =app-portage/gentoolkit-0.4.7 ~amd64
+=media-sound/elisa-19.12.3 ~amd64
+
