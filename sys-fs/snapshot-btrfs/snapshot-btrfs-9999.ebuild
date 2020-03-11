@@ -6,7 +6,7 @@ EAPI=5
 
 EGIT_REPO_URI="https://github.com/scsi/snapshot-btrfs.git"
 
-inherit git-2
+inherit git-r3
 
 DESCRIPTION="Snapshot tool for BTRFS on Linux"
 HOMEPAGE="https://github.com/scsi/snapshot-btrfs"

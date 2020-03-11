@@ -13,4 +13,7 @@
 =dev-libs/nspr-4.25 ~amd64
 =app-portage/gentoolkit-0.4.7 ~amd64
 =media-sound/elisa-19.12.3 ~amd64
-
+=media-libs/libvpx-1.8.2 ~amd64
+=dev-util/cbindgen-0.13.1 ~amd64
+=media-libs/libwebp-1.1.0 ~amd64
+=net-vpn/networkmanager-fortisslvpn-1.2.8 ~amd64
