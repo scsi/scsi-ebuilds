@@ -21,3 +21,4 @@
 =dev-libs/libixion-0.15.0 ~amd64
 =dev-libs/liborcus-0.15.3 ~amd64
 =net-vpn/networkmanager-fortisslvpn-1.2.8-r1 ~amd64
+=app-text/libetonyek-0.1.9-r1 ~amd64
