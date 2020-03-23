@@ -35,7 +35,7 @@ sys-kernel/gentoo-sources experimental
 >=media-libs/mesa-11.0.6 wayland
 >=media-libs/mlt-0.9.8-r2 melt kdenlive -vdpau
 >=dev-qt/qtscript-5.5.1-r1 scripttools
-net-fs/samba gnutls client
+net-fs/samba client
 >=net-libs/telepathy-qt-0.9.6.1 farstream
 >=sys-libs/libseccomp-2.3.0 static-libs
 app-emulation/docker -device-mapper overlay
