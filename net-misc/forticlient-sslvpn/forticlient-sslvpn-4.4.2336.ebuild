@@ -10,6 +10,8 @@ HOMEPAGE="http://www.forticlient.com/"
 #SRC_URI="https://github.com/mcereda/forticlientsslvpn/raw/master/tarball/forticlientsslvpn_linux_${PV}.tar.gz"
 #SRC_URI="https://github.com/dbirks/forticlientsslvpn/raw/master/tarball/forticlientsslvpn_linux_${PV}.tar.gz"
 #SRC_URI="file://${FILESDIR}/forticlientsslvpn_linux_${PV}.tar.gz"
+#SRC_URI=https://github.com/machtelik/forticlientsslvpn/blob/master/tarball/forticlientsslvpn_linux_4.4.2336.tar.gz
+
 LICENSE="FortiClientSSLVPN"
 SLOT="0"
 IUSE=""
