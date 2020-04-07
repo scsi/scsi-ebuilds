@@ -63,3 +63,5 @@ net-wireless/bluez user-session
 >=media-libs/gst-plugins-bad-1.14.1-r1 gles2
 >=app-text/gtkspell-3.0.9 vala
 >=dev-libs/libdazzle-3.30.2 vala
+>=sys-libs/zlib-1.2.11-r2 static-libs
+>=app-arch/bzip2-1.0.6-r11 static-libs
