@@ -14,7 +14,6 @@ sys-libs/zlib minizip
 media-plugins/alsa-plugins pulseaudio
 sys-auth/pambase systemd
 >=dev-libs/elfutils-0.158 static-libs
-net-libs/webkit-gtk -opengl
 >=kde-base/kdelibs-4.12.4 zeroconf
 >=app-office/akonadi-server-1.12.1 soprano
 lxqt-base/lxqt-panel alsa desktopswitch kbindicator mainmenu mount quicklaunch showdesktop taskbar tray volume colorpicker cpuload dom networkmonitor sensors sysstat worldclock
