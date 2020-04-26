@@ -13,3 +13,4 @@
 =app-text/libetonyek-0.1.9-r1 ~amd64
 =net-libs/kdsoap-1.9.50_pre20200317 ~amd64
 =media-sound/elisa-20.04.0 ~amd64
+=net-libs/kdsoap-ws-discovery-client-0.2_pre20200317 ~amd64
