@@ -15,3 +15,4 @@
 =media-sound/elisa-20.04.0 ~amd64
 =net-libs/kdsoap-ws-discovery-client-0.2_pre20200317 ~amd64
 =net-vpn/networkmanager-fortisslvpn-1.2.8-r2 ~amd64
+=net-vpn/networkmanager-sstp-1.2.0-r1 ~amd64
