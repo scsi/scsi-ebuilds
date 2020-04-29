@@ -1,15 +1,10 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
-=sys-kernel/linux-headers-4.20 ~amd64
-=net-vpn/networkmanager-sstp-1.2.0 ~amd64
 =net-misc/sstp-client-1.0.12 ~amd64
-=app-portage/gentoolkit-0.4.7 ~amd64
 =media-libs/libvpx-1.8.2 ~amd64
 =media-libs/libwebp-1.1.0 ~amd64
 =dev-util/mdds-1.5.0 ~amd64
 =dev-libs/libixion-0.15.0 ~amd64
-=dev-libs/liborcus-0.15.3 ~amd64
-=net-vpn/networkmanager-fortisslvpn-1.2.8-r1 ~amd64
 =app-text/libetonyek-0.1.9-r1 ~amd64
 =net-libs/kdsoap-1.9.50_pre20200317 ~amd64
 =media-sound/elisa-20.04.0 ~amd64

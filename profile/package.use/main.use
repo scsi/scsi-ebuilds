@@ -19,7 +19,6 @@ sys-auth/pambase systemd
 lxqt-base/lxqt-panel alsa desktopswitch kbindicator mainmenu mount quicklaunch showdesktop taskbar tray volume colorpicker cpuload dom networkmonitor sensors sysstat worldclock
 lxqt-base/lxqt-meta  powermanagement
 >=net-dns/avahi-0.6.31-r6 mdnsresponder-compat
-media-libs/clutter egl
 >=dev-libs/libpcre-8.36 pcre16
 >=media-libs/phonon-4.8.3 designer
 >=media-libs/libvpx-1.4.0 postproc
@@ -37,7 +36,6 @@ sys-kernel/gentoo-sources experimental
 net-fs/samba client
 >=net-libs/telepathy-qt-0.9.6.1 farstream
 >=sys-libs/libseccomp-2.3.0 static-libs
-app-emulation/docker -device-mapper overlay
 >=dev-qt/qtwayland-5.6.1 egl
 <dev-qt/qtwebkit-4.10.4:4 -gstreamer
 >=media-libs/libvpx-1.5.0 svc
