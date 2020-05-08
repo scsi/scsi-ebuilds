@@ -62,3 +62,4 @@ net-wireless/bluez user-session
 >=dev-libs/libdazzle-3.30.2 vala
 >=sys-libs/zlib-1.2.11-r2 static-libs
 >=app-arch/bzip2-1.0.6-r11 static-libs
+>=dev-python/pygobject-3.34.0 python_targets_python3_6
