@@ -122,3 +122,4 @@ x11-drivers/xf86-video-ati
 x11-themes/smplayer-themes
 x11-wm/enlightenment
 games-misc/cowsay
+net-misc/r8168
