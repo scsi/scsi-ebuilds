@@ -12,3 +12,5 @@
 =net-vpn/networkmanager-fortisslvpn-1.2.8-r2 ~amd64
 =net-vpn/networkmanager-sstp-1.2.0-r1 ~amd64
 =dev-libs/nss-3.52 ~amd64
+=kde-misc/kdeconnect-20.04.1 ~amd64
+=media-sound/elisa-20.04.1 ~amd64
