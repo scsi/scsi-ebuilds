@@ -17,3 +17,7 @@ lxqt-base/lxqt-openssh-askpass
 lxqt-base/lxqt-sudo
 x11-misc/pcmanfm-qt
 x11-misc/obconf-qt
+x11-themes/lxqt-themes
+x11-libs/libfm-qt
+dev-libs/libqtxdg
+dev-util/lxqt-build-tools
