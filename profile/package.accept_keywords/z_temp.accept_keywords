@@ -13,3 +13,4 @@
 =dev-libs/nss-3.52 ~amd64
 =kde-misc/kdeconnect-20.04.1 ~amd64
 =media-sound/elisa-20.04.1 ~amd64
+=dev-libs/nss-3.52.1 ~amd64
