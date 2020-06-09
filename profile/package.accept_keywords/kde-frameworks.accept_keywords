@@ -20,7 +20,6 @@ kde-apps/calendarsupport
 kde-apps/cantor
 kde-apps/cervisia
 kde-apps/dolphin
-kde-apps/dolphin-plugins-bazaar
 kde-apps/dolphin-plugins-dropbox
 kde-apps/dolphin-plugins-git
 kde-apps/dolphin-plugins-mercurial
@@ -339,6 +338,7 @@ kde-plasma/ksshaskpass
 kde-plasma/ksysguard
 kde-plasma/kwallet-pam
 kde-plasma/kwayland-integration
+kde-plasma/kwayland-server
 kde-plasma/kwin
 kde-plasma/kwrited
 kde-plasma/libkscreen
