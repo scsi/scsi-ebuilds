@@ -68,3 +68,4 @@ net-wireless/bluez user-session
 >=dev-python/certifi-2019.11.28 python_targets_python3_6
 >=dev-python/dbus-python-1.2.16 python_targets_python3_6
 >=dev-libs/libpcre2-10.34 pcre32
+media-libs/opencv -gtk3
