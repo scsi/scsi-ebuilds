@@ -7,3 +7,6 @@
 =net-libs/libnma-1.8.28 ~amd64
 =dev-libs/nspr-4.26 ~amd64
 =dev-libs/nss-3.54-r1 ~amd64
+=sys-apps/portage-3.0.0-r1 ~amd64
+=media-libs/harfbuzz-2.7.0 ~amd64
+=dev-libs/plasma-wayland-protocols-1.1.1 ~amd64
