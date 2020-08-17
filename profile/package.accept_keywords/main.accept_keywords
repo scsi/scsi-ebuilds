@@ -45,6 +45,7 @@ app-text/convmv
 app-text/stardict
 app-text/teseq
 dev-go/glide
+dev-java/gradle-bin
 dev-java/groovy
 dev-java/jython
 dev-java/oracle-jdk-bin:1.7
