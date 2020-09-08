@@ -1,12 +1,7 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
 =media-libs/libvpx-1.8.2 ~amd64
-=net-libs/kdsoap-1.9.50_pre20200317 ~amd64
-=net-libs/kdsoap-ws-discovery-client-0.2_pre20200317 ~amd64
-=dev-libs/plasma-wayland-protocols-1.0 ~amd64
-=net-libs/libnma-1.8.28 ~amd64
-=dev-libs/nspr-4.26 ~amd64
-=dev-libs/nss-3.54-r1 ~amd64
-=sys-apps/portage-3.0.0-r1 ~amd64
-=media-libs/harfbuzz-2.7.0 ~amd64
 =dev-libs/plasma-wayland-protocols-1.1.1 ~amd64
+=app-cdr/dolphin-plugins-mountiso-20.08.1 ~amd64
+=x11-misc/appmenu-gtk-module-0.7.3-r1 ~amd64
+=x11-misc/xsettingsd-1.0.0 ~amd64
