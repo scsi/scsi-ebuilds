@@ -5,3 +5,5 @@
 =app-cdr/dolphin-plugins-mountiso-20.08.1 ~amd64
 =x11-misc/appmenu-gtk-module-0.7.3-r1 ~amd64
 =x11-misc/xsettingsd-1.0.0 ~amd64
+=dev-libs/nss-pem-1.0.6 ~amd64
+=app-cdr/dolphin-plugins-mountiso-20.08.2 ~amd64
