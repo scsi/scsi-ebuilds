@@ -195,7 +195,6 @@ kde-apps/libkdepim
 kde-apps/libkeduvocdocument
 kde-apps/libkexiv2
 kde-apps/libkgapi
-kde-apps/libkgeomap
 kde-apps/libkipi
 kde-apps/libkleo
 kde-apps/libkmahjongg
@@ -348,6 +347,7 @@ kde-plasma/milou
 kde-plasma/oxygen
 kde-plasma/plasma-browser-integration
 kde-plasma/plasma-desktop
+kde-plasma/plasma-disks
 kde-plasma/plasma-integration
 kde-plasma/plasma-meta
 kde-plasma/plasma-nm
