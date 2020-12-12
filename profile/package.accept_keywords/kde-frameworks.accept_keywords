@@ -62,7 +62,6 @@ kde-apps/kcalutils
 kde-apps/kcharselect
 kde-apps/kcolorchooser
 kde-apps/kcron
-kde-apps/kdav
 kde-apps/kdeaccessibility-meta
 kde-apps/kdeadmin-meta
 kde-apps/kde-apps-meta
@@ -353,6 +352,7 @@ kde-plasma/plasma-meta
 kde-plasma/plasma-nm
 kde-plasma/plasma-pa
 kde-plasma/plasma-sdk
+kde-plasma/plasma-systemmonitor
 kde-plasma/plasma-thunderbolt
 kde-plasma/plasma-vault
 kde-plasma/plasma-workspace

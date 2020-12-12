@@ -1,4 +1,13 @@
 #eix -cTt
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
 =dev-libs/nss-pem-1.0.6 ~amd64
-=app-cdr/dolphin-plugins-mountiso-20.08.2 ~amd64
+=app-cdr/dolphin-plugins-mountiso-20.08.3 ~amd64
+=virtual/perl-libnet-3.110.0-r4 ~amd64
+=app-accessibility/kontrast-20.12.0 ~amd64
+=net-libs/libktorrent-20.12.0 ~amd64
+=net-irc/konversation-20.12.0 ~amd64
+=net-p2p/ktorrent-20.12.0 ~amd64
+=sys-block/partitionmanager-20.12.0 ~amd64
+=app-cdr/dolphin-plugins-mountiso-20.12.0 ~amd64
+=kde-misc/markdownpart-20.12.0 ~amd64
+=sys-libs/kpmcore-20.12.0 ~amd64
