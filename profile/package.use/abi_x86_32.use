@@ -122,3 +122,4 @@
 >=app-arch/zstd-1.4.4-r4 abi_x86_32
 >=virtual/rust-1.44.1 abi_x86_32
 >=dev-lang/rust-1.44.1 abi_x86_32
+>=dev-util/wayland-scanner-1.18.91 abi_x86_32

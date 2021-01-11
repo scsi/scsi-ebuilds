@@ -258,7 +258,6 @@ kde-frameworks/kded
 kde-frameworks/kdelibs4support
 kde-frameworks/kdesignerplugin
 kde-frameworks/kdesu
-kde-frameworks/kdewebkit
 kde-frameworks/kdnssd
 kde-frameworks/kdoctools
 kde-frameworks/kemoticons
@@ -279,8 +278,6 @@ kde-frameworks/kitemmodels
 kde-frameworks/kitemviews
 kde-frameworks/kjobwidgets
 kde-frameworks/kjs
-kde-frameworks/kjsembed
-kde-frameworks/kmediaplayer
 kde-frameworks/knewstuff
 kde-frameworks/knotifications
 kde-frameworks/knotifyconfig
@@ -301,7 +298,6 @@ kde-frameworks/kwayland
 kde-frameworks/kwidgetsaddons
 kde-frameworks/kwindowsystem
 kde-frameworks/kxmlgui
-kde-frameworks/kxmlrpcclient
 kde-frameworks/modemmanager-qt
 kde-frameworks/networkmanager-qt
 kde-frameworks/oxygen-icons

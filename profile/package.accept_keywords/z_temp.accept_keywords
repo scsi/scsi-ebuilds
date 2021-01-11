@@ -11,3 +11,15 @@
 =app-cdr/dolphin-plugins-mountiso-20.12.0 ~amd64
 =kde-misc/markdownpart-20.12.0 ~amd64
 =sys-libs/kpmcore-20.12.0 ~amd64
+=dev-util/wayland-scanner-1.18.91 ~amd64
+=net-libs/libktorrent-20.12.1 ~amd64
+=sys-libs/kpmcore-20.12.1 ~amd64
+=net-irc/konversation-20.12.1 ~amd64
+=dev-util/wayland-scanner-1.18.92 ~amd64
+=kde-misc/markdownpart-20.12.1 ~amd64
+=media-libs/kimageannotator-0.4.0 ~amd64
+=net-p2p/ktorrent-20.12.1 ~amd64
+=app-cdr/dolphin-plugins-mountiso-20.12.1 ~amd64
+=sys-block/partitionmanager-20.12.1 ~amd64
+=media-libs/kcolorpicker-0.1.4 ~amd64
+=app-accessibility/kontrast-20.12.1 ~amd64
