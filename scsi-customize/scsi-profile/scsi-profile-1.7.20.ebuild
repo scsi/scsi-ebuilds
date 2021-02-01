@@ -27,8 +27,10 @@ src_install()
 	doins ${FILESDIR}/script/profile.scsi.sh
 	doins ${FILESDIR}/script/profile.ps1.sh
 
-	insinto /etc/bash/bashrc.d
-	doins ${FILESDIR}/script/profile.ps1.sh
+	#insinto /etc/bash/bashrc.d
+	#doins ${FILESDIR}/script/profile.ps1.sh
+	dodir /etc/bash/bashrc.d
+	dosym /etc/profile.d/profile.ps1.sh /etc/bash/bashrc.d/profile.ps1.sh
 
 	dodir /etc/env.d
 	insinto /etc/env.d

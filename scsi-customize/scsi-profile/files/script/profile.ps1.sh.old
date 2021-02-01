@@ -26,15 +26,15 @@ setps1(){
     rfcolor="\[\033[01;31m\]"
   fi
   rmcolor="\[\033[0m\]"
-  rdircolor="\[\033[01;94m\]"
-  dircolor="\[\033[01;92m\]"
-  scrcolor="\[\033[01;96m\]"
+  rdircolor="\[\033[01;34m\]"
+  dircolor="\[\033[01;32m\]"
+  scrcolor="\[\033[01;36m\]"
 
-  [[ $WINDOW ]] && S_WIN="[S$WINDOW]" || S_WIN=""
-  [[ $TMUX_PANE ]] && T_WIN="[T${TMUX_PANE:1}]" || T_WIN=""
-  [[ $USER = root ]] && PS1="${scrcolor}${S_WIN}${T_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
-                 || PS1="${scrcolor}${S_WIN}${T_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
+  [ -n "$WINDOW" ] && S_WIN="[$WINDOW]" || S_WIN=""
+  [ $USER = root ] && PS1="${scrcolor}${S_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
+                 || PS1="${scrcolor}${S_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
   export PS1
 }
 setps1
 unset setps1
+
