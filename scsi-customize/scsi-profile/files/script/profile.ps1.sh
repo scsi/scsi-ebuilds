@@ -29,11 +29,12 @@ setps1(){
   rdircolor="\[\033[01;94m\]"
   dircolor="\[\033[01;92m\]"
   scrcolor="\[\033[01;96m\]"
+  tmuxcolor="\[\033[01;92m\]"
 
-  [[ $WINDOW ]] && S_WIN="[S$WINDOW]" || S_WIN=""
-  [[ $TMUX_PANE ]] && T_WIN="[T${TMUX_PANE:1}]" || T_WIN=""
-  [[ $USER = root ]] && PS1="${scrcolor}${S_WIN}${T_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
-                 || PS1="${scrcolor}${S_WIN}${T_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
+  [[ $WINDOW ]] && S_WIN="${scrcolor}[$WINDOW]" || S_WIN=""
+  [[ $TMUX_PANE ]] && T_WIN="${tmuxcolor}[${TMUX_PANE:1}]" || T_WIN=""
+  [[ $USER = root ]] && PS1="${S_WIN}${T_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
+                 || PS1="${S_WIN}${T_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
   export PS1
 }
 setps1
