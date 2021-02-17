@@ -255,7 +255,6 @@ kde-frameworks/kdbusaddons
 kde-frameworks/kdeclarative
 kde-frameworks/kded
 kde-frameworks/kdelibs4support
-kde-frameworks/kdesignerplugin
 kde-frameworks/kdesu
 kde-frameworks/kdnssd
 kde-frameworks/kdoctools
@@ -342,6 +341,7 @@ kde-plasma/oxygen
 kde-plasma/plasma-browser-integration
 kde-plasma/plasma-desktop
 kde-plasma/plasma-disks
+kde-plasma/plasma-firewall
 kde-plasma/plasma-integration
 kde-plasma/plasma-meta
 kde-plasma/plasma-nm
@@ -357,6 +357,5 @@ kde-plasma/polkit-kde-agent
 kde-plasma/powerdevil
 kde-plasma/sddm-kcm
 kde-plasma/systemsettings
-kde-plasma/user-manager
 kde-plasma/xdg-desktop-portal-kde
 kde-plasma/xembed-sni-proxy

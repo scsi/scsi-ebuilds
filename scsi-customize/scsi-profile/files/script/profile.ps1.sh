@@ -1,3 +1,22 @@
+ppids(){
+  local str=`ps -ho ppid,cmd $1`
+  local cmd=`echo $str|awk '{print $2}'`
+  local ppid=`echo $str|awk '{print $1}'`
+  echo ppid=$ppid
+  [[ $ppid -eq 0 ]] && return
+  ppids $ppid
+}
+
+find_screen(){
+  local str=`ps -ho ppid,cmd $1`
+  echo "$str"|grep -qiw "screen" && { echo screen; return; }
+  echo "$str"|grep -qiw "tmux" && { echo tmux; return; }
+  local cmd=`echo $str|awk '{print $2}'`
+  local ppid=`echo $str|awk '{print $1}'`
+  [[ $ppid -eq 0 ]] && return
+  find_screen $ppid
+}
+
 setps1(){
   #THIS_TTY=`ps -ho tty $$`
   # http://stackoverflow.com/questions/5615570/in-a-script-vs-in-a-subshell
@@ -33,9 +52,13 @@ setps1(){
 
   [[ $WINDOW ]] && S_WIN="${scrcolor}[$WINDOW]" || S_WIN=""
   [[ $TMUX_PANE ]] && T_WIN="${tmuxcolor}[${TMUX_PANE:1}]" || T_WIN=""
-  [[ $USER = root ]] && PS1="${S_WIN}${T_WIN}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
-                 || PS1="${S_WIN}${T_WIN}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
-  export PS1
+  if [[ ! $PS1_TERMINAL_MGR_PANE ]]; then
+    [[ -n $WINDOW && -n $TMUX_PANE && `find_screen $$` = screen ]] && PS1_TERMINAL_MGR_PANE="${T_WIN}${S_WIN}" || PS1_TERMINAL_MGR_PANE="${S_WIN}${T_WIN}"
+  fi
+  [[ $USER = root ]] && PS1_SCSI="${PS1_TERMINAL_MGR_PANE}${rfcolor}${MODE}\h ${rdircolor}\W #${rmcolor} " \
+                 || PS1_SCSI="${PS1_TERMINAL_MGR_PANE}${fcolor}${MODE}\u@\h ${dircolor}\W \$${rmcolor} "
+  unset PS1_TERMINAL_MGR_PANE
 }
-setps1
+[[ $PS1_SCSI ]] || setps1
 unset setps1
+export PS1=$PS1_SCSI
