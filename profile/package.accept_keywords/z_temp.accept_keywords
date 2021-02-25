@@ -2,8 +2,6 @@
 =x11-misc/vnc2swf-0.5.0-r1 ~amd64
 =dev-libs/nss-pem-1.0.6 ~amd64
 =virtual/perl-libnet-3.110.0-r4 ~amd64
-=media-libs/kimageannotator-0.4.0 ~amd64
-=media-libs/kcolorpicker-0.1.4 ~amd64
 =dev-util/wayland-scanner-1.19.0 ~amd64
 =x11-apps/xinit-1.4.1-r1
 =app-emulation/docker-cli-20.10.2 ~amd64
@@ -16,4 +14,5 @@
 =net-libs/libktorrent-20.12.2 ~amd64
 =sys-libs/kpmcore-20.12.2 ~amd64
 =net-p2p/ktorrent-20.12.2 ~amd64
-
+=media-libs/kimageannotator-0.4.1 ~amd64
+=media-libs/kcolorpicker-0.1.5 ~amd64
