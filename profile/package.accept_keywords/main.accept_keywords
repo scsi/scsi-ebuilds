@@ -124,3 +124,5 @@ x11-themes/smplayer-themes
 x11-wm/enlightenment
 games-misc/cowsay
 net-misc/r8168
+app-vim/vim-go
+net-im/teams
