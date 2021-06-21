@@ -1,5 +1,5 @@
-EAPI=3
-inherit eutils
+#EAPI=6
+#inherit eutils
 
 DESCRIPTION="It was written by 臆p墂 Magos嫕yi for his original VPN mini-HOWTO"
 SRC_URI="http://www.shinythings.com/pty-redir/${P}.tgz"

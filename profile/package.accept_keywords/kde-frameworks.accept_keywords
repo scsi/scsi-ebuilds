@@ -327,11 +327,13 @@ kde-plasma/kscreen
 kde-plasma/kscreenlocker
 kde-plasma/ksshaskpass
 kde-plasma/ksysguard
+kde-plasma/ksystemstats
 kde-plasma/kwallet-pam
 kde-plasma/kwayland-integration
 kde-plasma/kwayland-server
 kde-plasma/kwin
 kde-plasma/kwrited
+kde-plasma/layer-shell-qt
 kde-plasma/libkscreen
 kde-plasma/libksysguard
 kde-plasma/libkworkspace
