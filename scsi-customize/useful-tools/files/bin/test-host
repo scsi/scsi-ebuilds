@@ -1,0 +1,48 @@
+#!/bin/bash
+#https://stackoverflow.com/questions/4922943/test-if-remote-tcp-port-is-open-from-a-shell-script
+
+. commfunc.sh || exit 1
+
+WAIT_TIMEOUT=3
+PROTOCOL=tcp
+list_proptocol(){ echo tcp udp; }
+main_options=(
+"V:1.0.2"
+"H:test host is alive."
+"O:single,s:use single mode, it mean will exec one by one::"
+"O:timeout,t:set timeout seconds, default is ${WAIT_TIMEOUT}s:-:"
+"O:protocol,p:set protocol with tcp or ude, default is ${PROTOCOL}:list_protocol:"
+"P:host or host with port, ex. 127.0.0.1:123:-:repeat"
+)
+
+test_host(){
+  if [[ $1 =~ ^([^:]*):([0-9]+)$ ]]; then
+    msg=`timeout $WAIT_TIMEOUT bash -c "cat < /dev/null > /dev/tcp/${BASH_REMATCH[1]}/${BASH_REMATCH[2]}" 2>&1`
+    if [[ $? = 0 ]]; then
+     echo success
+    else
+      [[ $msg ]] && { echo "$msg"|head -1|cut -d: -f3-|sed "s/^[[:space:]]*//"; } || echo "Timeout"
+      return 1;
+    fi
+  else
+    ping -c 1 -w $WAIT_TIMEOUT -q $1 1>/dev/null 2>&1 && echo success || { echo fail;return 1; }
+  fi
+}
+main(){
+  [[ ${OPTIONS[timeout]} ]] && WAIT_TIMEOUT=${OPTIONS[timeout]}
+  [[ ${OPTIONS[protocol]} ]] && PROTOCOL=${OPTIONS[protocol],,}
+
+  [[ $WAIT_TIMEOUT =~ ^[0-9]+$ ]] || die "timeout $WAIT_TIMEOUT is not number."
+  [[ $WAIT_TIMEOUT > 0 ]] || die "timeout $WAIT_TIMEOUT must greate than 0."
+  [[ $PROTOCOL =~ ^tcp|udp$ ]] || die "protocol '$PROTOCOL' is not tcp nor udp."
+
+  for aa in "${PARAMETERS[@]}"; do
+    if [[ ${OPTIONS[single]} ]]; then
+      singlexec "$aa" "test_host $aa" output=raw
+    else
+      multiexec "$aa" "test_host $aa" output=raw
+    fi
+  done
+  waitchild
+}
+main_exec main "$@"

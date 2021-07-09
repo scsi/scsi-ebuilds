@@ -9,3 +9,11 @@
 =net-libs/libktorrent-21.04.2 ~amd64
 =app-accessibility/kontrast-21.04.2 ~amd64
 =kde-misc/markdownpart-21.04.2 ~amd64
+=app-eselect/eselect-gradle-0.2 ~amd64
+=net-irc/konversation-21.04.3 ~amd64
+=net-libs/libktorrent-21.04.3 ~amd64
+=net-p2p/ktorrent-21.04.3 ~amd64
+=sys-block/partitionmanager-21.04.3 ~amd64
+=app-cdr/dolphin-plugins-mountiso-21.04.3 ~amd64
+=app-accessibility/kontrast-21.04.3 ~amd64
+=sys-libs/kpmcore-21.04.3 ~amd64
