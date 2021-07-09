@@ -3,7 +3,7 @@
 # $Header: /home/cvsroot/gentoo-x86/net-ftp/ncftp/ncftp-3.1.6.ebuild,v 1.3 2003/10/18 01:51:00 raker Exp $
 
 inherit eutils
-
+EAPI=6
 S=${WORKDIR}/${PN}-v1.0r11
 
 DESCRIPTION="SOCKS 5.0 Server Daemon"
