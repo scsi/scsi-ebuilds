@@ -1,9 +1,6 @@
 sys-apps/portage -rsync-verify
 net-misc/aria2 ssh metalink scripts xmlrpc
-net-ftp/pure-ftpd paranoidmsg
-app-i18n/fcitx table
 net-nds/openldap syslog -minimal
-app-accessibility/espeak portaudio
 app-portage/layman git subversion
 dev-vcs/git cgi cvs subversion
 media-libs/libpng apng
@@ -29,7 +26,6 @@ sys-kernel/gentoo-sources experimental
 >=app-text/asciidoc-8.6.9-r1 python_single_target_python2_7
 >=dev-qt/qtgui-5.5.1-r1 -gles2
 >=kde-apps/solid-runtime-15.08.3 -bluetooth
->=media-libs/mesa-11.0.6 wayland
 >=media-libs/mlt-0.9.8-r2 melt kdenlive -vdpau
 >=dev-qt/qtscript-5.5.1-r1 scripttools
 net-fs/samba client
@@ -49,7 +45,6 @@ net-fs/samba client
 >=dev-libs/xmlsec-1.2.24 nss
 >=dev-libs/libpcre2-10.30 pcre16
 >=sys-apps/dbus-1.10.18 user-session
-net-wireless/bluez user-session
 >=dev-libs/libgit2-0.24.6 ssh
 >=dev-qt/qtwebkit-5.9.1 printsupport
 >=media-plugins/gst-plugins-meta-1.12.4 v4l
@@ -67,3 +62,12 @@ net-wireless/bluez user-session
 >=dev-libs/libpcre2-10.34 pcre32
 media-libs/opencv -gtk3
 >=dev-python/setuptools_scm-4.1.2-r1 python_targets_python3_6
+>=sys-boot/grub-2.06 mount
+>=net-dns/bind-tools-9.16.15 gssapi
+>=dev-ruby/minitest-5.13.0 ruby_targets_ruby26
+>=dev-ruby/net-telnet-0.2.0 ruby_targets_ruby26
+>=sys-apps/xdg-desktop-portal-1.14.4 screencast
+>=dev-python/pyside2-5.15.2-r2 webengine
+>=media-video/ffmpeg-4.4.2 libass
+media-sound/pulseaudio daemon bluetooth
+>=media-libs/opus-1.3.1-r3 custom-modes

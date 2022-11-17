@@ -40,7 +40,6 @@ kde-apps/kaccounts-providers
 kde-apps/kaddressbook
 kde-apps/kajongg
 kde-apps/kalarm
-kde-apps/kalarmcal
 kde-apps/kalgebra
 kde-apps/kalzium
 kde-apps/kamera
@@ -49,6 +48,8 @@ kde-apps/kanagram
 kde-apps/kapman
 kde-apps/kapptemplate
 kde-apps/kate
+kde-apps/kate-addons
+kde-apps/kate-lib
 kde-apps/katomic
 kde-apps/kbackup
 kde-apps/kblackbox
@@ -65,7 +66,6 @@ kde-apps/kcron
 kde-apps/kdeaccessibility-meta
 kde-apps/kdeadmin-meta
 kde-apps/kde-apps-meta
-kde-apps/kdebase-meta
 kde-apps/kdebugsettings
 kde-apps/kdecore-meta
 kde-apps/kde-dev-scripts
@@ -75,7 +75,6 @@ kde-apps/kdeedu-meta
 kde-apps/kdegames-meta
 kde-apps/kdegraphics-meta
 kde-apps/kdegraphics-mobipocket
-kde-apps/kde-meta
 kde-apps/kdemultimedia-meta
 kde-apps/kdenetwork-filesharing
 kde-apps/kdenetwork-meta
@@ -83,7 +82,6 @@ kde-apps/kdenlive
 kde-apps/kdepim-addons
 kde-apps/kdepim-meta
 kde-apps/kdepim-runtime
-kde-apps/kdesdk-kioslaves
 kde-apps/kdesdk-meta
 kde-apps/kdesdk-thumbnailers
 kde-apps/kdeutils-meta
@@ -107,7 +105,6 @@ kde-apps/killbots
 kde-apps/kimagemapeditor
 kde-apps/kimap
 kde-apps/kio-extras
-kde-apps/kipi-plugins
 kde-apps/kiriki
 kde-apps/kiten
 kde-apps/kitinerary
@@ -192,7 +189,6 @@ kde-apps/libkdepim
 kde-apps/libkeduvocdocument
 kde-apps/libkexiv2
 kde-apps/libkgapi
-kde-apps/libkipi
 kde-apps/libkleo
 kde-apps/libkmahjongg
 kde-apps/libkomparediff2
@@ -226,12 +222,12 @@ kde-apps/sweeper
 kde-apps/thumbnailers
 kde-apps/umbrello
 kde-apps/yakuake
-kde-apps/zeroconf-ioslave
 kde-frameworks/attica
 kde-frameworks/baloo
 kde-frameworks/bluez-qt
 kde-frameworks/breeze-icons
 kde-frameworks/breeze-icons-rcc
+kde-frameworks/countryflags
 kde-frameworks/extra-cmake-modules
 kde-frameworks/frameworkintegration
 kde-frameworks/kactivities
@@ -308,11 +304,12 @@ kde-frameworks/syndication
 kde-frameworks/syntax-highlighting
 kde-frameworks/threadweaver
 kde-misc/basket
+kde-misc/bismuth
 kde-misc/colord-kde
+kde-misc/gmail-feed
 kde-misc/kdeconnect
 kde-misc/kdiff3
 kde-misc/kdirstat
-kde-misc/kimtoy
 kde-misc/kio-fuse
 kde-misc/kio-gdrive
 kde-misc/kio-gopher
@@ -323,13 +320,12 @@ kde-misc/krename
 kde-misc/krusader
 kde-misc/kshutdown
 kde-misc/ktoshiba
+kde-misc/kweather
 kde-misc/latte-dock
 kde-misc/markdownpart
 kde-misc/openofficeorg-thumbnail
 kde-misc/plasma-applet-network-monitor
-kde-misc/plasma-applet-weather-widget
 kde-misc/plasma-pass
-kde-misc/playbar2
 kde-misc/rsibreak
 kde-misc/skanlite
 kde-misc/tellico
@@ -352,6 +348,7 @@ kde-plasma/kgamma
 kde-plasma/khotkeys
 kde-plasma/kinfocenter
 kde-plasma/kmenuedit
+kde-plasma/kpipewire
 kde-plasma/kscreen
 kde-plasma/kscreenlocker
 kde-plasma/ksshaskpass
@@ -368,6 +365,7 @@ kde-plasma/libksysguard
 kde-plasma/libkworkspace
 kde-plasma/milou
 kde-plasma/oxygen
+kde-plasma/oxygen-sounds
 kde-plasma/plasma-browser-integration
 kde-plasma/plasma-desktop
 kde-plasma/plasma-disks
